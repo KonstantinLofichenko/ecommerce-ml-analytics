@@ -1,0 +1,81 @@
+{
+  "attempt_id": "ff20dde3-fd38-4c5a-b489-56c4a7b3f77d",
+  "table": "_attempt_search_query_1e12be58b534483b9c3ba279e6d04c1b",
+  "table_uuid": "1c7fe5e9-6683-4801-900a-d90d1ab9c336",
+  "source_sha256": "cba1be0b19c7872bb6645a2739d36fe33ed8df8a5b14e832cd7e66a5ff0e5f34",
+  "status": "failed_unpublished",
+  "started_utc": "2026-10-22T02:09:26.294856+00:00",
+  "source_types": [
+    {
+      "name": "client_id",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "timestamp",
+      "type": "Nullable(String)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "query",
+      "type": "Nullable(String)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    }
+  ],
+  "source_bounds": {
+    "first": "2022-06-23 00:10:00",
+    "last": "2022-12-08 00:09:55",
+    "nulls": 0
+  },
+  "chunks": [
+    {
+      "month": "2022-06",
+      "source": {
+        "rows": 414549,
+        "md5_sum": 70646656083409661131729609332042339690497352,
+        "sha256_sum": 70524170162906157225211599635327425961886019,
+        "sha256_xor": 15642581915949969489,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:10:00",
+        "max_timestamp": "2022-06-30 23:59:55",
+        "null_query": 0,
+        "min_bytes_query": 49,
+        "max_bytes_query": 65
+      },
+      "destination": {
+        "rows": 414549,
+        "md5_sum": 70646656083409661131729609332042339690497352,
+        "sha256_sum": 70524170162906157225211599635327425961886019,
+        "sha256_xor": 15642581915949969489,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:10:00",
+        "max_timestamp": "2022-06-30 23:59:55",
+        "null_query": 0,
+        "min_bytes_query": 49,
+        "max_bytes_query": 65
+      }
+    }
+  ],
+  "error": "Resource stop: {\"CGroupMemoryUsed\": 7060004864, \"CGroupMemoryTotal\": 8589934592, \"MemoryResident\": 2388103168, \"tracked\": 767219004, \"merges\": 1, \"free_disk\": 375411040256, \"parts\": 87, \"time\": 1792634975.150579}",
+  "discarded": true,
+  "query_memory_peak": 181026893,
+  "query_cpu_seconds": 5.480207
+}

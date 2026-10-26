@@ -1,0 +1,167 @@
+name: ecommerce-ml
+
+x-clickhouse-client: &clickhouse-client
+  CLICKHOUSE_HOST: clickhouse
+  CLICKHOUSE_PORT: "8123"
+  CLICKHOUSE_DATABASE: ecommerce
+  CLICKHOUSE_USER: ${CLICKHOUSE_USER:-ecommerce_app}
+  CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?Set CLICKHOUSE_PASSWORD in .env}
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.8.33.6
+    environment:
+      CLICKHOUSE_DB: ecommerce
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:-ecommerce_app}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?Set CLICKHOUSE_PASSWORD in .env}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports:
+      - "127.0.0.1:${CLICKHOUSE_HTTP_PORT:-18123}:8123"
+      - "127.0.0.1:${CLICKHOUSE_NATIVE_PORT:-19000}:9000"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - clickhouse-logs:/var/log/clickhouse-server
+      - ./infra/clickhouse/development.xml:/etc/clickhouse-server/config.d/development.xml:ro
+      - ./data/external/synerise/source:/var/lib/clickhouse/user_files/synerise/e90b8fde:ro
+    networks: [ecommerce-analytics]
+    mem_limit: 8g
+    cpus: 2
+    ulimits:
+      nofile: {soft: 262144, hard: 262144}
+    healthcheck:
+      test: [CMD-SHELL, 'clickhouse-client --user "$$CLICKHOUSE_USER" --password "$$CLICKHOUSE_PASSWORD" --database "$$CLICKHOUSE_DB" --query "SELECT 1" >/dev/null']
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  postgres:
+    image: ecommerce-ml-postgres:16.13
+    build: {context: ., dockerfile: infra/postgres/Dockerfile}
+    profiles: [bi, airflow]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ecommerce_metadata_admin}
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      AIRFLOW_DB_USER: ${AIRFLOW_DB_USER:-ecommerce_airflow}
+      AIRFLOW_DB_PASSWORD: ${AIRFLOW_DB_PASSWORD:?Set AIRFLOW_DB_PASSWORD in .env}
+      METABASE_DB_USER: ${METABASE_DB_USER:-ecommerce_metabase}
+      METABASE_DB_PASSWORD: ${METABASE_DB_PASSWORD:?Set METABASE_DB_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks: [ecommerce-metadata]
+    mem_limit: 512m
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U "$$POSTGRES_USER" -d postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  dbt:
+    image: ecommerce-ml-dbt:1.0.0
+    build: {context: ., dockerfile: infra/dbt/Dockerfile}
+    profiles: [tools]
+    environment:
+      <<: *clickhouse-client
+      CLICKHOUSE_USER: ${CLICKHOUSE_DBT_USER:-ecommerce_dbt}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_DBT_PASSWORD:?Set CLICKHOUSE_DBT_PASSWORD in .env}
+      CLICKHOUSE_DATABASE: ecommerce_analytics
+      DBT_PROFILES_DIR: /workspace/dbt
+      DBT_SEND_ANONYMOUS_USAGE_STATS: "false"
+    volumes:
+      - ./dbt:/workspace/dbt
+    working_dir: /workspace/dbt
+    networks: [ecommerce-analytics]
+    depends_on:
+      clickhouse: {condition: service_healthy}
+    mem_limit: 1g
+    command: [debug]
+
+  metabase:
+    image: metabase/metabase:v0.58.33.1
+    profiles: [bi]
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_HOST: postgres
+      MB_DB_PORT: "5432"
+      MB_DB_DBNAME: metabase_metadata
+      MB_DB_USER: ${METABASE_DB_USER:-ecommerce_metabase}
+      MB_DB_PASS: ${METABASE_DB_PASSWORD:?Set METABASE_DB_PASSWORD in .env}
+      MB_ENCRYPTION_SECRET_KEY: ${METABASE_ENCRYPTION_KEY:?Set METABASE_ENCRYPTION_KEY in .env}
+      JAVA_OPTS: -Xms256m -Xmx1g
+      MB_ANON_TRACKING_ENABLED: "false"
+    ports: ["127.0.0.1:${METABASE_PORT:-13000}:3000"]
+    networks: [ecommerce-analytics, ecommerce-metadata]
+    depends_on:
+      postgres: {condition: service_healthy}
+      clickhouse: {condition: service_healthy}
+    mem_limit: 1536m
+    healthcheck:
+      test: [CMD-SHELL, 'curl -fsS http://localhost:3000/api/health >/dev/null']
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 90s
+
+  airflow:
+    image: ecommerce-ml-airflow:3.1.7
+    build: {context: ., dockerfile: infra/airflow/Dockerfile}
+    profiles: [airflow]
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "${AIRFLOW_ADMIN_USER:-ecommerce_admin}:admin"
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow/state/passwords.json
+      AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY:?Set AIRFLOW_FERNET_KEY in .env}
+      AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET:?Set AIRFLOW_JWT_SECRET in .env}
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: http://airflow:8080/execution/
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: "true"
+      AIRFLOW__CORE__PARALLELISM: "2"
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "2"
+      AIRFLOW_DB_USER: ${AIRFLOW_DB_USER:-ecommerce_airflow}
+      AIRFLOW_DB_PASSWORD: ${AIRFLOW_DB_PASSWORD:?Set AIRFLOW_DB_PASSWORD in .env}
+      AIRFLOW_ADMIN_USER: ${AIRFLOW_ADMIN_USER:-ecommerce_admin}
+      AIRFLOW_ADMIN_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD:?Set AIRFLOW_ADMIN_PASSWORD in .env}
+    volumes:
+      - ./dags:/opt/airflow/dags:ro
+      - airflow-logs:/opt/airflow/logs
+      - airflow-state:/opt/airflow/state
+    ports: ["127.0.0.1:${AIRFLOW_PORT:-18080}:8080"]
+    networks: [ecommerce-analytics, ecommerce-metadata]
+    depends_on:
+      postgres: {condition: service_healthy}
+    mem_limit: 3g
+    cpus: 2
+    healthcheck:
+      test: [CMD, python, /opt/airflow/health.py]
+      interval: 30s
+      timeout: 20s
+      retries: 15
+      start_period: 120s
+
+  ml:
+    image: ecommerce-ml-python:1.0.0
+    build: {context: ., dockerfile: infra/ml/Dockerfile}
+    profiles: [ml]
+    environment:
+      <<: *clickhouse-client
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      - ./data:/workspace/data:ro
+    networks: [ecommerce-analytics]
+    mem_limit: 2g
+    command: [python, -c, 'import ecommerce_analytics; print("ecommerce_analytics import OK")']
+
+networks:
+  ecommerce-analytics:
+    driver: bridge
+  ecommerce-metadata:
+    driver: bridge
+    internal: true
+
+volumes:
+  clickhouse-data:
+  clickhouse-logs:
+  postgres-data:
+  airflow-logs:
+  airflow-state:

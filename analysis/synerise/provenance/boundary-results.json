@@ -1,0 +1,34 @@
+[
+  {
+    "snapshot": "2022-08-01 00:00:00",
+    "events_near_cutoff": 237,
+    "clients_near_cutoff": 71,
+    "events_exactly_at_cutoff": 0,
+    "events_near_label_end": 166,
+    "clients_near_label_end": 75
+  },
+  {
+    "snapshot": "2022-09-01 00:00:00",
+    "events_near_cutoff": 352,
+    "clients_near_cutoff": 92,
+    "events_exactly_at_cutoff": 0,
+    "events_near_label_end": 149,
+    "clients_near_label_end": 65
+  },
+  {
+    "snapshot": "2022-10-01 00:00:00",
+    "events_near_cutoff": 139,
+    "clients_near_cutoff": 53,
+    "events_exactly_at_cutoff": 0,
+    "events_near_label_end": 168,
+    "clients_near_label_end": 89
+  },
+  {
+    "snapshot": "2022-11-01 00:00:00",
+    "events_near_cutoff": 169,
+    "clients_near_cutoff": 127,
+    "events_exactly_at_cutoff": 0,
+    "events_near_label_end": 384,
+    "clients_near_label_end": 205
+  }
+]

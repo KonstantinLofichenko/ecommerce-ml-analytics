@@ -1,0 +1,1399 @@
+{
+  "before": {
+    "dim_synerise_categories": {
+      "columns": [
+        "category_id",
+        "synthetic_category_label",
+        "synthetic_category_path",
+        "amazon_category_key",
+        "amazon_category_index",
+        "amazon_source_department",
+        "amazon_anchor_parent_asin",
+        "amazon_anchor_classification_status",
+        "amazon_category_product_count",
+        "is_synthetic_enrichment",
+        "mapping_version"
+      ],
+      "fingerprint": [
+        {
+          "n": 6912,
+          "hash_sum": "63432443991343777065710",
+          "hash_xor": "1013033741553011434"
+        }
+      ]
+    },
+    "dim_synerise_products": {
+      "columns": [
+        "sku",
+        "category_id",
+        "price_bucket",
+        "synthetic_category_label",
+        "synthetic_category_path",
+        "amazon_category_key",
+        "amazon_source_department",
+        "amazon_parent_asin",
+        "synthetic_product_title",
+        "amazon_classification_status",
+        "amazon_main_category_conflict",
+        "is_synthetic_enrichment",
+        "mapping_version"
+      ],
+      "fingerprint": [
+        {
+          "n": 1534050,
+          "hash_sum": "14142070652816721086375829",
+          "hash_xor": "1618279354900287193"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_category": {
+      "columns": [
+        "category_id",
+        "synthetic_category_path",
+        "cart_customers",
+        "purchase_customers",
+        "conversion_rate"
+      ],
+      "fingerprint": [
+        {
+          "n": 6880,
+          "hash_sum": "63606144851668443272083",
+          "hash_xor": "10387419932116010489"
+        }
+      ],
+      "metrics": [
+        {
+          "n": 6880,
+          "hash_sum": "63679153348467984232959"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_product": {
+      "columns": [
+        "sku",
+        "category_id",
+        "synthetic_product_title",
+        "cart_customers",
+        "purchase_customers",
+        "conversion_rate"
+      ],
+      "fingerprint": [
+        {
+          "n": 1444160,
+          "hash_sum": "13313309558974057484009278",
+          "hash_xor": "5403321024006000830"
+        }
+      ],
+      "metrics": [
+        {
+          "n": 1444160,
+          "hash_sum": "13315736359173369104616047"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_product_dashboard": {
+      "columns": [
+        "sku",
+        "category_id",
+        "synthetic_product_title",
+        "synthetic_category_path",
+        "cart_customers",
+        "purchase_customers",
+        "conversion_rate"
+      ],
+      "fingerprint": [
+        {
+          "n": 1444160,
+          "hash_sum": "13311491445557976995073115",
+          "hash_xor": "11350467329870716165"
+        }
+      ],
+      "metrics": [
+        {
+          "n": 1444160,
+          "hash_sum": "13315736359173369104616047"
+        }
+      ]
+    },
+    "fct_synerise_funnel": {
+      "columns": [
+        "stage_order",
+        "stage",
+        "customers",
+        "initial_customers",
+        "previous_customers",
+        "step_conversion_rate",
+        "overall_conversion_rate"
+      ],
+      "fingerprint": [
+        {
+          "n": 3,
+          "hash_sum": "24107439772029650418",
+          "hash_xor": "4453239095371659860"
+        }
+      ]
+    },
+    "tables": [
+      {
+        "database": "ecommerce",
+        "name": "raw_events",
+        "uuid": "9242f083-29f7-465e-a9ee-165c03a53f47",
+        "total_rows": 20692840
+      },
+      {
+        "database": "external_catalog",
+        "name": "amazon_products",
+        "uuid": "9baae9f8-6e56-4efe-b3d4-01c624309e28",
+        "total_rows": 273592
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "dim_synerise_categories",
+        "uuid": "20e167ab-d93a-4d54-9952-05a2aad6c440",
+        "total_rows": 6912
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "dim_synerise_products",
+        "uuid": "013bcbf2-b5f0-4563-9752-556797c555f3",
+        "total_rows": 1534050
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel",
+        "uuid": "6af7a225-76bd-4231-9334-f1e8ca9c0161",
+        "total_rows": 3
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel_by_category",
+        "uuid": "c5ec8953-714c-4ebb-9596-f12c5c104a52",
+        "total_rows": 6880
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel_by_product",
+        "uuid": "b8b164b9-8c94-48b6-a9af-a7838a6d19e3",
+        "total_rows": 1444160
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel_by_product_dashboard",
+        "uuid": "0e7c5cf2-ab0a-4a6e-b4c7-25e1df8117e3",
+        "total_rows": 1444160
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "int_synerise_events",
+        "uuid": "a17e189d-bf15-4f02-a96f-928ac7137bf8",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "int_synerise_funnel_first_cart",
+        "uuid": "64056d76-16a1-4497-936f-d62cb82b3567",
+        "total_rows": 2285750
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "int_synerise_funnel_first_purchase",
+        "uuid": "b7377ae4-6328-4427-860e-fa955e6ade6e",
+        "total_rows": 557349
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "int_synerise_funnel_first_visit",
+        "uuid": "d6cb02a9-fd6f-4aba-ab07-025a1466ad10",
+        "total_rows": 21993998
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_amazon_products",
+        "uuid": "bf7b756f-cd68-41ba-b80b-d128668caf9d",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_add_to_cart",
+        "uuid": "ab06a688-06e0-4397-98c4-2c87082f1b9d",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_page_visit",
+        "uuid": "ebb8aa63-f8e5-4a7a-a629-f3b509f29e2a",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_product_buy",
+        "uuid": "2edba528-213d-4e0b-8be6-752a2d14d8e7",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_product_properties",
+        "uuid": "a0ddb35a-ac0d-4f62-93d8-606b86491d3b",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_remove_from_cart",
+        "uuid": "3e9022da-7d3f-4e8e-bcaf-f3373c888f86",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_search_query",
+        "uuid": "cb9ee6cc-5c2f-495c-bf35-b082e69c1717",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_raw",
+        "name": "add_to_cart",
+        "uuid": "434a1ba5-ae53-499f-803f-2e9fbb95fee2",
+        "total_rows": 7541117
+      },
+      {
+        "database": "synerise_raw",
+        "name": "page_visit",
+        "uuid": "11ee9c2d-03ae-4938-9a98-746a4e2add06",
+        "total_rows": 199451980
+      },
+      {
+        "database": "synerise_raw",
+        "name": "product_buy",
+        "uuid": "8d7f97c0-3310-45fe-970b-4afaba38e490",
+        "total_rows": 2318502
+      },
+      {
+        "database": "synerise_raw",
+        "name": "product_properties",
+        "uuid": "ea954371-2833-47aa-a8a3-dd56461c2552",
+        "total_rows": 1534050
+      },
+      {
+        "database": "synerise_raw",
+        "name": "remove_from_cart",
+        "uuid": "201b5f63-30a0-469c-b941-bf5cd1298d61",
+        "total_rows": 2688894
+      },
+      {
+        "database": "synerise_raw",
+        "name": "search_query",
+        "uuid": "9cccb1c1-7d88-47a4-8714-7447ae605eb9",
+        "total_rows": 13223769
+      }
+    ],
+    "depth": [
+      {
+        "depth": 2,
+        "categories": 3228
+      },
+      {
+        "depth": 3,
+        "categories": 523
+      },
+      {
+        "depth": 4,
+        "categories": 1340
+      },
+      {
+        "depth": 5,
+        "categories": 1492
+      },
+      {
+        "depth": 6,
+        "categories": 297
+      },
+      {
+        "depth": 7,
+        "categories": 32
+      }
+    ],
+    "processes": []
+  },
+  "after": {
+    "dim_synerise_categories": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 6912,
+          "hash_sum": "63432443991343777065710",
+          "hash_xor": "1013033741553011434"
+        }
+      ]
+    },
+    "dim_synerise_products": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 1534050,
+          "hash_sum": "14142070652816721086375829",
+          "hash_xor": "1618279354900287193"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_category": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 6880,
+          "hash_sum": "63606144851668443272083",
+          "hash_xor": "10387419932116010489"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_product": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 1444160,
+          "hash_sum": "13313309558974057484009278",
+          "hash_xor": "5403321024006000830"
+        }
+      ]
+    },
+    "fct_synerise_funnel_by_product_dashboard": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 1444160,
+          "hash_sum": "13311491445557976995073115",
+          "hash_xor": "11350467329870716165"
+        }
+      ]
+    },
+    "fct_synerise_funnel": {
+      "original_columns_unchanged": true,
+      "fingerprint": [
+        {
+          "n": 3,
+          "hash_sum": "24107439772029650418",
+          "hash_xor": "4453239095371659860"
+        }
+      ]
+    },
+    "metric_totals": {
+      "product": [
+        {
+          "n": 1444160,
+          "ids": 1444160,
+          "cart": 5791963,
+          "purchase": 1182574
+        }
+      ],
+      "category": [
+        {
+          "n": 6880,
+          "ids": 6880,
+          "cart": 4335239,
+          "purchase": 995059
+        }
+      ]
+    },
+    "depth": [
+      {
+        "category_depth": 2,
+        "products": 672252
+      },
+      {
+        "category_depth": 3,
+        "products": 119962
+      },
+      {
+        "category_depth": 4,
+        "products": 311157
+      },
+      {
+        "category_depth": 5,
+        "products": 368114
+      },
+      {
+        "category_depth": 6,
+        "products": 55207
+      },
+      {
+        "category_depth": 7,
+        "products": 7358
+      }
+    ],
+    "memory": [
+      {
+        "name": "max_server_memory_usage",
+        "value": "6442450944"
+      }
+    ],
+    "rees46": [
+      {
+        "n": 20692840
+      }
+    ],
+    "scalar_columns": [
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_depth",
+        "type": "UInt64"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_id",
+        "type": "Int64"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_leaf",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_level_1",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_level_2",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_level_3",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_level_4",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_categories",
+        "name": "category_level_5",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_depth",
+        "type": "UInt64"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_id",
+        "type": "Int64"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_leaf",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_level_1",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_level_2",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_level_3",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_level_4",
+        "type": "String"
+      },
+      {
+        "table": "dim_synerise_products",
+        "name": "category_level_5",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_depth",
+        "type": "UInt64"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_id",
+        "type": "Int64"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_leaf",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_level_1",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_level_2",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_level_3",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_level_4",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_category",
+        "name": "category_level_5",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_depth",
+        "type": "UInt64"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_id",
+        "type": "Int64"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_leaf",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_level_1",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_level_2",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_level_3",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_level_4",
+        "type": "String"
+      },
+      {
+        "table": "fct_synerise_funnel_by_product",
+        "name": "category_level_5",
+        "type": "String"
+      }
+    ],
+    "protected_relations_unchanged": [
+      {
+        "database": "ecommerce",
+        "name": "raw_events",
+        "uuid": "9242f083-29f7-465e-a9ee-165c03a53f47",
+        "total_rows": 20692840
+      },
+      {
+        "database": "external_catalog",
+        "name": "amazon_products",
+        "uuid": "9baae9f8-6e56-4efe-b3d4-01c624309e28",
+        "total_rows": 273592
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel",
+        "uuid": "6af7a225-76bd-4231-9334-f1e8ca9c0161",
+        "total_rows": 3
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "fct_synerise_funnel_by_product_dashboard",
+        "uuid": "0e7c5cf2-ab0a-4a6e-b4c7-25e1df8117e3",
+        "total_rows": 1444160
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_amazon_products",
+        "uuid": "bf7b756f-cd68-41ba-b80b-d128668caf9d",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_add_to_cart",
+        "uuid": "ab06a688-06e0-4397-98c4-2c87082f1b9d",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_page_visit",
+        "uuid": "ebb8aa63-f8e5-4a7a-a629-f3b509f29e2a",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_product_buy",
+        "uuid": "2edba528-213d-4e0b-8be6-752a2d14d8e7",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_product_properties",
+        "uuid": "a0ddb35a-ac0d-4f62-93d8-606b86491d3b",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_remove_from_cart",
+        "uuid": "3e9022da-7d3f-4e8e-bcaf-f3373c888f86",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_analytics",
+        "name": "stg_synerise_search_query",
+        "uuid": "cb9ee6cc-5c2f-495c-bf35-b082e69c1717",
+        "total_rows": null
+      },
+      {
+        "database": "synerise_raw",
+        "name": "add_to_cart",
+        "uuid": "434a1ba5-ae53-499f-803f-2e9fbb95fee2",
+        "total_rows": 7541117
+      },
+      {
+        "database": "synerise_raw",
+        "name": "page_visit",
+        "uuid": "11ee9c2d-03ae-4938-9a98-746a4e2add06",
+        "total_rows": 199451980
+      },
+      {
+        "database": "synerise_raw",
+        "name": "product_buy",
+        "uuid": "8d7f97c0-3310-45fe-970b-4afaba38e490",
+        "total_rows": 2318502
+      },
+      {
+        "database": "synerise_raw",
+        "name": "product_properties",
+        "uuid": "ea954371-2833-47aa-a8a3-dd56461c2552",
+        "total_rows": 1534050
+      },
+      {
+        "database": "synerise_raw",
+        "name": "remove_from_cart",
+        "uuid": "201b5f63-30a0-469c-b941-bf5cd1298d61",
+        "total_rows": 2688894
+      },
+      {
+        "database": "synerise_raw",
+        "name": "search_query",
+        "uuid": "9cccb1c1-7d88-47a4-8714-7447ae605eb9",
+        "total_rows": 13223769
+      }
+    ],
+    "filtered_probes": [
+      {
+        "grain": "product",
+        "elapsed_seconds": 0.08581754215992987,
+        "rows": 10,
+        "statistics": {
+          "elapsed": 0.083944667,
+          "rows_read": 1444160,
+          "bytes_read": 103690423
+        }
+      },
+      {
+        "grain": "category",
+        "elapsed_seconds": 0.0029335839208215475,
+        "rows": 10,
+        "statistics": {
+          "elapsed": 0.001807459,
+          "rows_read": 6880,
+          "bytes_read": 494011
+        }
+      }
+    ],
+    "build_query_log": [
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 6,
+        "memory_usage": 544,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "CREATE TABLE IF NOT EXISTS `__dbt_exchange_test_0_dcd6d1f4d13411f1b90eedf76da23da4` (test String) ENGINE MergeTree() ORDER BY tuple()"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 2,
+        "memory_usage": 544,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "CREATE TABLE IF NOT EXISTS `__dbt_exchange_test_1_dcd6d1f4d13411f1b90eedf76da23da4` (test String) ENGINE MergeTree() ORDER BY tuple()"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 2,
+        "memory_usage": 1664,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.int_synerise_category_funnel_metri"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 2,
+        "memory_usage": 5064127,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.int_synerise_category_funnel_metri"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 2,
+        "memory_usage": 1664,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.int_synerise_product_funnel_metric"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 137,
+        "memory_usage": 14848564,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.int_synerise_product_funnel_metric"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 11,
+        "memory_usage": 544,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "CREATE TABLE IF NOT EXISTS `__dbt_exchange_test_0_f7f6a464d13411f1a4eba13f018494d0` (test String) ENGINE MergeTree() ORDER BY tuple()"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 2,
+        "memory_usage": 544,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "CREATE TABLE IF NOT EXISTS `__dbt_exchange_test_1_f7f6a464d13411f1a4eba13f018494d0` (test String) ENGINE MergeTree() ORDER BY tuple()"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 24,
+        "memory_usage": 7552,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.dim_synerise_categories\"} */\n\n    "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 598,
+        "memory_usage": 296833322,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.dim_synerise_categories\"} */\n\n  \n "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 13,
+        "memory_usage": 7552,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.dim_synerise_products\"} */\n\n      "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 2129,
+        "memory_usage": 387168348,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.dim_synerise_products\"} */\n\n  \n   "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 7,
+        "memory_usage": 2176,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.fct_synerise_funnel_by_category\"} "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 9,
+        "memory_usage": 12749471,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.fct_synerise_funnel_by_category\"} "
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Create",
+        "query_duration_ms": 2,
+        "memory_usage": 2176,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.fct_synerise_funnel_by_product\"} *"
+      },
+      {
+        "type": "QueryFinish",
+        "query_kind": "Insert",
+        "query_duration_ms": 4373,
+        "memory_usage": 199025652,
+        "max_threads": "1",
+        "query_cap": "1073741824",
+        "external_group_by": "67108864",
+        "external_sort": "33554432",
+        "query_prefix": "/* {\"app\": \"dbt\", \"dbt_version\": \"1.12.6\", \"profile_name\": \"ecommerce_analytics\", \"target_name\": \"catalog\", \"node_id\": \"model.ecommerce_analytics.fct_synerise_funnel_by_product\"} *"
+      }
+    ]
+  },
+  "bootstrap": {
+    "elapsed_time": 0.3858668804168701,
+    "results": [
+      {
+        "unique_id": "model.ecommerce_analytics.int_synerise_category_funnel_metrics",
+        "status": "success",
+        "execution_time": 0.046473026275634766
+      },
+      {
+        "unique_id": "model.ecommerce_analytics.int_synerise_product_funnel_metrics",
+        "status": "success",
+        "execution_time": 0.1485912799835205
+      }
+    ]
+  },
+  "canonical_build": {
+    "elapsed_time": 7.482259035110474,
+    "results": [
+      {
+        "unique_id": "model.ecommerce_analytics.dim_synerise_categories",
+        "status": "success",
+        "execution_time": 0.6810548305511475
+      },
+      {
+        "unique_id": "model.ecommerce_analytics.dim_synerise_products",
+        "status": "success",
+        "execution_time": 2.1635100841522217
+      },
+      {
+        "unique_id": "model.ecommerce_analytics.fct_synerise_funnel_by_category",
+        "status": "success",
+        "execution_time": 0.03200507164001465
+      },
+      {
+        "unique_id": "model.ecommerce_analytics.fct_synerise_funnel_by_product",
+        "status": "success",
+        "execution_time": 4.4520039558410645
+      }
+    ]
+  },
+  "final_tests": {
+    "elapsed_time": 4.822663068771362,
+    "results": [
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_categories_amazon_source_department__All_Beauty__Electronics.d1f1525e09",
+        "status": "pass",
+        "execution_time": 0.014773130416870117
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_categories_is_synthetic_enrichment__False__1.445864c61e",
+        "status": "pass",
+        "execution_time": 0.006134986877441406
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_categories_mapping_version__amazon_catalog_v1.ad0b5ff613",
+        "status": "pass",
+        "execution_time": 0.00616002082824707
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_products_amazon_main_category_conflict__False__0__1.9de158c8c1",
+        "status": "pass",
+        "execution_time": 0.005993843078613281
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_products_is_synthetic_enrichment__False__1.85bc5c521a",
+        "status": "pass",
+        "execution_time": 0.005609035491943359
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.accepted_values_dim_synerise_products_mapping_version__amazon_catalog_v1.bc46e26f80",
+        "status": "pass",
+        "execution_time": 0.005637168884277344
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_category_hierarchy_examples",
+        "status": "pass",
+        "execution_time": 0.005372047424316406
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_metabase_v1_baseline",
+        "status": "pass",
+        "execution_time": 0.05111193656921387
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_reporting_hierarchy_and_metrics",
+        "status": "pass",
+        "execution_time": 0.6106650829315186
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synerise_reporting_chronology_examples",
+        "status": "pass",
+        "execution_time": 0.05769205093383789
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_catalog_classification",
+        "status": "pass",
+        "execution_time": 0.03206825256347656
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_catalog_consistency",
+        "status": "pass",
+        "execution_time": 0.737555980682373
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_catalog_coverage",
+        "status": "pass",
+        "execution_time": 0.16468238830566406
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_catalog_pool",
+        "status": "pass",
+        "execution_time": 0.5203237533569336
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_category_mapping",
+        "status": "pass",
+        "execution_time": 0.27368617057800293
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.assert_synthetic_product_donor",
+        "status": "pass",
+        "execution_time": 1.083812952041626
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_dim_synerise_categories_category_id.122b598492",
+        "status": "pass",
+        "execution_time": 0.009777069091796875
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_dim_synerise_products_sku.49d496e784",
+        "status": "pass",
+        "execution_time": 0.10521984100341797
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_fct_synerise_funnel_by_category_category_id.31c4eaa6c6",
+        "status": "pass",
+        "execution_time": 0.011071920394897461
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_fct_synerise_funnel_by_product_sku.430656f037",
+        "status": "pass",
+        "execution_time": 0.19365406036376953
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_int_synerise_category_funnel_metrics_category_id.749979ebf9",
+        "status": "pass",
+        "execution_time": 0.008918046951293945
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.catalog_unique_int_synerise_product_funnel_metrics_sku.bf9e296c51",
+        "status": "pass",
+        "execution_time": 0.1434311866760254
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.category_hierarchy_valid_dim_synerise_categories_.473b2d5901",
+        "status": "pass",
+        "execution_time": 0.010017156600952148
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.category_hierarchy_valid_dim_synerise_products_.da677d1897",
+        "status": "pass",
+        "execution_time": 0.007159709930419922
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.category_hierarchy_valid_fct_synerise_funnel_by_category_.9423abeae1",
+        "status": "pass",
+        "execution_time": 0.008226156234741211
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.category_hierarchy_valid_fct_synerise_funnel_by_product_.602e5dd560",
+        "status": "pass",
+        "execution_time": 0.006894111633300781
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_anchor_classification_status.0147e3da85",
+        "status": "pass",
+        "execution_time": 0.0070269107818603516
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_anchor_parent_asin.1600937c19",
+        "status": "pass",
+        "execution_time": 0.005849123001098633
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_category_index.72e753faf2",
+        "status": "pass",
+        "execution_time": 0.006020784378051758
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_category_key.c89262a457",
+        "status": "pass",
+        "execution_time": 0.006006956100463867
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_category_product_count.b4eddfa4b8",
+        "status": "pass",
+        "execution_time": 0.005936861038208008
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_amazon_source_department.72fa68a44b",
+        "status": "pass",
+        "execution_time": 0.005923032760620117
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_depth.014acae642",
+        "status": "pass",
+        "execution_time": 0.005913972854614258
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_id.b702831268",
+        "status": "pass",
+        "execution_time": 0.005772113800048828
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_leaf.460ef69a44",
+        "status": "pass",
+        "execution_time": 0.00638890266418457
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_level_1.13a79bc176",
+        "status": "pass",
+        "execution_time": 0.005906343460083008
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_level_2.7ab1a3dd3b",
+        "status": "pass",
+        "execution_time": 0.006189107894897461
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_level_3.e1e1eae39e",
+        "status": "pass",
+        "execution_time": 0.006084918975830078
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_level_4.850fcc309b",
+        "status": "pass",
+        "execution_time": 0.005810976028442383
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_category_level_5.878f0ec3ac",
+        "status": "pass",
+        "execution_time": 0.005796194076538086
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_is_synthetic_enrichment.6a376cadf3",
+        "status": "pass",
+        "execution_time": 0.0057642459869384766
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_mapping_version.3842f7c795",
+        "status": "pass",
+        "execution_time": 0.005671024322509766
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_synthetic_category_label.bad46b365c",
+        "status": "pass",
+        "execution_time": 0.005907773971557617
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_categories_synthetic_category_path.d5024af994",
+        "status": "pass",
+        "execution_time": 0.005626201629638672
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_amazon_category_key.cd7b1d0c0d",
+        "status": "pass",
+        "execution_time": 0.005611896514892578
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_amazon_classification_status.2ab3e5a106",
+        "status": "pass",
+        "execution_time": 0.005419015884399414
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_amazon_main_category_conflict.15850bb5c3",
+        "status": "pass",
+        "execution_time": 0.005861997604370117
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_amazon_parent_asin.58c2d980d9",
+        "status": "pass",
+        "execution_time": 0.0054128170013427734
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_amazon_source_department.737f3f2b02",
+        "status": "pass",
+        "execution_time": 0.00551295280456543
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_depth.0aa647105a",
+        "status": "pass",
+        "execution_time": 0.005077838897705078
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_id.6eb682ede6",
+        "status": "pass",
+        "execution_time": 0.00508880615234375
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_leaf.5aec44405f",
+        "status": "pass",
+        "execution_time": 0.005074977874755859
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_level_1.d94aab69e4",
+        "status": "pass",
+        "execution_time": 0.005207061767578125
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_level_2.de42ab3eff",
+        "status": "pass",
+        "execution_time": 0.005002021789550781
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_level_3.cf7f844aed",
+        "status": "pass",
+        "execution_time": 0.005235910415649414
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_level_4.279fc779e7",
+        "status": "pass",
+        "execution_time": 0.005421876907348633
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_category_level_5.d4d811fb4c",
+        "status": "pass",
+        "execution_time": 0.005123138427734375
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_is_synthetic_enrichment.5e3c139840",
+        "status": "pass",
+        "execution_time": 0.00501704216003418
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_mapping_version.967621295f",
+        "status": "pass",
+        "execution_time": 0.005381107330322266
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_price_bucket.5f0c78609b",
+        "status": "pass",
+        "execution_time": 0.005316972732543945
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_sku.3b746a90ff",
+        "status": "pass",
+        "execution_time": 0.005346059799194336
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_synthetic_category_label.490c2d66cf",
+        "status": "pass",
+        "execution_time": 0.0053141117095947266
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_synthetic_category_path.2143f1af0c",
+        "status": "pass",
+        "execution_time": 0.005137205123901367
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_dim_synerise_products_synthetic_product_title.6dd40d4c3a",
+        "status": "pass",
+        "execution_time": 0.005192995071411133
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_depth.561be71a05",
+        "status": "pass",
+        "execution_time": 0.005244255065917969
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_id.38028de4c2",
+        "status": "pass",
+        "execution_time": 0.005125999450683594
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_leaf.32092b2733",
+        "status": "pass",
+        "execution_time": 0.0053980350494384766
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_level_1.d6f51fec0a",
+        "status": "pass",
+        "execution_time": 0.005399942398071289
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_level_2.6e53e41064",
+        "status": "pass",
+        "execution_time": 0.005104780197143555
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_level_3.630d757317",
+        "status": "pass",
+        "execution_time": 0.005370140075683594
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_level_4.164aad90f4",
+        "status": "pass",
+        "execution_time": 0.005461931228637695
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_category_category_level_5.3dff414401",
+        "status": "pass",
+        "execution_time": 0.0051157474517822266
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_depth.f4068d4cba",
+        "status": "pass",
+        "execution_time": 0.006136178970336914
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_leaf.ea22149681",
+        "status": "pass",
+        "execution_time": 0.005656719207763672
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_level_1.9b61c68fcb",
+        "status": "pass",
+        "execution_time": 0.005232810974121094
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_level_2.b4ebc8e713",
+        "status": "pass",
+        "execution_time": 0.0058519840240478516
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_level_3.20edf8a718",
+        "status": "pass",
+        "execution_time": 0.00516510009765625
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_level_4.e21b0de13e",
+        "status": "pass",
+        "execution_time": 0.005263090133666992
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_category_level_5.599037507b",
+        "status": "pass",
+        "execution_time": 0.005730152130126953
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_fct_synerise_funnel_by_product_sku.07567cfa9c",
+        "status": "pass",
+        "execution_time": 0.005126237869262695
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_category_funnel_metrics_cart_customers.bf9205f454",
+        "status": "pass",
+        "execution_time": 0.005543231964111328
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_category_funnel_metrics_category_id.bc725f7124",
+        "status": "pass",
+        "execution_time": 0.005202054977416992
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_category_funnel_metrics_purchase_customers.43a02677b0",
+        "status": "pass",
+        "execution_time": 0.0051729679107666016
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_product_funnel_metrics_cart_customers.fdb42ea2de",
+        "status": "pass",
+        "execution_time": 0.005253791809082031
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_product_funnel_metrics_purchase_customers.dc43f78a56",
+        "status": "pass",
+        "execution_time": 0.005553245544433594
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.not_null_int_synerise_product_funnel_metrics_sku.bead3b517c",
+        "status": "pass",
+        "execution_time": 0.005156993865966797
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.nullable_rate_between_zero_and_one_fct_synerise_funnel_by_category_conversion_rate.1a353ce2bd",
+        "status": "pass",
+        "execution_time": 0.005588054656982422
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.nullable_rate_between_zero_and_one_fct_synerise_funnel_by_product_conversion_rate.dcdca6b20b",
+        "status": "pass",
+        "execution_time": 0.0052721500396728516
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.relationships_dim_synerise_categories_amazon_anchor_parent_asin__parent_asin__ref_stg_amazon_products_.8799c6b939",
+        "status": "pass",
+        "execution_time": 0.046829938888549805
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.relationships_dim_synerise_products_amazon_parent_asin__parent_asin__ref_stg_amazon_products_.7f164b3855",
+        "status": "pass",
+        "execution_time": 0.11618781089782715
+      },
+      {
+        "unique_id": "test.ecommerce_analytics.relationships_dim_synerise_products_category_id__category_id__ref_dim_synerise_categories_.118545a3ba",
+        "status": "pass",
+        "execution_time": 0.041010141372680664
+      }
+    ]
+  }
+}

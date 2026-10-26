@@ -1,0 +1,64 @@
+# Data: retain only directory placeholders
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+*.csv
+*.csv.gz
+*.parquet
+# Python and tools
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+# Analytical databases and experiment artifacts
+*.duckdb
+*.duckdb.*
+*.db
+mlruns/
+mlartifacts/
+# Secrets and operating system files
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+.DS_Store
+# Infrastructure runtime artifacts
+.venv-dbt/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+
+# Downloaded external research datasets
+/data/external/
+
+# Generated logs, transient exports, archives and local tool state
+/logs/
+*.log
+*.tar
+*.tar.gz
+*.zip
+*.jsonl
+*.jsonl.gz
+*.arrow
+*.feather
+*.pkl
+*.joblib
+.venv*/
+.envrc
+*.swp
+*.swo
+*~
+/tmp/
+/temp/

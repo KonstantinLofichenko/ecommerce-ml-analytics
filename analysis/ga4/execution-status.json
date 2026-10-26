@@ -1,0 +1,100 @@
+{
+  "assessment_date": "2026-10-20",
+  "dataset": "bigquery-public-data.ga4_obfuscated_sample_ecommerce",
+  "decision": "INCONCLUSIVE",
+  "access": {
+    "bq_cli": false,
+    "gcloud_cli": false,
+    "adc_file": false,
+    "google_environment_variable_names": [],
+    "google_python_package": false
+  },
+  "parameters": {
+    "start_suffix": "20201101",
+    "end_suffix": "20210131"
+  },
+  "queries": [
+    {
+      "file": "sql/00_schema.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/00_nested_schema.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/00_volume.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/01_event_coverage.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/02_identity.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/03_sessions_funnel.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/03_session_quality.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/04_purchases.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/05_snapshots.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/06_exact_duplicates.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    },
+    {
+      "file": "sql/07_parameters.sql",
+      "status": "unexecuted",
+      "dry_run_bytes": null,
+      "job_id": null,
+      "bytes_billed": null
+    }
+  ],
+  "query_jobs_submitted": 0,
+  "bytes_scanned_by_this_assessment": 0,
+  "observed_query_cost": 0,
+  "dataset_counts": null,
+  "blocker": "No local authorized BigQuery execution path or project found. No sign-in/setup attempted."
+}

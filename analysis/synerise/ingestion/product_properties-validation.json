@@ -1,0 +1,150 @@
+{
+  "attempt_id": "55ae9c3d-fe54-45af-bb01-96caa7d63c49",
+  "table": "product_properties",
+  "table_uuid": "b5227a95-7279-484f-b31f-55c6f0f5a9d8",
+  "source_sha256": "a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305",
+  "status": "validated",
+  "started_utc": "2026-10-22T02:09:05.418220+00:00",
+  "source_types": [
+    {
+      "name": "sku",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "category",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "price",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "name",
+      "type": "Nullable(String)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    }
+  ],
+  "chunks": [
+    {
+      "month": "all",
+      "source": {
+        "rows": 1534050,
+        "md5_sum": 261024798319291727553619729596915149387701464,
+        "sha256_sum": 260657594364488967271391426560310135945418099,
+        "sha256_xor": 4052437586683472713,
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140,
+        "null_category": 0,
+        "min_category": 0,
+        "max_category": 6988,
+        "null_price": 0,
+        "min_price": 0,
+        "max_price": 99,
+        "null_name": 0,
+        "min_bytes_name": 49,
+        "max_bytes_name": 65
+      },
+      "destination": {
+        "rows": 1534050,
+        "md5_sum": 261024798319291727553619729596915149387701464,
+        "sha256_sum": 260657594364488967271391426560310135945418099,
+        "sha256_xor": 4052437586683472713,
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140,
+        "null_category": 0,
+        "min_category": 0,
+        "max_category": 6988,
+        "null_price": 0,
+        "min_price": 0,
+        "max_price": 99,
+        "null_name": 0,
+        "min_bytes_name": 49,
+        "max_bytes_name": 65
+      }
+    }
+  ],
+  "source_aggregate": {
+    "rows": 1534050,
+    "md5_sum": 261024798319291727553619729596915149387701464,
+    "sha256_sum": 260657594364488967271391426560310135945418099,
+    "sha256_xor": 4052437586683472713,
+    "null_sku": 0,
+    "min_sku": 0,
+    "max_sku": 1623140,
+    "null_category": 0,
+    "min_category": 0,
+    "max_category": 6988,
+    "null_price": 0,
+    "min_price": 0,
+    "max_price": 99,
+    "null_name": 0,
+    "min_bytes_name": 49,
+    "max_bytes_name": 65
+  },
+  "destination_aggregate": {
+    "rows": 1534050,
+    "md5_sum": 261024798319291727553619729596915149387701464,
+    "sha256_sum": 260657594364488967271391426560310135945418099,
+    "sha256_xor": 4052437586683472713,
+    "null_sku": 0,
+    "min_sku": 0,
+    "max_sku": 1623140,
+    "null_category": 0,
+    "min_category": 0,
+    "max_category": 6988,
+    "null_price": 0,
+    "min_price": 0,
+    "max_price": 99,
+    "null_name": 0,
+    "min_bytes_name": 49,
+    "max_bytes_name": 65
+  },
+  "reconciliation_seconds": 1.28404345898889,
+  "provenance_clock": {
+    "bad": 0
+  },
+  "source_hash_reverified": true,
+  "errors": 0,
+  "retries": 0,
+  "finished_utc": "2026-10-22T02:09:07.349658+00:00",
+  "resources": {
+    "sampled_peak_rss": 1761755136,
+    "sampled_peak_cgroup": 5678129152,
+    "sampled_peak_tracked": 825174369,
+    "maximum_merges": 2,
+    "maximum_release_parts": 11,
+    "minimum_free_disk": 375790809088
+  },
+  "insert_seconds": 0.5644603329710662,
+  "rows_per_insert_second": 2717728.616863914,
+  "total_seconds": 1.9314483748748899,
+  "storage": {
+    "parts": 6,
+    "rows": 1534050,
+    "bytes_on_disk": 41868946,
+    "compressed_bytes": 41856632
+  },
+  "query_memory_peak": 181028570,
+  "query_cpu_seconds": 1.808563
+}

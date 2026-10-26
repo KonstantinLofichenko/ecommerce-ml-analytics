@@ -1,0 +1,22 @@
+[
+  {
+    "commit": "e21fdea036ce61994118fe0eba8b6f6b44ead98b",
+    "author_datetime": "2025-04-10T06:47:36+01:00",
+    "title": "feat: add email to readme release (#3)",
+    "reference_count_table_present": true,
+    "reference_table": [
+      "|   Events |     1,682,296     |     5,235,882     |     1,697,891          |     150,713,186  |     9,571,258      |"
+    ],
+    "url": "https://github.com/Synerise/recsys2025/blob/e21fdea036ce61994118fe0eba8b6f6b44ead98b/README.md"
+  },
+  {
+    "commit": "6015ed45030aab9502f80702b229f9ec10c04c61",
+    "author_datetime": "2025-03-10T14:55:21+01:00",
+    "title": "add universal behavioral modeling data challenge code",
+    "reference_count_table_present": true,
+    "reference_table": [
+      "|   Events |     1,682,296     |     5,235,882     |     1,697,891          |     150,713,186  |     9,571,258      |"
+    ],
+    "url": "https://github.com/Synerise/recsys2025/blob/6015ed45030aab9502f80702b229f9ec10c04c61/README.md"
+  }
+]

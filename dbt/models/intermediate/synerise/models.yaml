@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: int_synerise_events
+    description: >
+      Unified Synerise event stream containing page visits,
+      cart additions, cart removals, and purchases.
+
+    columns:
+      - name: event_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - page_visit
+                  - add_to_cart
+                  - remove_from_cart
+                  - product_buy
+
+  - name: int_synerise_funnel_first_visit
+    description: >
+      First recorded page visit for each Synerise customer.
+
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_visit_time
+        data_tests:
+          - not_null
+
+  - name: int_synerise_funnel_first_cart
+    description: >
+      First add-to-cart event at or after each customer's
+      first recorded page visit.
+
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_cart_time
+        data_tests:
+          - not_null
+
+  - name: int_synerise_funnel_first_purchase
+    description: >
+      First recorded purchase at or after a customer's
+      first qualifying add-to-cart event.
+
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_purchase_time
+        data_tests:
+          - not_null

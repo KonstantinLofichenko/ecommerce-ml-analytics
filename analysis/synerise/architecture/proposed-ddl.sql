@@ -1,0 +1,124 @@
+-- DESIGN ONLY: entirely commented to prevent accidental execution.
+-- UUID zeroes and RELEASE are placeholders; do not use for implementation.
+-- CREATE DATABASE synerise_raw__RELEASE ENGINE=Atomic;
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`page_visit` (
+--   `client_id` Int64 CODEC(ZSTD(1)),
+--   `timestamp` String CODEC(ZSTD(1)),
+--   `url` Int64 CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'page_visit.parquet',
+--   _source_sha256 FixedString(64) DEFAULT '8e22d9e8a8a4774e3c86131480aeee5a79faa42083d047e7da3668a80507e52b',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   event_time_source Tuple(day Date32, second_of_day UInt32) MATERIALIZED tuple(toDate32(substring(timestamp,1,10)), toUInt32(toUInt32(substring(timestamp,12,2))*3600 + toUInt32(substring(timestamp,15,2))*60 + toUInt32(substring(timestamp,18,2)))),
+--   source_day Date32 ALIAS tupleElement(event_time_source,'day'),
+--   source_second Int64 ALIAS dateDiff('day',toDate32('1970-01-01'),source_day)*86400 + toInt64(tupleElement(event_time_source,'second_of_day')),
+--   CONSTRAINT clock_shape CHECK match(timestamp,'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+--   CONSTRAINT clock_hms CHECK toUInt32(substring(timestamp,12,2))<24 AND toUInt32(substring(timestamp,15,2))<60 AND toUInt32(substring(timestamp,18,2))<60,
+--   CONSTRAINT clock_date CHECK toString(tupleElement(event_time_source,'day'))=substring(timestamp,1,10)
+-- ) ENGINE=MergeTree
+-- PARTITION BY toYYYYMM(tupleElement(event_time_source,1))
+-- ORDER BY (client_id,event_time_source,url)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`search_query` (
+--   `client_id` Int64 CODEC(ZSTD(1)),
+--   `timestamp` String CODEC(ZSTD(1)),
+--   `query` String CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'search_query.parquet',
+--   _source_sha256 FixedString(64) DEFAULT 'cba1be0b19c7872bb6645a2739d36fe33ed8df8a5b14e832cd7e66a5ff0e5f34',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   event_time_source Tuple(day Date32, second_of_day UInt32) MATERIALIZED tuple(toDate32(substring(timestamp,1,10)), toUInt32(toUInt32(substring(timestamp,12,2))*3600 + toUInt32(substring(timestamp,15,2))*60 + toUInt32(substring(timestamp,18,2)))),
+--   source_day Date32 ALIAS tupleElement(event_time_source,'day'),
+--   source_second Int64 ALIAS dateDiff('day',toDate32('1970-01-01'),source_day)*86400 + toInt64(tupleElement(event_time_source,'second_of_day')),
+--   CONSTRAINT clock_shape CHECK match(timestamp,'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+--   CONSTRAINT clock_hms CHECK toUInt32(substring(timestamp,12,2))<24 AND toUInt32(substring(timestamp,15,2))<60 AND toUInt32(substring(timestamp,18,2))<60,
+--   CONSTRAINT clock_date CHECK toString(tupleElement(event_time_source,'day'))=substring(timestamp,1,10)
+-- ) ENGINE=MergeTree
+-- PARTITION BY toYYYYMM(tupleElement(event_time_source,1))
+-- ORDER BY (client_id,event_time_source)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`add_to_cart` (
+--   `client_id` Int64 CODEC(ZSTD(1)),
+--   `timestamp` String CODEC(ZSTD(1)),
+--   `sku` Int64 CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'add_to_cart.parquet',
+--   _source_sha256 FixedString(64) DEFAULT 'e7074298ef56c087b295f8e1918559aa65d9903be4d11fe59748ab08e6c5cb09',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   event_time_source Tuple(day Date32, second_of_day UInt32) MATERIALIZED tuple(toDate32(substring(timestamp,1,10)), toUInt32(toUInt32(substring(timestamp,12,2))*3600 + toUInt32(substring(timestamp,15,2))*60 + toUInt32(substring(timestamp,18,2)))),
+--   source_day Date32 ALIAS tupleElement(event_time_source,'day'),
+--   source_second Int64 ALIAS dateDiff('day',toDate32('1970-01-01'),source_day)*86400 + toInt64(tupleElement(event_time_source,'second_of_day')),
+--   CONSTRAINT clock_shape CHECK match(timestamp,'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+--   CONSTRAINT clock_hms CHECK toUInt32(substring(timestamp,12,2))<24 AND toUInt32(substring(timestamp,15,2))<60 AND toUInt32(substring(timestamp,18,2))<60,
+--   CONSTRAINT clock_date CHECK toString(tupleElement(event_time_source,'day'))=substring(timestamp,1,10)
+-- ) ENGINE=MergeTree
+-- PARTITION BY toYYYYMM(tupleElement(event_time_source,1))
+-- ORDER BY (client_id,event_time_source,sku)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`remove_from_cart` (
+--   `client_id` Int64 CODEC(ZSTD(1)),
+--   `timestamp` String CODEC(ZSTD(1)),
+--   `sku` Int64 CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'remove_from_cart.parquet',
+--   _source_sha256 FixedString(64) DEFAULT '231d4d4a4b5ad467635b99207b3af1298b30fc9c98e347e2df6cd539d677ea17',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   event_time_source Tuple(day Date32, second_of_day UInt32) MATERIALIZED tuple(toDate32(substring(timestamp,1,10)), toUInt32(toUInt32(substring(timestamp,12,2))*3600 + toUInt32(substring(timestamp,15,2))*60 + toUInt32(substring(timestamp,18,2)))),
+--   source_day Date32 ALIAS tupleElement(event_time_source,'day'),
+--   source_second Int64 ALIAS dateDiff('day',toDate32('1970-01-01'),source_day)*86400 + toInt64(tupleElement(event_time_source,'second_of_day')),
+--   CONSTRAINT clock_shape CHECK match(timestamp,'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+--   CONSTRAINT clock_hms CHECK toUInt32(substring(timestamp,12,2))<24 AND toUInt32(substring(timestamp,15,2))<60 AND toUInt32(substring(timestamp,18,2))<60,
+--   CONSTRAINT clock_date CHECK toString(tupleElement(event_time_source,'day'))=substring(timestamp,1,10)
+-- ) ENGINE=MergeTree
+-- PARTITION BY toYYYYMM(tupleElement(event_time_source,1))
+-- ORDER BY (client_id,event_time_source,sku)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`product_buy` (
+--   `client_id` Int64 CODEC(ZSTD(1)),
+--   `timestamp` String CODEC(ZSTD(1)),
+--   `sku` Int64 CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'product_buy.parquet',
+--   _source_sha256 FixedString(64) DEFAULT 'fdff0af2d72926a107b93f17f804ff816a4883be0bac30db45c6364c44ade1ca',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   event_time_source Tuple(day Date32, second_of_day UInt32) MATERIALIZED tuple(toDate32(substring(timestamp,1,10)), toUInt32(toUInt32(substring(timestamp,12,2))*3600 + toUInt32(substring(timestamp,15,2))*60 + toUInt32(substring(timestamp,18,2)))),
+--   source_day Date32 ALIAS tupleElement(event_time_source,'day'),
+--   source_second Int64 ALIAS dateDiff('day',toDate32('1970-01-01'),source_day)*86400 + toInt64(tupleElement(event_time_source,'second_of_day')),
+--   CONSTRAINT clock_shape CHECK match(timestamp,'^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$'),
+--   CONSTRAINT clock_hms CHECK toUInt32(substring(timestamp,12,2))<24 AND toUInt32(substring(timestamp,15,2))<60 AND toUInt32(substring(timestamp,18,2))<60,
+--   CONSTRAINT clock_date CHECK toString(tupleElement(event_time_source,'day'))=substring(timestamp,1,10)
+-- ) ENGINE=MergeTree
+-- PARTITION BY toYYYYMM(tupleElement(event_time_source,1))
+-- ORDER BY (client_id,event_time_source,sku)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';
+--
+-- CREATE TABLE `synerise_raw__RELEASE`.`product_properties` (
+--   `sku` Int64 CODEC(ZSTD(1)),
+--   `category` Int64 CODEC(ZSTD(1)),
+--   `price` Int64 CODEC(ZSTD(1)),
+--   `name` String CODEC(ZSTD(1)),
+--   _source_file LowCardinality(String) DEFAULT 'product_properties.parquet',
+--   _source_sha256 FixedString(64) DEFAULT 'a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305',
+--   _archive_sha256 FixedString(64) DEFAULT 'e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7',
+--   _release_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000'),
+--   _attempt_id UUID DEFAULT toUUID('00000000-0000-0000-0000-000000000000')
+-- ) ENGINE=MergeTree
+--
+-- ORDER BY (sku)
+-- SETTINGS index_granularity=8192
+-- COMMENT 'synerise architecture isolated v1';

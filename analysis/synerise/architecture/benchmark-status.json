@@ -1,0 +1,77 @@
+{
+  "phase_3_4_historical": {
+    "assessment_date": "2026-10-21",
+    "benchmark_executed": false,
+    "reason": "Initial DDL rejected; corrected run rejected safety gate requiring >=256 MiB cgroup headroom. No successful ingestion benchmark yet.",
+    "services_started": false,
+    "databases_created": 1,
+    "production_queries_submitted": 0,
+    "configured": {
+      "image": "clickhouse/clickhouse-server:25.8.33.6",
+      "container_memory_bytes": 2147483648,
+      "server_memory_bytes": 1610612736,
+      "container_cpus": 2,
+      "existing_client_query_memory_bytes": 536870912,
+      "existing_client_threads": 2,
+      "existing_external_group_sort_bytes": 134217728
+    },
+    "live_unknown": [
+      "successful ingestion query peak memory",
+      "storage and throughput for both methods"
+    ],
+    "option_a": {
+      "rows": 0,
+      "seconds": null,
+      "rows_per_second": null,
+      "observed_peak_memory": null,
+      "compressed_bytes": null,
+      "acceptance_passed": null
+    },
+    "option_b": {
+      "rows": 0,
+      "seconds": null,
+      "rows_per_second": null,
+      "observed_peak_memory": null,
+      "compressed_bytes": null,
+      "acceptance_passed": null
+    },
+    "pyarrow_installed": false,
+    "clickhouse_connect_installed": false,
+    "docker_became_available": true,
+    "live_version": "25.8.33.6",
+    "isolated_ddl_attempted": true,
+    "sample_rows_inserted": 0,
+    "initial_error": "CHECK constraint could not refer to source_day ALIAS; proposal corrected to tupleElement.",
+    "initial_attempt_cleanup_verified": true,
+    "rerun_status": "blocked_before_DDL_by_resource_gate",
+    "rerun_metrics": {
+      "CGroupMemoryUsed": 2053312512,
+      "CGroupMemoryTotal": 2147483648,
+      "MemoryResident": 1133199360
+    },
+    "live_disk_free_bytes": 378678267904,
+    "live_disk_total_bytes": 539977244672,
+    "final_requested_retry": "memory_gate_rejected_before_database_creation",
+    "final_retry_memory": {
+      "CGroupMemoryUsed": 2075992064,
+      "CGroupMemoryTotal": 2147483648,
+      "MemoryResident": 1141489664
+    },
+    "services_started_by_agent": false,
+    "databases_remaining": 0,
+    "sample_rows_prepared": 10000,
+    "production_mutations_submitted": 0,
+    "tests": "4 passed",
+    "ruff": "lint and format passed"
+  },
+  "phase_3_4_1": {
+    "decision": "INCONCLUSIVE",
+    "benchmark_executed": true,
+    "completed_trials": 65,
+    "reconciled_rows": 3140000,
+    "reason": "Global 6 GiB server tracker limit at 100k product_buy ArrowStream trial; benchmark stopped without retry",
+    "details": "benchmark/results.json",
+    "report": "../../../docs/reports/phase-3.4.1-synerise-ingestion-benchmark.md",
+    "cleanup_verified": true
+  }
+}

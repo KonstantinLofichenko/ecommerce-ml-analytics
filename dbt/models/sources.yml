@@ -1,0 +1,131 @@
+version: 2
+sources:
+  - name: ecommerce_raw
+    schema: ecommerce
+    description: >
+      Validated historical raw events, October 2019 through February 2020.
+      Atomic staging publication from the immutable DuckDB reference.
+      Original duplicates are retained. price_raw and event_time preserve source strings.
+    tables:
+      - name: raw_events
+        description: >
+          MergeTree partitioned by source month; no uniqueness assumption.
+          UTC DateTime64(6) and exact Decimal(18,2) supplement preserved strings.
+        columns:
+          - name: month
+            description: Source file month (YYYY-MM), independently reconciled to DuckDB.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ['2019-10', '2019-11', '2019-12', '2020-01', '2020-02']
+          - name: event_time_utc
+            description: UTC event timestamp; nullable schema preserves unknown source timestamps.
+            data_tests: [not_null]
+          - name: event_type
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [view, cart, remove_from_cart, purchase]
+          - name: user_session
+            description: Nullable session string; not globally unique and never a primary key.
+          - name: user_id
+            description: Nullable original string; leading zeros are preserved.
+          - name: price
+            description: Nullable Decimal(18,2); negative values are retained.
+          - name: price_raw
+            description: Original nullable price string, including original formatting.
+
+  - name: synerise
+    schema: synerise_raw
+    description: >
+      Original Synerise RecSys 2025 e-commerce dataset.
+      Contains anonymized real customer behavior.
+      Timestamps have an unverified timezone.
+      Duplicate source records are preserved.
+
+    tables:
+      - name: product_properties
+        description: >
+          Product catalog with anonymized category IDs,
+          price buckets, and encoded product names.
+
+      - name: product_buy
+        description: Product purchase events at SKU level.
+
+      - name: remove_from_cart
+        description: Product removal events.
+
+      - name: add_to_cart
+        description: Product cart-addition events.
+
+      - name: search_query
+        description: Search events with encoded query vectors.
+
+      - name: page_visit
+        description: Page visits with anonymized URL identifiers.
+
+  - name: amazon
+    description: >
+      External Amazon Reviews 2023 product metadata.
+      Contains real product titles, category information, and
+      product identifiers imported from the All Beauty and
+      Electronics datasets. Used to create synthetic product
+      and category labels for Synerise analytics.
+      Amazon products are not verified matches to Synerise SKUs.
+
+    schema: external_catalog
+
+    tables:
+      - name: amazon_products
+        description: >
+          Amazon product metadata imported from Parquet files
+          into ClickHouse. Each record represents an Amazon
+          product identified by its parent ASIN.
+
+        columns:
+          - name: parent_asin
+            description: >
+              Amazon parent ASIN identifying a product or
+              product family.
+
+          - name: title
+            description: >
+              Original product title from Amazon metadata.
+
+          - name: main_category
+            description: >
+              Original main category provided by Amazon.
+              May differ from the source department.
+
+          - name: categories
+            description: >
+              Array of category labels representing the
+              product's category hierarchy, when available.
+              May be empty.
+
+          - name: source_department
+            description: >
+              Amazon metadata dataset from which the record
+              was imported, such as All_Beauty or Electronics.
+
+          - name: store
+            description: >
+              Store or seller information from Amazon metadata.
+              Not necessarily the product manufacturer or brand.
+
+          - name: average_rating
+            description: >
+              Average customer rating provided by the dataset.
+
+          - name: rating_number
+            description: >
+              Number of customer ratings associated with
+              the product.
+
+          - name: price
+            description: >
+              Original price value stored as a string.
+              May be missing or require cleaning before
+              numerical analysis.

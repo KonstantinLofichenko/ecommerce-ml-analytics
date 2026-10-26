@@ -1,0 +1,86 @@
+{
+  "attempt_id": "f00bc412-accc-4755-b247-d83689ddf1cd",
+  "table": "_attempt_product_properties_edb68c548eb34fd89612a7fb49a56382",
+  "table_uuid": "f90e72c4-70bf-4895-aa8a-b587c74e9f0a",
+  "source_sha256": "a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305",
+  "status": "failed_unpublished",
+  "source_types": [
+    {
+      "name": "sku",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "category",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "price",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "name",
+      "type": "Nullable(String)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    }
+  ],
+  "source_aggregate": {
+    "rows": 1534050,
+    "hash_sum_1": 14154410972357200600205718,
+    "hash_sum_2": 14138565822687717988057930,
+    "hash_xor": 7722948013661045928,
+    "null_sku": 0,
+    "min_sku": 0,
+    "max_sku": 1623140,
+    "null_category": 0,
+    "min_category": 0,
+    "max_category": 6988,
+    "null_price": 0,
+    "min_price": 0,
+    "max_price": 99,
+    "null_name": 0,
+    "min_bytes_name": 49,
+    "max_bytes_name": 65
+  },
+  "chunks": [
+    "all"
+  ],
+  "destination_aggregate": {
+    "rows": 1534050,
+    "hash_sum_1": 14154410972357200600205718,
+    "hash_sum_2": 14138565822687717988057930,
+    "hash_xor": 7722948013661045928,
+    "null_sku": 0,
+    "min_sku": 0,
+    "max_sku": 1623140,
+    "null_category": 0,
+    "min_category": 0,
+    "max_category": 6988,
+    "null_price": 0,
+    "min_price": 0,
+    "max_price": 99,
+    "null_name": 0,
+    "min_bytes_name": 49,
+    "max_bytes_name": 65
+  },
+  "error": "ClickHouse HTTP 500; server code 241",
+  "discarded": true
+}

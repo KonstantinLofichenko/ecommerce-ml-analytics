@@ -1,0 +1,42 @@
+{
+  "run_id": "e5ad49a5-8196-43fe-b1fe-3c256c171316",
+  "database": "synerise_poc_e5ad49a5819643feb1fe3c256c171316",
+  "version": "25.8.33.6",
+  "rows_per_source": 10000,
+  "limits": {
+    "max_threads": "1",
+    "max_insert_threads": "1",
+    "max_memory_usage": "67108864",
+    "input_format_parallel_parsing": "0",
+    "async_insert": "0",
+    "insert_deduplicate": "0",
+    "input_format_null_as_default": "0",
+    "max_insert_block_size": "10000"
+  },
+  "memory_before": [
+    {
+      "metric": "CGroupMemoryUsed",
+      "value": 1842458624
+    },
+    {
+      "metric": "CGroupMemoryTotal",
+      "value": 2147483648
+    },
+    {
+      "metric": "MemoryResident",
+      "value": 996290560
+    }
+  ],
+  "raw_before": [
+    {
+      "uuid": "9242f083-29f7-465e-a9ee-165c03a53f47",
+      "total_rows": 20692840
+    }
+  ],
+  "measurements": [],
+  "completed": false,
+  "sample_preparation_seconds": {
+    "page_visit": 0.021338499966077507
+  },
+  "cleanup_verified": true
+}

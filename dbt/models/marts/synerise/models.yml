@@ -1,0 +1,110 @@
+version: 2
+models:
+- name: fct_synerise_funnel
+  description: 'All-time customer conversion funnel for Synerise, using chronological page visit, add-to-cart,
+    and purchase events.
+
+    '
+  columns:
+  - name: stage_order
+    data_tests:
+    - not_null
+    - unique
+  - name: stage
+    data_tests:
+    - not_null
+  - name: customers
+    data_tests:
+    - not_null
+  - name: step_conversion_rate
+    description: Conversion rate from the previous funnel stage.
+    data_tests:
+    - nullable_rate_between_zero_and_one
+  - name: overall_conversion_rate
+    description: Conversion rate from the first funnel stage.
+    data_tests:
+    - nullable_rate_between_zero_and_one
+- name: fct_synerise_funnel_by_product
+  description: "SKU-level cart-to-purchase conversion. A customer must purchase the same SKU at or after\
+    \ their first recorded cart addition.\n Five forward-filled synthetic display levels preserve the\
+    \ full path; these fields are excluded from ML. All-time funnel ties remain accepted (>=)."
+  columns:
+  - name: sku
+    data_tests:
+    - not_null
+    - catalog_unique
+  - name: conversion_rate
+    data_tests:
+    - nullable_rate_between_zero_and_one
+  - name: category_level_1
+    description: Synthetic display level 1; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_2
+    description: Synthetic display level 2; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_3
+    description: Synthetic display level 3; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_4
+    description: Synthetic display level 4; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_5
+    description: Synthetic display level 5; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_depth
+    description: Length of the complete original synthetic path, including levels beyond five.
+    data_tests:
+    - not_null
+  - name: category_leaf
+    description: Last element of the complete synthetic path. Display only.
+    data_tests:
+    - not_null
+  data_tests:
+  - category_hierarchy_valid
+- name: fct_synerise_funnel_by_category
+  description: "Category-level cart-to-purchase conversion. Cart and purchase SKUs may differ but must\
+    \ belong to the same original Synerise category.\n Five forward-filled synthetic display levels preserve\
+    \ the full path; these fields are excluded from ML. All-time funnel ties remain accepted (>=)."
+  columns:
+  - name: category_id
+    data_tests:
+    - not_null
+    - catalog_unique
+  - name: conversion_rate
+    data_tests:
+    - nullable_rate_between_zero_and_one
+  - name: category_level_1
+    description: Synthetic display level 1; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_2
+    description: Synthetic display level 2; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_3
+    description: Synthetic display level 3; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_4
+    description: Synthetic display level 4; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_5
+    description: Synthetic display level 5; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_depth
+    description: Length of the complete original synthetic path, including levels beyond five.
+    data_tests:
+    - not_null
+  - name: category_leaf
+    description: Last element of the complete synthetic path. Display only.
+    data_tests:
+    - not_null
+  data_tests:
+  - category_hierarchy_valid

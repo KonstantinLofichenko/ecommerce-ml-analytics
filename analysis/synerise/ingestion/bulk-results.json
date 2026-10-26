@@ -1,0 +1,64 @@
+{
+  "started_utc": "2026-10-22T02:30:42.195511+00:00",
+  "database": "synerise_raw",
+  "status": "complete",
+  "options": {
+    "max_threads": "2",
+    "max_memory_usage": "4294967296",
+    "async_insert": "0",
+    "insert_deduplicate": "0",
+    "input_format_null_as_default": "0"
+  },
+  "tables": {
+    "product_properties": {
+      "expected_rows": 1534050,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_f1ddadf70fb94cc79002723d7ffa64a3",
+      "insert_seconds": 0.3989708749577403,
+      "rows": 1534050
+    },
+    "product_buy": {
+      "expected_rows": 2318502,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_11c204f5c48a4c579f1d6428b2d58559",
+      "insert_seconds": 0.2832808750681579,
+      "rows": 2318502
+    },
+    "remove_from_cart": {
+      "expected_rows": 2688894,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_5daad5fc11194feca81811395cfecc70",
+      "insert_seconds": 0.33080470794811845,
+      "rows": 2688894
+    },
+    "add_to_cart": {
+      "expected_rows": 7541117,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_2797b4f8ada04cf5ba9f8d4228562a6c",
+      "insert_seconds": 0.8156678751111031,
+      "rows": 7541117
+    },
+    "search_query": {
+      "expected_rows": 13223769,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_81176ee63c154371a555fe2ddce71d5c",
+      "insert_seconds": 2.817263250006363,
+      "rows": 13223769
+    },
+    "page_visit": {
+      "expected_rows": 199451980,
+      "status": "count_validated",
+      "query_id": "synerise_bulk_24035c69d2144da8bb4b6ab273b4a9e5",
+      "insert_seconds": 26.799022709019482,
+      "rows": 199451980
+    }
+  },
+  "errors": [],
+  "total_rows": 226758312,
+  "event_rows": 225224262,
+  "elapsed_seconds": 31.489171708002687,
+  "finished_utc": "2026-10-22T02:31:13.684991+00:00",
+  "rees46_rows_after": 20692840,
+  "protected_tables_unchanged": true,
+  "previous_private_database_preserved": true
+}

@@ -1,0 +1,38 @@
+{
+  "run_id": "63c71fcc-f816-44e5-86ed-3c08aef2ab1c",
+  "database": "synerise_bench_63c71fccf81644e586ed3c08aef2ab1c",
+  "version": "25.8.33.6",
+  "started": "2026-10-21T20:15:23.078102",
+  "limits": {
+    "max_threads": "1",
+    "max_insert_threads": "1",
+    "max_memory_usage": "134217728",
+    "input_format_parallel_parsing": "0",
+    "async_insert": "0",
+    "insert_deduplicate": "0",
+    "input_format_null_as_default": "0",
+    "max_insert_block_size": "10000"
+  },
+  "docker_memory": 8589934592,
+  "docker_nanocpus": 2000000000,
+  "server_memory": 6442450944,
+  "trials": [],
+  "schema_checks": [],
+  "recovery": {},
+  "completed": false,
+  "cleanup_verified": true,
+  "rees46_exact_rows_after": 20692840,
+  "production_table_identity_schema_counts_unchanged": true,
+  "grants_unchanged": true,
+  "protected_files_unchanged": true,
+  "protected_file_count": 18,
+  "source_hashes": {
+    "page_visit": "8e22d9e8a8a4774e3c86131480aeee5a79faa42083d047e7da3668a80507e52b",
+    "search_query": "cba1be0b19c7872bb6645a2739d36fe33ed8df8a5b14e832cd7e66a5ff0e5f34",
+    "add_to_cart": "e7074298ef56c087b295f8e1918559aa65d9903be4d11fe59748ab08e6c5cb09",
+    "remove_from_cart": "231d4d4a4b5ad467635b99207b3af1298b30fc9c98e347e2df6cd539d677ea17",
+    "product_buy": "fdff0af2d72926a107b93f17f804ff816a4883be0bac30db45c6364c44ade1ca",
+    "product_properties": "a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305"
+  },
+  "finished": "2026-10-21T20:15:25.062233"
+}

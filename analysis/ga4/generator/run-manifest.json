@@ -1,0 +1,19 @@
+{
+  "assessed_at": "2026-10-20",
+  "repository": "https://github.com/ajaxbarcelonacruyff/ec_demo",
+  "commit": "4f5c09c6965e76662d31bc8e3a9ef68e74599bb0",
+  "python": "3.11.16",
+  "generator_dependency": "PyYAML==6.0.3",
+  "seed": 42,
+  "users": 1000,
+  "local_start": "2025-01-01",
+  "local_end_inclusive": "2025-03-31",
+  "timezone": "Pacific/Auckland",
+  "config_sha256": "26ab97467f8884f285e3e4ea3751902241c254cdd8c6c67af3d04bf1949b9683",
+  "generator_executed": true,
+  "bigquery_loader_executed": false,
+  "model_trained": false,
+  "upstream_tests": "42 passed",
+  "scope": "One default-config realization; not calibrated to actual customers.",
+  "reproducibility_limit": "uuid.uuid4 transaction IDs are not controlled by random.seed."
+}

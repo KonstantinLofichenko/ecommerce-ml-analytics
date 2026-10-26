@@ -1,0 +1,44 @@
+{
+  "archive_bytes": 2062884710,
+  "members": [
+    {
+      "name": "add_to_cart.parquet",
+      "bytes": 105425078,
+      "regular": true,
+      "sha256": "e7074298ef56c087b295f8e1918559aa65d9903be4d11fe59748ab08e6c5cb09"
+    },
+    {
+      "name": "page_visit.parquet",
+      "bytes": 2010901793,
+      "regular": true,
+      "sha256": "8e22d9e8a8a4774e3c86131480aeee5a79faa42083d047e7da3668a80507e52b"
+    },
+    {
+      "name": "product_buy.parquet",
+      "bytes": 31512514,
+      "regular": true,
+      "sha256": "fdff0af2d72926a107b93f17f804ff816a4883be0bac30db45c6364c44ade1ca"
+    },
+    {
+      "name": "product_properties.parquet",
+      "bytes": 67363395,
+      "regular": true,
+      "sha256": "a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305"
+    },
+    {
+      "name": "remove_from_cart.parquet",
+      "bytes": 36530822,
+      "regular": true,
+      "sha256": "231d4d4a4b5ad467635b99207b3af1298b30fc9c98e347e2df6cd539d677ea17"
+    },
+    {
+      "name": "search_query.parquet",
+      "bytes": 352048335,
+      "regular": true,
+      "sha256": "cba1be0b19c7872bb6645a2739d36fe33ed8df8a5b14e832cd7e66a5ff0e5f34"
+    }
+  ],
+  "selected_bytes": 2603781937,
+  "status": "extracted",
+  "archive_sha256": "e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7"
+}

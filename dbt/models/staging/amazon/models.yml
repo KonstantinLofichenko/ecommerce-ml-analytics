@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: stg_amazon_products
+    description: >
+      Staging model for Amazon Reviews 2023 product metadata.
+      Standardizes product titles and extracts category and
+      subcategory labels from the original Amazon category hierarchy.
+      These products will be used for synthetic enrichment of
+      Synerise SKUs, not as verified product matches.
+
+    columns:
+      - name: parent_asin
+        description: Amazon parent product identifier.
+        data_tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: Original Amazon product title.
+        data_tests:
+          - not_null
+
+      - name: source_department
+        description: >
+          Original metadata dataset, such as All_Beauty
+          or Electronics.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - All_Beauty
+                  - Electronics
+
+      - name: category_name
+        description: >
+          Second-level Amazon category label.
+          Empty when detailed category information is unavailable.
+
+      - name: subcategory_name
+        description: >
+          Third-level Amazon category label.
+          Empty when unavailable.
+
+      - name: main_category
+        description: Original Amazon main category label.
+
+      - name: brand_or_store
+        description: >
+          Amazon store or seller information.
+          Not necessarily the manufacturer or brand.

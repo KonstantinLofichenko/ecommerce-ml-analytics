@@ -1,0 +1,316 @@
+{
+  "features": [
+    {
+      "snapshot": "2022-11-01 00:00:00",
+      "eligible": 700807,
+      "zero_activity_30d": 368458,
+      "zero_page_visits_30d": 421749,
+      "zero_searches_30d": 592943,
+      "zero_cart_adds_30d": 538640,
+      "zero_cart_removals_30d": 622471,
+      "zero_purchases_30d": 500501,
+      "median_active_days": 0.0,
+      "median_cart_skus": 0.0,
+      "maximum_historical_timestamp": "2022-10-31 23:59:55"
+    }
+  ],
+  "timestamp_precision": [
+    {
+      "kind": "add_to_cart",
+      "events": 7541117,
+      "seconds_multiple_of_5": 7289960,
+      "minute_aligned": 376517
+    },
+    {
+      "kind": "page_visit",
+      "events": 199451980,
+      "seconds_multiple_of_5": 192802978,
+      "minute_aligned": 9966602
+    },
+    {
+      "kind": "product_buy",
+      "events": 2318502,
+      "seconds_multiple_of_5": 2241194,
+      "minute_aligned": 115501
+    },
+    {
+      "kind": "remove_from_cart",
+      "events": 2688894,
+      "seconds_multiple_of_5": 2599186,
+      "minute_aligned": 134222
+    },
+    {
+      "kind": "search_query",
+      "events": 13223769,
+      "seconds_multiple_of_5": 12782726,
+      "minute_aligned": 660726
+    }
+  ],
+  "purchase_frequency": [
+    {
+      "purchase_days": 1,
+      "customers": 698577
+    },
+    {
+      "purchase_days": 2,
+      "customers": 129939
+    },
+    {
+      "purchase_days": 3,
+      "customers": 41576
+    },
+    {
+      "purchase_days": 4,
+      "customers": 17404
+    },
+    {
+      "purchase_days": 5,
+      "customers": 8496
+    },
+    {
+      "purchase_days": 6,
+      "customers": 4691
+    },
+    {
+      "purchase_days": 7,
+      "customers": 2802
+    },
+    {
+      "purchase_days": 8,
+      "customers": 1672
+    },
+    {
+      "purchase_days": 9,
+      "customers": 1191
+    },
+    {
+      "purchase_days": 10,
+      "customers": 702
+    },
+    {
+      "purchase_days": 11,
+      "customers": 568
+    },
+    {
+      "purchase_days": 12,
+      "customers": 403
+    },
+    {
+      "purchase_days": 13,
+      "customers": 276
+    },
+    {
+      "purchase_days": 14,
+      "customers": 215
+    },
+    {
+      "purchase_days": 15,
+      "customers": 163
+    },
+    {
+      "purchase_days": 16,
+      "customers": 113
+    },
+    {
+      "purchase_days": 17,
+      "customers": 78
+    },
+    {
+      "purchase_days": 18,
+      "customers": 85
+    },
+    {
+      "purchase_days": 19,
+      "customers": 50
+    },
+    {
+      "purchase_days": 20,
+      "customers": 53
+    },
+    {
+      "purchase_days": 21,
+      "customers": 30
+    },
+    {
+      "purchase_days": 22,
+      "customers": 22
+    },
+    {
+      "purchase_days": 23,
+      "customers": 16
+    },
+    {
+      "purchase_days": 24,
+      "customers": 9
+    },
+    {
+      "purchase_days": 25,
+      "customers": 12
+    },
+    {
+      "purchase_days": 26,
+      "customers": 8
+    },
+    {
+      "purchase_days": 27,
+      "customers": 4
+    },
+    {
+      "purchase_days": 28,
+      "customers": 7
+    },
+    {
+      "purchase_days": 29,
+      "customers": 7
+    },
+    {
+      "purchase_days": 30,
+      "customers": 7
+    },
+    {
+      "purchase_days": 31,
+      "customers": 4
+    },
+    {
+      "purchase_days": 32,
+      "customers": 3
+    },
+    {
+      "purchase_days": 33,
+      "customers": 2
+    },
+    {
+      "purchase_days": 34,
+      "customers": 4
+    },
+    {
+      "purchase_days": 35,
+      "customers": 2
+    },
+    {
+      "purchase_days": 36,
+      "customers": 1
+    },
+    {
+      "purchase_days": 37,
+      "customers": 3
+    },
+    {
+      "purchase_days": 38,
+      "customers": 2
+    },
+    {
+      "purchase_days": 40,
+      "customers": 1
+    },
+    {
+      "purchase_days": 42,
+      "customers": 1
+    },
+    {
+      "purchase_days": 44,
+      "customers": 1
+    },
+    {
+      "purchase_days": 46,
+      "customers": 3
+    },
+    {
+      "purchase_days": 48,
+      "customers": 1
+    },
+    {
+      "purchase_days": 49,
+      "customers": 2
+    },
+    {
+      "purchase_days": 57,
+      "customers": 1
+    },
+    {
+      "purchase_days": 63,
+      "customers": 1
+    },
+    {
+      "purchase_days": 70,
+      "customers": 1
+    },
+    {
+      "purchase_days": 91,
+      "customers": 1
+    }
+  ],
+  "event_overlap": [
+    {
+      "kind": "add_to_cart",
+      "clients": 2333463,
+      "also_purchasers": 581678
+    },
+    {
+      "kind": "page_visit",
+      "clients": 21993998,
+      "also_purchasers": 640340
+    },
+    {
+      "kind": "product_buy",
+      "clients": 909210,
+      "also_purchasers": 909210
+    },
+    {
+      "kind": "remove_from_cart",
+      "clients": 694391,
+      "also_purchasers": 280106
+    },
+    {
+      "kind": "search_query",
+      "clients": 1629447,
+      "also_purchasers": 319926
+    }
+  ],
+  "tie_overlap": [
+    {
+      "stage": "page_cart",
+      "equal_time_client_pairs": 1251536
+    },
+    {
+      "stage": "search_cart",
+      "equal_time_client_pairs": 13377
+    },
+    {
+      "stage": "cart_buy",
+      "equal_time_client_pairs": 476
+    }
+  ],
+  "customer_overlap": [
+    {
+      "earlier": "2022-08-01 00:00:00",
+      "later": "2022-09-01 00:00:00",
+      "shared_eligible_clients": 234827
+    },
+    {
+      "earlier": "2022-08-01 00:00:00",
+      "later": "2022-10-01 00:00:00",
+      "shared_eligible_clients": 234827
+    },
+    {
+      "earlier": "2022-08-01 00:00:00",
+      "later": "2022-11-01 00:00:00",
+      "shared_eligible_clients": 234827
+    },
+    {
+      "earlier": "2022-09-01 00:00:00",
+      "later": "2022-10-01 00:00:00",
+      "shared_eligible_clients": 397836
+    },
+    {
+      "earlier": "2022-09-01 00:00:00",
+      "later": "2022-11-01 00:00:00",
+      "shared_eligible_clients": 397836
+    },
+    {
+      "earlier": "2022-10-01 00:00:00",
+      "later": "2022-11-01 00:00:00",
+      "shared_eligible_clients": 550798
+    }
+  ]
+}

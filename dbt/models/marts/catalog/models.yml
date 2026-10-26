@@ -1,0 +1,214 @@
+version: 2
+models:
+- name: dim_synerise_categories
+  description: "One row per real Synerise category ID with an explicitly synthetic Amazon-derived display\
+    \ category. NOT a recovered Synerise category or an entity match. Fixed-input deterministic mapping\
+    \ amazon_catalog_v1. Exclude synthetic fields from ML predictors. Prefer complete compatible Amazon\
+    \ hierarchy; recognized main_category fallback is flagged, conflicting/unclassified candidates excluded.\n\
+    \ Five forward-filled synthetic display levels preserve the full path; these fields are excluded from\
+    \ ML."
+  columns:
+  - name: category_id
+    description: Real original Synerise category identifier, unchanged.
+    data_tests:
+    - catalog_unique
+    - not_null
+  - name: synthetic_category_label
+    description: Synthetic display label prefixed Synthetic; label reuse is allowed.
+    data_tests:
+    - not_null
+  - name: synthetic_category_path
+    description: Trimmed Amazon hierarchy, or explicit department/main fallback.
+    data_tests:
+    - not_null
+  - name: amazon_category_key
+    description: Collision-free JSON encoding of donor department and selected path.
+    data_tests:
+    - not_null
+  - name: amazon_category_index
+    description: Internal numeric taxonomy join key; collision guard checks it against the full JSON key.
+    data_tests:
+    - not_null
+  - name: amazon_source_department
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - All_Beauty
+          - Electronics
+  - name: amazon_anchor_parent_asin
+    description: Deterministically selected donor defining this synthetic category, not a match.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_amazon_products')
+          field: parent_asin
+  - name: amazon_anchor_classification_status
+    description: Explicit hierarchy/fallback/conflict quality status of the anchor donor.
+    data_tests:
+    - not_null
+  - name: amazon_category_product_count
+    description: Number of eligible Amazon donors in this path; titles are reused if needed.
+    data_tests:
+    - not_null
+  - name: is_synthetic_enrichment
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 1
+          quote: false
+  - name: mapping_version
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - amazon_catalog_v1
+  - name: category_level_1
+    description: Synthetic display level 1; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_2
+    description: Synthetic display level 2; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_3
+    description: Synthetic display level 3; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_4
+    description: Synthetic display level 4; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_5
+    description: Synthetic display level 5; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_depth
+    description: Length of the complete original synthetic path, including levels beyond five.
+    data_tests:
+    - not_null
+  - name: category_leaf
+    description: Last element of the complete synthetic path. Display only.
+    data_tests:
+    - not_null
+  data_tests:
+  - category_hierarchy_valid
+- name: dim_synerise_products
+  description: "One row per real Synerise SKU. category_id and price_bucket are unchanged real anonymized\
+    \ attributes. Amazon ASINs/titles and category labels are synthetic display-only assignments, not\
+    \ verified product matches; never use as ML predictors. Each SKU draws only from its category's chosen\
+    \ Amazon department/path.\n Five forward-filled synthetic display levels preserve the full path; these\
+    \ fields are excluded from ML."
+  columns:
+  - name: sku
+    description: Real original Synerise SKU, unchanged.
+    data_tests:
+    - catalog_unique
+    - not_null
+  - name: category_id
+    description: Real original Synerise category ID, unchanged.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('dim_synerise_categories')
+          field: category_id
+  - name: price_bucket
+    description: Real Synerise anonymized integer price bucket; not an Amazon price or revenue.
+    data_tests:
+    - not_null
+  - name: synthetic_product_title
+    description: Exact title of the selected Amazon donor; synthetic association to this SKU.
+    data_tests:
+    - not_null
+  - name: synthetic_category_label
+    description: Synthetic display label inherited from the category dimension; not a real Synerise label.
+    data_tests:
+    - not_null
+  - name: synthetic_category_path
+    description: Amazon-derived display hierarchy selected for this category, including explicit fallback
+      paths.
+    data_tests:
+    - not_null
+  - name: amazon_category_key
+    description: Synthetic donor taxonomy membership, encoded as department plus full path.
+    data_tests:
+    - not_null
+  - name: amazon_source_department
+    description: Real Amazon source department assigned synthetically to this Synerise SKU.
+    data_tests:
+    - not_null
+  - name: amazon_parent_asin
+    description: Actual Amazon identifier of a synthetic donor; may be reused across many SKUs.
+    data_tests:
+    - not_null
+    - relationships:
+        arguments:
+          to: ref('stg_amazon_products')
+          field: parent_asin
+  - name: amazon_classification_status
+    description: Donor hierarchy quality and fallback policy; never a verified Synerise attribute.
+    data_tests:
+    - not_null
+  - name: amazon_main_category_conflict
+    description: 1 when the preferred compatible hierarchy overrides inconsistent main_category.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+  - name: is_synthetic_enrichment
+    description: Always 1; this model is display-only and excluded from ML features.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 1
+          quote: false
+  - name: mapping_version
+    description: Deterministic mapping policy identifier; changes to input catalog can change assignments.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - amazon_catalog_v1
+  - name: category_level_1
+    description: Synthetic display level 1; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_2
+    description: Synthetic display level 2; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_3
+    description: Synthetic display level 3; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_4
+    description: Synthetic display level 4; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_level_5
+    description: Synthetic display level 5; absent tail levels repeat the original leaf. Not an ML feature.
+    data_tests:
+    - not_null
+  - name: category_depth
+    description: Length of the complete original synthetic path, including levels beyond five.
+    data_tests:
+    - not_null
+  - name: category_leaf
+    description: Last element of the complete synthetic path. Display only.
+    data_tests:
+    - not_null
+  data_tests:
+  - category_hierarchy_valid

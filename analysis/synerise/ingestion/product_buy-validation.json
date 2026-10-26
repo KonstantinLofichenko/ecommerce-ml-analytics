@@ -1,0 +1,332 @@
+{
+  "attempt_id": "8a54f0af-20e4-48d0-9210-dcb3c3925665",
+  "table": "product_buy",
+  "table_uuid": "175d36da-aa48-4b2c-a179-7f844aab5416",
+  "source_sha256": "fdff0af2d72926a107b93f17f804ff816a4883be0bac30db45c6364c44ade1ca",
+  "status": "validated",
+  "started_utc": "2026-10-22T02:09:07.372026+00:00",
+  "source_types": [
+    {
+      "name": "client_id",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "timestamp",
+      "type": "Nullable(String)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    },
+    {
+      "name": "sku",
+      "type": "Nullable(Int64)",
+      "default_type": "",
+      "default_expression": "",
+      "comment": "",
+      "codec_expression": "",
+      "ttl_expression": ""
+    }
+  ],
+  "source_bounds": {
+    "first": "2022-06-23 00:12:15",
+    "last": "2022-12-08 00:09:15",
+    "nulls": 0
+  },
+  "chunks": [
+    {
+      "month": "2022-06",
+      "source": {
+        "rows": 75880,
+        "md5_sum": 12954224061450883933647619592825710996973717,
+        "sha256_sum": 12918680932136199756304352291426396988278694,
+        "sha256_xor": 9864636616220548681,
+        "null_client_id": 0,
+        "min_client_id": 168,
+        "max_client_id": 23929160,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:15",
+        "max_timestamp": "2022-06-30 23:59:55",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623104
+      },
+      "destination": {
+        "rows": 75880,
+        "md5_sum": 12954224061450883933647619592825710996973717,
+        "sha256_sum": 12918680932136199756304352291426396988278694,
+        "sha256_xor": 9864636616220548681,
+        "null_client_id": 0,
+        "min_client_id": 168,
+        "max_client_id": 23929160,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:15",
+        "max_timestamp": "2022-06-30 23:59:55",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623104
+      }
+    },
+    {
+      "month": "2022-07",
+      "source": {
+        "rows": 357933,
+        "md5_sum": 60992810973955142484224340499949489512574031,
+        "sha256_sum": 60925851416386217958426707311708266973446534,
+        "sha256_xor": 14409502293579076557,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929071,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-07-01 00:00:05",
+        "max_timestamp": "2022-07-31 23:59:20",
+        "null_sku": 0,
+        "min_sku": 31,
+        "max_sku": 1623084
+      },
+      "destination": {
+        "rows": 357933,
+        "md5_sum": 60992810973955142484224340499949489512574031,
+        "sha256_sum": 60925851416386217958426707311708266973446534,
+        "sha256_xor": 14409502293579076557,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929071,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-07-01 00:00:05",
+        "max_timestamp": "2022-07-31 23:59:20",
+        "null_sku": 0,
+        "min_sku": 31,
+        "max_sku": 1623084
+      }
+    },
+    {
+      "month": "2022-08",
+      "source": {
+        "rows": 374376,
+        "md5_sum": 63683963519029944010248148355161995295350109,
+        "sha256_sum": 63698876835080771310212164622737493601956912,
+        "sha256_xor": 15454100867316443567,
+        "null_client_id": 0,
+        "min_client_id": 84,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-08-01 00:04:40",
+        "max_timestamp": "2022-08-31 23:59:00",
+        "null_sku": 0,
+        "min_sku": 21,
+        "max_sku": 1623135
+      },
+      "destination": {
+        "rows": 374376,
+        "md5_sum": 63683963519029944010248148355161995295350109,
+        "sha256_sum": 63698876835080771310212164622737493601956912,
+        "sha256_xor": 15454100867316443567,
+        "null_client_id": 0,
+        "min_client_id": 84,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-08-01 00:04:40",
+        "max_timestamp": "2022-08-31 23:59:00",
+        "null_sku": 0,
+        "min_sku": 21,
+        "max_sku": 1623135
+      }
+    },
+    {
+      "month": "2022-09",
+      "source": {
+        "rows": 382762,
+        "md5_sum": 65193642886843395180874831714325454415273129,
+        "sha256_sum": 65034449442091738016961568987930813386461428,
+        "sha256_xor": 1772934142662879178,
+        "null_client_id": 0,
+        "min_client_id": 80,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-09-01 00:00:25",
+        "max_timestamp": "2022-09-30 23:56:05",
+        "null_sku": 0,
+        "min_sku": 18,
+        "max_sku": 1623136
+      },
+      "destination": {
+        "rows": 382762,
+        "md5_sum": 65193642886843395180874831714325454415273129,
+        "sha256_sum": 65034449442091738016961568987930813386461428,
+        "sha256_xor": 1772934142662879178,
+        "null_client_id": 0,
+        "min_client_id": 80,
+        "max_client_id": 23929128,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-09-01 00:00:25",
+        "max_timestamp": "2022-09-30 23:56:05",
+        "null_sku": 0,
+        "min_sku": 18,
+        "max_sku": 1623136
+      }
+    },
+    {
+      "month": "2022-10",
+      "source": {
+        "rows": 452019,
+        "md5_sum": 76876097511620597379672808726597704847873088,
+        "sha256_sum": 77041756118163735092637868669576111787064734,
+        "sha256_xor": 3774838208334498249,
+        "null_client_id": 0,
+        "min_client_id": 422,
+        "max_client_id": 23928901,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-10-01 00:11:05",
+        "max_timestamp": "2022-10-31 23:59:25",
+        "null_sku": 0,
+        "min_sku": 9,
+        "max_sku": 1623130
+      },
+      "destination": {
+        "rows": 452019,
+        "md5_sum": 76876097511620597379672808726597704847873088,
+        "sha256_sum": 77041756118163735092637868669576111787064734,
+        "sha256_xor": 3774838208334498249,
+        "null_client_id": 0,
+        "min_client_id": 422,
+        "max_client_id": 23928901,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-10-01 00:11:05",
+        "max_timestamp": "2022-10-31 23:59:25",
+        "null_sku": 0,
+        "min_sku": 9,
+        "max_sku": 1623130
+      }
+    },
+    {
+      "month": "2022-11",
+      "source": {
+        "rows": 529373,
+        "md5_sum": 90143994835699810353803392727259956326956815,
+        "sha256_sum": 90312317331210352106400643861634056420465414,
+        "sha256_xor": 14745107694282919449,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929082,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-11-01 00:00:10",
+        "max_timestamp": "2022-11-30 23:59:50",
+        "null_sku": 0,
+        "min_sku": 2,
+        "max_sku": 1623139
+      },
+      "destination": {
+        "rows": 529373,
+        "md5_sum": 90143994835699810353803392727259956326956815,
+        "sha256_sum": 90312317331210352106400643861634056420465414,
+        "sha256_xor": 14745107694282919449,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929082,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-11-01 00:00:10",
+        "max_timestamp": "2022-11-30 23:59:50",
+        "null_sku": 0,
+        "min_sku": 2,
+        "max_sku": 1623139
+      }
+    },
+    {
+      "month": "2022-12",
+      "source": {
+        "rows": 146159,
+        "md5_sum": 24897194093315051663602787338119758867447840,
+        "sha256_sum": 24859794570425384221375518978980071687349438,
+        "sha256_xor": 17895398249214126618,
+        "null_client_id": 0,
+        "min_client_id": 655,
+        "max_client_id": 23929061,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-12-01 00:00:15",
+        "max_timestamp": "2022-12-08 00:09:15",
+        "null_sku": 0,
+        "min_sku": 17,
+        "max_sku": 1623126
+      },
+      "destination": {
+        "rows": 146159,
+        "md5_sum": 24897194093315051663602787338119758867447840,
+        "sha256_sum": 24859794570425384221375518978980071687349438,
+        "sha256_xor": 17895398249214126618,
+        "null_client_id": 0,
+        "min_client_id": 655,
+        "max_client_id": 23929061,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-12-01 00:00:15",
+        "max_timestamp": "2022-12-08 00:09:15",
+        "null_sku": 0,
+        "min_sku": 17,
+        "max_sku": 1623126
+      }
+    }
+  ],
+  "source_aggregate": {
+    "rows": 2318502,
+    "md5_sum": 394741927881914825006073928954240070262448729,
+    "sha256_sum": 394791726645494398462318824723993210845023154,
+    "sha256_xor": 9325085962058575403,
+    "null_client_id": 0,
+    "min_client_id": 33,
+    "max_client_id": 23929160,
+    "null_timestamp": 0,
+    "min_timestamp": "2022-06-23 00:12:15",
+    "max_timestamp": "2022-12-08 00:09:15",
+    "null_sku": 0,
+    "min_sku": 1,
+    "max_sku": 1623139
+  },
+  "destination_aggregate": {
+    "rows": 2318502,
+    "md5_sum": 394741927881914825006073928954240070262448729,
+    "sha256_sum": 394791726645494398462318824723993210845023154,
+    "sha256_xor": 9325085962058575403,
+    "null_client_id": 0,
+    "min_client_id": 33,
+    "max_client_id": 23929160,
+    "null_timestamp": 0,
+    "min_timestamp": "2022-06-23 00:12:15",
+    "max_timestamp": "2022-12-08 00:09:15",
+    "null_sku": 0,
+    "min_sku": 1,
+    "max_sku": 1623139
+  },
+  "reconciliation_seconds": 2.0834734595846385,
+  "provenance_clock": {
+    "bad": 0
+  },
+  "source_hash_reverified": true,
+  "errors": 0,
+  "retries": 0,
+  "finished_utc": "2026-10-22T02:09:11.002178+00:00",
+  "resources": {
+    "sampled_peak_rss": 1894465536,
+    "sampled_peak_cgroup": 5833736192,
+    "sampled_peak_tracked": 799876530,
+    "maximum_merges": 1,
+    "maximum_release_parts": 30,
+    "minimum_free_disk": 375754878976
+  },
+  "insert_seconds": 1.2653245427645743,
+  "rows_per_insert_second": 1832337.8087129851,
+  "total_seconds": 3.6301641250029206,
+  "storage": {
+    "parts": 21,
+    "rows": 2318502,
+    "bytes_on_disk": 29470760,
+    "compressed_bytes": 29424695
+  },
+  "query_memory_peak": 138516877,
+  "query_cpu_seconds": 3.391223
+}

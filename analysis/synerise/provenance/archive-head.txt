@@ -1,0 +1,6 @@
+HTTP/2 200
+date: Wed, 21 Oct 2026 15:22:14 GMT
+content-type: application/gzip
+content-length: 2062884710
+last-modified: Wed, 12 Nov 2025 12:29:52 GMT
+etag: 0x8DE21E72E378736

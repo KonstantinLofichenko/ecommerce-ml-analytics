@@ -1,0 +1,5859 @@
+{
+  "release_id": "8efbe3d9-5dfc-431c-b1fa-66f980f13a67",
+  "database": "synerise_raw__8efbe3d95dfc431cb1fa66f980f13a67",
+  "status": "stopped_private_incomplete",
+  "clock_policy": "source-naive-civil-v1",
+  "source_timezone_status": "unverified",
+  "started_utc": "2026-10-22T02:09:03.843878+00:00",
+  "settings": {
+    "max_threads": "1",
+    "max_insert_threads": "1",
+    "max_memory_usage": "536870912",
+    "max_bytes_before_external_group_by": "67108864",
+    "max_bytes_before_external_sort": "67108864",
+    "input_format_parallel_parsing": "0",
+    "input_format_parquet_preserve_order": "1",
+    "input_format_parquet_max_block_size": "10000",
+    "max_block_size": "10000",
+    "max_insert_block_size": "100000",
+    "min_insert_block_size_rows": "100000",
+    "min_insert_block_size_bytes": "16777216",
+    "async_insert": "0",
+    "insert_deduplicate": "0",
+    "input_format_null_as_default": "0"
+  },
+  "checksum_policy": "synerise-row-v2: MD5-128 sum and SHA256-prefix-128 sum in UInt256, SHA256-tail-64 XOR; little-endian hash integers",
+  "files": {
+    "product_properties": {
+      "attempt_id": "55ae9c3d-fe54-45af-bb01-96caa7d63c49",
+      "table": "product_properties",
+      "table_uuid": "b5227a95-7279-484f-b31f-55c6f0f5a9d8",
+      "source_sha256": "a72fc334175020a65c56f1ae8c356d9cd1867250662842492bd854887da06305",
+      "status": "validated",
+      "started_utc": "2026-10-22T02:09:05.418220+00:00",
+      "source_types": [
+        {
+          "name": "sku",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "category",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "price",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "name",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "chunks": [
+        {
+          "month": "all",
+          "source": {
+            "rows": 1534050,
+            "md5_sum": 261024798319291727553619729596915149387701464,
+            "sha256_sum": 260657594364488967271391426560310135945418099,
+            "sha256_xor": 4052437586683472713,
+            "null_sku": 0,
+            "min_sku": 0,
+            "max_sku": 1623140,
+            "null_category": 0,
+            "min_category": 0,
+            "max_category": 6988,
+            "null_price": 0,
+            "min_price": 0,
+            "max_price": 99,
+            "null_name": 0,
+            "min_bytes_name": 49,
+            "max_bytes_name": 65
+          },
+          "destination": {
+            "rows": 1534050,
+            "md5_sum": 261024798319291727553619729596915149387701464,
+            "sha256_sum": 260657594364488967271391426560310135945418099,
+            "sha256_xor": 4052437586683472713,
+            "null_sku": 0,
+            "min_sku": 0,
+            "max_sku": 1623140,
+            "null_category": 0,
+            "min_category": 0,
+            "max_category": 6988,
+            "null_price": 0,
+            "min_price": 0,
+            "max_price": 99,
+            "null_name": 0,
+            "min_bytes_name": 49,
+            "max_bytes_name": 65
+          }
+        }
+      ],
+      "source_aggregate": {
+        "rows": 1534050,
+        "md5_sum": 261024798319291727553619729596915149387701464,
+        "sha256_sum": 260657594364488967271391426560310135945418099,
+        "sha256_xor": 4052437586683472713,
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140,
+        "null_category": 0,
+        "min_category": 0,
+        "max_category": 6988,
+        "null_price": 0,
+        "min_price": 0,
+        "max_price": 99,
+        "null_name": 0,
+        "min_bytes_name": 49,
+        "max_bytes_name": 65
+      },
+      "destination_aggregate": {
+        "rows": 1534050,
+        "md5_sum": 261024798319291727553619729596915149387701464,
+        "sha256_sum": 260657594364488967271391426560310135945418099,
+        "sha256_xor": 4052437586683472713,
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140,
+        "null_category": 0,
+        "min_category": 0,
+        "max_category": 6988,
+        "null_price": 0,
+        "min_price": 0,
+        "max_price": 99,
+        "null_name": 0,
+        "min_bytes_name": 49,
+        "max_bytes_name": 65
+      },
+      "reconciliation_seconds": 1.28404345898889,
+      "provenance_clock": {
+        "bad": 0
+      },
+      "source_hash_reverified": true,
+      "errors": 0,
+      "retries": 0,
+      "finished_utc": "2026-10-22T02:09:07.349658+00:00",
+      "resources": {
+        "sampled_peak_rss": 1761755136,
+        "sampled_peak_cgroup": 5678129152,
+        "sampled_peak_tracked": 825174369,
+        "maximum_merges": 2,
+        "maximum_release_parts": 11,
+        "minimum_free_disk": 375790809088
+      },
+      "insert_seconds": 0.5644603329710662,
+      "rows_per_insert_second": 2717728.616863914,
+      "total_seconds": 1.9314483748748899,
+      "storage": {
+        "parts": 6,
+        "rows": 1534050,
+        "bytes_on_disk": 41868946,
+        "compressed_bytes": 41856632
+      },
+      "query_memory_peak": 181028570,
+      "query_cpu_seconds": 1.808563
+    },
+    "product_buy": {
+      "attempt_id": "8a54f0af-20e4-48d0-9210-dcb3c3925665",
+      "table": "product_buy",
+      "table_uuid": "175d36da-aa48-4b2c-a179-7f844aab5416",
+      "source_sha256": "fdff0af2d72926a107b93f17f804ff816a4883be0bac30db45c6364c44ade1ca",
+      "status": "validated",
+      "started_utc": "2026-10-22T02:09:07.372026+00:00",
+      "source_types": [
+        {
+          "name": "client_id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "timestamp",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "sku",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "source_bounds": {
+        "first": "2022-06-23 00:12:15",
+        "last": "2022-12-08 00:09:15",
+        "nulls": 0
+      },
+      "chunks": [
+        {
+          "month": "2022-06",
+          "source": {
+            "rows": 75880,
+            "md5_sum": 12954224061450883933647619592825710996973717,
+            "sha256_sum": 12918680932136199756304352291426396988278694,
+            "sha256_xor": 9864636616220548681,
+            "null_client_id": 0,
+            "min_client_id": 168,
+            "max_client_id": 23929160,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:12:15",
+            "max_timestamp": "2022-06-30 23:59:55",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623104
+          },
+          "destination": {
+            "rows": 75880,
+            "md5_sum": 12954224061450883933647619592825710996973717,
+            "sha256_sum": 12918680932136199756304352291426396988278694,
+            "sha256_xor": 9864636616220548681,
+            "null_client_id": 0,
+            "min_client_id": 168,
+            "max_client_id": 23929160,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:12:15",
+            "max_timestamp": "2022-06-30 23:59:55",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623104
+          }
+        },
+        {
+          "month": "2022-07",
+          "source": {
+            "rows": 357933,
+            "md5_sum": 60992810973955142484224340499949489512574031,
+            "sha256_sum": 60925851416386217958426707311708266973446534,
+            "sha256_xor": 14409502293579076557,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929071,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:05",
+            "max_timestamp": "2022-07-31 23:59:20",
+            "null_sku": 0,
+            "min_sku": 31,
+            "max_sku": 1623084
+          },
+          "destination": {
+            "rows": 357933,
+            "md5_sum": 60992810973955142484224340499949489512574031,
+            "sha256_sum": 60925851416386217958426707311708266973446534,
+            "sha256_xor": 14409502293579076557,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929071,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:05",
+            "max_timestamp": "2022-07-31 23:59:20",
+            "null_sku": 0,
+            "min_sku": 31,
+            "max_sku": 1623084
+          }
+        },
+        {
+          "month": "2022-08",
+          "source": {
+            "rows": 374376,
+            "md5_sum": 63683963519029944010248148355161995295350109,
+            "sha256_sum": 63698876835080771310212164622737493601956912,
+            "sha256_xor": 15454100867316443567,
+            "null_client_id": 0,
+            "min_client_id": 84,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:04:40",
+            "max_timestamp": "2022-08-31 23:59:00",
+            "null_sku": 0,
+            "min_sku": 21,
+            "max_sku": 1623135
+          },
+          "destination": {
+            "rows": 374376,
+            "md5_sum": 63683963519029944010248148355161995295350109,
+            "sha256_sum": 63698876835080771310212164622737493601956912,
+            "sha256_xor": 15454100867316443567,
+            "null_client_id": 0,
+            "min_client_id": 84,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:04:40",
+            "max_timestamp": "2022-08-31 23:59:00",
+            "null_sku": 0,
+            "min_sku": 21,
+            "max_sku": 1623135
+          }
+        },
+        {
+          "month": "2022-09",
+          "source": {
+            "rows": 382762,
+            "md5_sum": 65193642886843395180874831714325454415273129,
+            "sha256_sum": 65034449442091738016961568987930813386461428,
+            "sha256_xor": 1772934142662879178,
+            "null_client_id": 0,
+            "min_client_id": 80,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:00:25",
+            "max_timestamp": "2022-09-30 23:56:05",
+            "null_sku": 0,
+            "min_sku": 18,
+            "max_sku": 1623136
+          },
+          "destination": {
+            "rows": 382762,
+            "md5_sum": 65193642886843395180874831714325454415273129,
+            "sha256_sum": 65034449442091738016961568987930813386461428,
+            "sha256_xor": 1772934142662879178,
+            "null_client_id": 0,
+            "min_client_id": 80,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:00:25",
+            "max_timestamp": "2022-09-30 23:56:05",
+            "null_sku": 0,
+            "min_sku": 18,
+            "max_sku": 1623136
+          }
+        },
+        {
+          "month": "2022-10",
+          "source": {
+            "rows": 452019,
+            "md5_sum": 76876097511620597379672808726597704847873088,
+            "sha256_sum": 77041756118163735092637868669576111787064734,
+            "sha256_xor": 3774838208334498249,
+            "null_client_id": 0,
+            "min_client_id": 422,
+            "max_client_id": 23928901,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:11:05",
+            "max_timestamp": "2022-10-31 23:59:25",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623130
+          },
+          "destination": {
+            "rows": 452019,
+            "md5_sum": 76876097511620597379672808726597704847873088,
+            "sha256_sum": 77041756118163735092637868669576111787064734,
+            "sha256_xor": 3774838208334498249,
+            "null_client_id": 0,
+            "min_client_id": 422,
+            "max_client_id": 23928901,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:11:05",
+            "max_timestamp": "2022-10-31 23:59:25",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623130
+          }
+        },
+        {
+          "month": "2022-11",
+          "source": {
+            "rows": 529373,
+            "md5_sum": 90143994835699810353803392727259956326956815,
+            "sha256_sum": 90312317331210352106400643861634056420465414,
+            "sha256_xor": 14745107694282919449,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929082,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:00:10",
+            "max_timestamp": "2022-11-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 2,
+            "max_sku": 1623139
+          },
+          "destination": {
+            "rows": 529373,
+            "md5_sum": 90143994835699810353803392727259956326956815,
+            "sha256_sum": 90312317331210352106400643861634056420465414,
+            "sha256_xor": 14745107694282919449,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929082,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:00:10",
+            "max_timestamp": "2022-11-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 2,
+            "max_sku": 1623139
+          }
+        },
+        {
+          "month": "2022-12",
+          "source": {
+            "rows": 146159,
+            "md5_sum": 24897194093315051663602787338119758867447840,
+            "sha256_sum": 24859794570425384221375518978980071687349438,
+            "sha256_xor": 17895398249214126618,
+            "null_client_id": 0,
+            "min_client_id": 655,
+            "max_client_id": 23929061,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:15",
+            "max_timestamp": "2022-12-08 00:09:15",
+            "null_sku": 0,
+            "min_sku": 17,
+            "max_sku": 1623126
+          },
+          "destination": {
+            "rows": 146159,
+            "md5_sum": 24897194093315051663602787338119758867447840,
+            "sha256_sum": 24859794570425384221375518978980071687349438,
+            "sha256_xor": 17895398249214126618,
+            "null_client_id": 0,
+            "min_client_id": 655,
+            "max_client_id": 23929061,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:15",
+            "max_timestamp": "2022-12-08 00:09:15",
+            "null_sku": 0,
+            "min_sku": 17,
+            "max_sku": 1623126
+          }
+        }
+      ],
+      "source_aggregate": {
+        "rows": 2318502,
+        "md5_sum": 394741927881914825006073928954240070262448729,
+        "sha256_sum": 394791726645494398462318824723993210845023154,
+        "sha256_xor": 9325085962058575403,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929160,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:15",
+        "max_timestamp": "2022-12-08 00:09:15",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623139
+      },
+      "destination_aggregate": {
+        "rows": 2318502,
+        "md5_sum": 394741927881914825006073928954240070262448729,
+        "sha256_sum": 394791726645494398462318824723993210845023154,
+        "sha256_xor": 9325085962058575403,
+        "null_client_id": 0,
+        "min_client_id": 33,
+        "max_client_id": 23929160,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:15",
+        "max_timestamp": "2022-12-08 00:09:15",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623139
+      },
+      "reconciliation_seconds": 2.0834734595846385,
+      "provenance_clock": {
+        "bad": 0
+      },
+      "source_hash_reverified": true,
+      "errors": 0,
+      "retries": 0,
+      "finished_utc": "2026-10-22T02:09:11.002178+00:00",
+      "resources": {
+        "sampled_peak_rss": 1894465536,
+        "sampled_peak_cgroup": 5833736192,
+        "sampled_peak_tracked": 799876530,
+        "maximum_merges": 1,
+        "maximum_release_parts": 30,
+        "minimum_free_disk": 375754878976
+      },
+      "insert_seconds": 1.2653245427645743,
+      "rows_per_insert_second": 1832337.8087129851,
+      "total_seconds": 3.6301641250029206,
+      "storage": {
+        "parts": 21,
+        "rows": 2318502,
+        "bytes_on_disk": 29470760,
+        "compressed_bytes": 29424695
+      },
+      "query_memory_peak": 138516877,
+      "query_cpu_seconds": 3.391223
+    },
+    "remove_from_cart": {
+      "attempt_id": "d615191d-da5f-43ae-9c44-2dfbc25c408f",
+      "table": "remove_from_cart",
+      "table_uuid": "3a951956-190a-46c4-a91a-1468648be3e9",
+      "source_sha256": "231d4d4a4b5ad467635b99207b3af1298b30fc9c98e347e2df6cd539d677ea17",
+      "status": "validated",
+      "started_utc": "2026-10-22T02:09:11.025819+00:00",
+      "source_types": [
+        {
+          "name": "client_id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "timestamp",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "sku",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "source_bounds": {
+        "first": "2022-06-23 00:12:25",
+        "last": "2022-12-08 00:09:40",
+        "nulls": 0
+      },
+      "chunks": [
+        {
+          "month": "2022-06",
+          "source": {
+            "rows": 59606,
+            "md5_sum": 10142329573598887037494634723786692428221235,
+            "sha256_sum": 10145063273203972261194226464321030828649049,
+            "sha256_xor": 6854765429952866765,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23928623,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:12:25",
+            "max_timestamp": "2022-06-30 23:55:35",
+            "null_sku": 0,
+            "min_sku": 52,
+            "max_sku": 1623120
+          },
+          "destination": {
+            "rows": 59606,
+            "md5_sum": 10142329573598887037494634723786692428221235,
+            "sha256_sum": 10145063273203972261194226464321030828649049,
+            "sha256_xor": 6854765429952866765,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23928623,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:12:25",
+            "max_timestamp": "2022-06-30 23:55:35",
+            "null_sku": 0,
+            "min_sku": 52,
+            "max_sku": 1623120
+          }
+        },
+        {
+          "month": "2022-07",
+          "source": {
+            "rows": 313673,
+            "md5_sum": 53360713897387054043361511589704114459678961,
+            "sha256_sum": 53413659413221752673592782176220333466731537,
+            "sha256_xor": 9371856888308930874,
+            "null_client_id": 0,
+            "min_client_id": 510,
+            "max_client_id": 23928824,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:40",
+            "max_timestamp": "2022-07-31 23:59:30",
+            "null_sku": 0,
+            "min_sku": 19,
+            "max_sku": 1623105
+          },
+          "destination": {
+            "rows": 313673,
+            "md5_sum": 53360713897387054043361511589704114459678961,
+            "sha256_sum": 53413659413221752673592782176220333466731537,
+            "sha256_xor": 9371856888308930874,
+            "null_client_id": 0,
+            "min_client_id": 510,
+            "max_client_id": 23928824,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:40",
+            "max_timestamp": "2022-07-31 23:59:30",
+            "null_sku": 0,
+            "min_sku": 19,
+            "max_sku": 1623105
+          }
+        },
+        {
+          "month": "2022-08",
+          "source": {
+            "rows": 371817,
+            "md5_sum": 63240180652585452656039512052332938313418227,
+            "sha256_sum": 63349919197283225874309179056369592611402518,
+            "sha256_xor": 1741419891974051896,
+            "null_client_id": 0,
+            "min_client_id": 449,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:03:30",
+            "max_timestamp": "2022-08-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 11,
+            "max_sku": 1623131
+          },
+          "destination": {
+            "rows": 371817,
+            "md5_sum": 63240180652585452656039512052332938313418227,
+            "sha256_sum": 63349919197283225874309179056369592611402518,
+            "sha256_xor": 1741419891974051896,
+            "null_client_id": 0,
+            "min_client_id": 449,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:03:30",
+            "max_timestamp": "2022-08-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 11,
+            "max_sku": 1623131
+          }
+        },
+        {
+          "month": "2022-09",
+          "source": {
+            "rows": 451586,
+            "md5_sum": 76966295463425017450526499191131252734722233,
+            "sha256_sum": 76948068336300812237112137352845064313964865,
+            "sha256_xor": 769443941059113999,
+            "null_client_id": 0,
+            "min_client_id": 63,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:01:35",
+            "max_timestamp": "2022-09-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 7,
+            "max_sku": 1623138
+          },
+          "destination": {
+            "rows": 451586,
+            "md5_sum": 76966295463425017450526499191131252734722233,
+            "sha256_sum": 76948068336300812237112137352845064313964865,
+            "sha256_xor": 769443941059113999,
+            "null_client_id": 0,
+            "min_client_id": 63,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:01:35",
+            "max_timestamp": "2022-09-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 7,
+            "max_sku": 1623138
+          }
+        },
+        {
+          "month": "2022-10",
+          "source": {
+            "rows": 574463,
+            "md5_sum": 97632639684511563112265053679830489462036134,
+            "sha256_sum": 97686954882904368997976576254377242493380245,
+            "sha256_xor": 18156733006153320756,
+            "null_client_id": 0,
+            "min_client_id": 399,
+            "max_client_id": 23929166,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:01:25",
+            "max_timestamp": "2022-10-31 23:59:30",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623130
+          },
+          "destination": {
+            "rows": 574463,
+            "md5_sum": 97632639684511563112265053679830489462036134,
+            "sha256_sum": 97686954882904368997976576254377242493380245,
+            "sha256_xor": 18156733006153320756,
+            "null_client_id": 0,
+            "min_client_id": 399,
+            "max_client_id": 23929166,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:01:25",
+            "max_timestamp": "2022-10-31 23:59:30",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623130
+          }
+        },
+        {
+          "month": "2022-11",
+          "source": {
+            "rows": 691649,
+            "md5_sum": 117474905058106091451590832823616607949916894,
+            "sha256_sum": 117810490363511044842511796747157470996295991,
+            "sha256_xor": 6084247318801524205,
+            "null_client_id": 0,
+            "min_client_id": 399,
+            "max_client_id": 23929175,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:02:20",
+            "max_timestamp": "2022-11-30 23:59:55",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623137
+          },
+          "destination": {
+            "rows": 691649,
+            "md5_sum": 117474905058106091451590832823616607949916894,
+            "sha256_sum": 117810490363511044842511796747157470996295991,
+            "sha256_xor": 6084247318801524205,
+            "null_client_id": 0,
+            "min_client_id": 399,
+            "max_client_id": 23929175,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:02:20",
+            "max_timestamp": "2022-11-30 23:59:55",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623137
+          }
+        },
+        {
+          "month": "2022-12",
+          "source": {
+            "rows": 226100,
+            "md5_sum": 38471340396986838647943410789486830178449188,
+            "sha256_sum": 38464313294857748559410289637545075980164536,
+            "sha256_xor": 9334019928100441971,
+            "null_client_id": 0,
+            "min_client_id": 242,
+            "max_client_id": 23929061,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:35",
+            "max_timestamp": "2022-12-08 00:09:40",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623083
+          },
+          "destination": {
+            "rows": 226100,
+            "md5_sum": 38471340396986838647943410789486830178449188,
+            "sha256_sum": 38464313294857748559410289637545075980164536,
+            "sha256_xor": 9334019928100441971,
+            "null_client_id": 0,
+            "min_client_id": 242,
+            "max_client_id": 23929061,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:35",
+            "max_timestamp": "2022-12-08 00:09:40",
+            "null_sku": 0,
+            "min_sku": 9,
+            "max_sku": 1623083
+          }
+        }
+      ],
+      "source_aggregate": {
+        "rows": 2688894,
+        "md5_sum": 457288404726600904399221454849888925526442872,
+        "sha256_sum": 457818468761282925446106987688835810690588741,
+        "sha256_xor": 16264460342941908842,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929175,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:25",
+        "max_timestamp": "2022-12-08 00:09:40",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623138
+      },
+      "destination_aggregate": {
+        "rows": 2688894,
+        "md5_sum": 457288404726600904399221454849888925526442872,
+        "sha256_sum": 457818468761282925446106987688835810690588741,
+        "sha256_xor": 16264460342941908842,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929175,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:12:25",
+        "max_timestamp": "2022-12-08 00:09:40",
+        "null_sku": 0,
+        "min_sku": 1,
+        "max_sku": 1623138
+      },
+      "reconciliation_seconds": 2.842066291719675,
+      "provenance_clock": {
+        "bad": 0
+      },
+      "source_hash_reverified": true,
+      "errors": 0,
+      "retries": 0,
+      "finished_utc": "2026-10-22T02:09:15.687182+00:00",
+      "resources": {
+        "sampled_peak_rss": 1938837504,
+        "sampled_peak_cgroup": 5907247104,
+        "sampled_peak_tracked": 802493238,
+        "maximum_merges": 1,
+        "maximum_release_parts": 49,
+        "minimum_free_disk": 375702089728
+      },
+      "insert_seconds": 1.461868667975068,
+      "rows_per_insert_second": 1839354.012371417,
+      "total_seconds": 4.661370417103171,
+      "storage": {
+        "parts": 20,
+        "rows": 2688894,
+        "bytes_on_disk": 34027849,
+        "compressed_bytes": 33983041
+      },
+      "query_memory_peak": 138661485,
+      "query_cpu_seconds": 4.491339
+    },
+    "add_to_cart": {
+      "attempt_id": "304647f4-a1c3-48a4-9737-a46b5cdce459",
+      "table": "add_to_cart",
+      "table_uuid": "744e5adf-c1fe-45c5-a8c1-9b35c9030c8e",
+      "source_sha256": "e7074298ef56c087b295f8e1918559aa65d9903be4d11fe59748ab08e6c5cb09",
+      "status": "validated",
+      "started_utc": "2026-10-22T02:09:15.739938+00:00",
+      "source_types": [
+        {
+          "name": "client_id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "timestamp",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "sku",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "source_bounds": {
+        "first": "2022-06-23 00:10:20",
+        "last": "2022-12-08 00:09:55",
+        "nulls": 0
+      },
+      "chunks": [
+        {
+          "month": "2022-06",
+          "source": {
+            "rows": 198401,
+            "md5_sum": 33779992534642090033377498645484472280279380,
+            "sha256_sum": 33788764867014876830545599534968174550733391,
+            "sha256_xor": 14023234331427749615,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23929145,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:10:20",
+            "max_timestamp": "2022-06-30 23:59:10",
+            "null_sku": 0,
+            "min_sku": 10,
+            "max_sku": 1623116
+          },
+          "destination": {
+            "rows": 198401,
+            "md5_sum": 33779992534642090033377498645484472280279380,
+            "sha256_sum": 33788764867014876830545599534968174550733391,
+            "sha256_xor": 14023234331427749615,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23929145,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:10:20",
+            "max_timestamp": "2022-06-30 23:59:10",
+            "null_sku": 0,
+            "min_sku": 10,
+            "max_sku": 1623116
+          }
+        },
+        {
+          "month": "2022-07",
+          "source": {
+            "rows": 1048179,
+            "md5_sum": 178160171038013141485225795086062534091065185,
+            "sha256_sum": 178377896594061534557743814594898546553731860,
+            "sha256_xor": 17499254608987864693,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929218,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:00",
+            "max_timestamp": "2022-07-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 23,
+            "max_sku": 1623115
+          },
+          "destination": {
+            "rows": 1048179,
+            "md5_sum": 178160171038013141485225795086062534091065185,
+            "sha256_sum": 178377896594061534557743814594898546553731860,
+            "sha256_xor": 17499254608987864693,
+            "null_client_id": 0,
+            "min_client_id": 33,
+            "max_client_id": 23929218,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-07-01 00:00:00",
+            "max_timestamp": "2022-07-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 23,
+            "max_sku": 1623115
+          }
+        },
+        {
+          "month": "2022-08",
+          "source": {
+            "rows": 1153278,
+            "md5_sum": 196168157499250638983476140847242927117723862,
+            "sha256_sum": 196088830068193800369120547922447350321369261,
+            "sha256_xor": 11986849052247761352,
+            "null_client_id": 0,
+            "min_client_id": 69,
+            "max_client_id": 23929211,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:00:20",
+            "max_timestamp": "2022-08-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 0,
+            "max_sku": 1623138
+          },
+          "destination": {
+            "rows": 1153278,
+            "md5_sum": 196168157499250638983476140847242927117723862,
+            "sha256_sum": 196088830068193800369120547922447350321369261,
+            "sha256_xor": 11986849052247761352,
+            "null_client_id": 0,
+            "min_client_id": 69,
+            "max_client_id": 23929211,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-08-01 00:00:20",
+            "max_timestamp": "2022-08-31 23:59:50",
+            "null_sku": 0,
+            "min_sku": 0,
+            "max_sku": 1623138
+          }
+        },
+        {
+          "month": "2022-09",
+          "source": {
+            "rows": 1281740,
+            "md5_sum": 218102433313463828315389222438375197759423543,
+            "sha256_sum": 218037162777080369878821478501693689695693944,
+            "sha256_xor": 11290681943163035808,
+            "null_client_id": 0,
+            "min_client_id": 59,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:00:05",
+            "max_timestamp": "2022-09-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 3,
+            "max_sku": 1623136
+          },
+          "destination": {
+            "rows": 1281740,
+            "md5_sum": 218102433313463828315389222438375197759423543,
+            "sha256_sum": 218037162777080369878821478501693689695693944,
+            "sha256_xor": 11290681943163035808,
+            "null_client_id": 0,
+            "min_client_id": 59,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-09-01 00:00:05",
+            "max_timestamp": "2022-09-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 3,
+            "max_sku": 1623136
+          }
+        },
+        {
+          "month": "2022-10",
+          "source": {
+            "rows": 1528147,
+            "md5_sum": 260067926680389012579373920677347753182138162,
+            "sha256_sum": 260083409864619144748542751919606957968332320,
+            "sha256_xor": 1286033569408578492,
+            "null_client_id": 0,
+            "min_client_id": 64,
+            "max_client_id": 23929084,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:00:20",
+            "max_timestamp": "2022-10-31 23:59:59",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623130
+          },
+          "destination": {
+            "rows": 1528147,
+            "md5_sum": 260067926680389012579373920677347753182138162,
+            "sha256_sum": 260083409864619144748542751919606957968332320,
+            "sha256_xor": 1286033569408578492,
+            "null_client_id": 0,
+            "min_client_id": 64,
+            "max_client_id": 23929084,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-10-01 00:00:20",
+            "max_timestamp": "2022-10-31 23:59:59",
+            "null_sku": 0,
+            "min_sku": 1,
+            "max_sku": 1623130
+          }
+        },
+        {
+          "month": "2022-11",
+          "source": {
+            "rows": 1789943,
+            "md5_sum": 304455292905432684449948044771397653641147809,
+            "sha256_sum": 304407220109122689689320986155713904111836582,
+            "sha256_xor": 8814143051916280031,
+            "null_client_id": 0,
+            "min_client_id": 12,
+            "max_client_id": 23929218,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:00:15",
+            "max_timestamp": "2022-11-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 2,
+            "max_sku": 1623140
+          },
+          "destination": {
+            "rows": 1789943,
+            "md5_sum": 304455292905432684449948044771397653641147809,
+            "sha256_sum": 304407220109122689689320986155713904111836582,
+            "sha256_xor": 8814143051916280031,
+            "null_client_id": 0,
+            "min_client_id": 12,
+            "max_client_id": 23929218,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-11-01 00:00:15",
+            "max_timestamp": "2022-11-30 23:59:50",
+            "null_sku": 0,
+            "min_sku": 2,
+            "max_sku": 1623140
+          }
+        },
+        {
+          "month": "2022-12",
+          "source": {
+            "rows": 541429,
+            "md5_sum": 92073493291518181695092934003328654699365632,
+            "sha256_sum": 92032448238248015244587352514968212722753036,
+            "sha256_xor": 6151395744692824404,
+            "null_client_id": 0,
+            "min_client_id": 242,
+            "max_client_id": 23929169,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:00",
+            "max_timestamp": "2022-12-08 00:09:55",
+            "null_sku": 0,
+            "min_sku": 5,
+            "max_sku": 1623126
+          },
+          "destination": {
+            "rows": 541429,
+            "md5_sum": 92073493291518181695092934003328654699365632,
+            "sha256_sum": 92032448238248015244587352514968212722753036,
+            "sha256_xor": 6151395744692824404,
+            "null_client_id": 0,
+            "min_client_id": 242,
+            "max_client_id": 23929169,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-12-01 00:00:00",
+            "max_timestamp": "2022-12-08 00:09:55",
+            "null_sku": 0,
+            "min_sku": 5,
+            "max_sku": 1623126
+          }
+        }
+      ],
+      "source_aggregate": {
+        "rows": 7541117,
+        "md5_sum": 1282807467262709577541883556469239192771143573,
+        "sha256_sum": 1282815732518340431318682531144296835924450394,
+        "sha256_xor": 3781031219168697285,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929218,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:10:20",
+        "max_timestamp": "2022-12-08 00:09:55",
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140
+      },
+      "destination_aggregate": {
+        "rows": 7541117,
+        "md5_sum": 1282807467262709577541883556469239192771143573,
+        "sha256_sum": 1282815732518340431318682531144296835924450394,
+        "sha256_xor": 3781031219168697285,
+        "null_client_id": 0,
+        "min_client_id": 1,
+        "max_client_id": 23929218,
+        "null_timestamp": 0,
+        "min_timestamp": "2022-06-23 00:10:20",
+        "max_timestamp": "2022-12-08 00:09:55",
+        "null_sku": 0,
+        "min_sku": 0,
+        "max_sku": 1623140
+      },
+      "reconciliation_seconds": 6.084174958290532,
+      "provenance_clock": {
+        "bad": 0
+      },
+      "source_hash_reverified": true,
+      "errors": 0,
+      "retries": 0,
+      "finished_utc": "2026-10-22T02:09:26.144764+00:00",
+      "resources": {
+        "sampled_peak_rss": 2040688640,
+        "sampled_peak_cgroup": 6253068288,
+        "sampled_peak_tracked": 855502329,
+        "maximum_merges": 1,
+        "maximum_release_parts": 75,
+        "minimum_free_disk": 375497162752
+      },
+      "insert_seconds": 3.5186624999623746,
+      "rows_per_insert_second": 2143177.130537708,
+      "total_seconds": 10.404824083903804,
+      "storage": {
+        "parts": 23,
+        "rows": 7541117,
+        "bytes_on_disk": 102541155,
+        "compressed_bytes": 102470532
+      },
+      "query_memory_peak": 140412925,
+      "query_cpu_seconds": 10.856357
+    },
+    "search_query": {
+      "attempt_id": "ff20dde3-fd38-4c5a-b489-56c4a7b3f77d",
+      "table": "_attempt_search_query_1e12be58b534483b9c3ba279e6d04c1b",
+      "table_uuid": "1c7fe5e9-6683-4801-900a-d90d1ab9c336",
+      "source_sha256": "cba1be0b19c7872bb6645a2739d36fe33ed8df8a5b14e832cd7e66a5ff0e5f34",
+      "status": "failed_unpublished",
+      "started_utc": "2026-10-22T02:09:26.294856+00:00",
+      "source_types": [
+        {
+          "name": "client_id",
+          "type": "Nullable(Int64)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "timestamp",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        },
+        {
+          "name": "query",
+          "type": "Nullable(String)",
+          "default_type": "",
+          "default_expression": "",
+          "comment": "",
+          "codec_expression": "",
+          "ttl_expression": ""
+        }
+      ],
+      "source_bounds": {
+        "first": "2022-06-23 00:10:00",
+        "last": "2022-12-08 00:09:55",
+        "nulls": 0
+      },
+      "chunks": [
+        {
+          "month": "2022-06",
+          "source": {
+            "rows": 414549,
+            "md5_sum": 70646656083409661131729609332042339690497352,
+            "sha256_sum": 70524170162906157225211599635327425961886019,
+            "sha256_xor": 15642581915949969489,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:10:00",
+            "max_timestamp": "2022-06-30 23:59:55",
+            "null_query": 0,
+            "min_bytes_query": 49,
+            "max_bytes_query": 65
+          },
+          "destination": {
+            "rows": 414549,
+            "md5_sum": 70646656083409661131729609332042339690497352,
+            "sha256_sum": 70524170162906157225211599635327425961886019,
+            "sha256_xor": 15642581915949969489,
+            "null_client_id": 0,
+            "min_client_id": 1,
+            "max_client_id": 23929128,
+            "null_timestamp": 0,
+            "min_timestamp": "2022-06-23 00:10:00",
+            "max_timestamp": "2022-06-30 23:59:55",
+            "null_query": 0,
+            "min_bytes_query": 49,
+            "max_bytes_query": 65
+          }
+        }
+      ],
+      "error": "Resource stop: {\"CGroupMemoryUsed\": 7060004864, \"CGroupMemoryTotal\": 8589934592, \"MemoryResident\": 2388103168, \"tracked\": 767219004, \"merges\": 1, \"free_disk\": 375411040256, \"parts\": 87, \"time\": 1792634975.150579}",
+      "discarded": true,
+      "query_memory_peak": 181026893,
+      "query_cpu_seconds": 5.480207
+    }
+  },
+  "poc": [],
+  "operations": [
+    {
+      "label": "product_properties source checksum all",
+      "query_id": "synerise_native_ce663faba064462c9b73d9f66a43b135",
+      "started_unix": 1792634945.425421,
+      "resources_before": {
+        "CGroupMemoryUsed": 5090336768,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1267056640,
+        "tracked": 673846603,
+        "merges": 0,
+        "free_disk": 375868121088,
+        "parts": 0,
+        "time": 1792634945.43232
+      },
+      "success": true,
+      "seconds": 0.5813449579291046,
+      "resources_after": {
+        "CGroupMemoryUsed": 5211774976,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1388089344,
+        "tracked": 674139563,
+        "merges": 0,
+        "free_disk": 375868121088,
+        "parts": 0,
+        "time": 1792634946.0132139
+      }
+    },
+    {
+      "label": "product_properties insert all",
+      "query_id": "synerise_native_2bdff1404ca849fc9fde33bf9271d835",
+      "started_unix": 1792634946.022978,
+      "resources_before": {
+        "CGroupMemoryUsed": 5211774976,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1388089344,
+        "tracked": 674404027,
+        "merges": 0,
+        "free_disk": 375868121088,
+        "parts": 0,
+        "time": 1792634946.028754
+      },
+      "success": true,
+      "seconds": 0.5493682089727372,
+      "resources_after": {
+        "CGroupMemoryUsed": 5211774976,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1388089344,
+        "tracked": 759932766,
+        "merges": 2,
+        "free_disk": 375803891712,
+        "parts": 11,
+        "time": 1792634946.578325
+      }
+    },
+    {
+      "label": "product_properties destination checksum all",
+      "query_id": "synerise_native_c07e69db5065481f9058c9e2889c7c57",
+      "started_unix": 1792634946.586737,
+      "resources_before": {
+        "CGroupMemoryUsed": 5211774976,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1388089344,
+        "tracked": 771997489,
+        "merges": 2,
+        "free_disk": 375803891712,
+        "parts": 11,
+        "time": 1792634946.5926778
+      },
+      "success": true,
+      "seconds": 0.6724151251837611,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 660103874,
+        "merges": 0,
+        "free_disk": 375795171328,
+        "parts": 6,
+        "time": 1792634947.265468
+      }
+    },
+    {
+      "label": "product_properties provenance/clock",
+      "query_id": "synerise_native_f3c080817515479a8a8f6de0e2681e65",
+      "started_unix": 1792634947.2767518,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 660368338,
+        "merges": 0,
+        "free_disk": 375795171328,
+        "parts": 6,
+        "time": 1792634947.282399
+      },
+      "success": true,
+      "seconds": 0.030966790858656168,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 660543722,
+        "merges": 0,
+        "free_disk": 375795171328,
+        "parts": 6,
+        "time": 1792634947.3133922
+      }
+    },
+    {
+      "label": "product_buy source bounds",
+      "query_id": "synerise_native_df42e0745442427097929523052d6ac8",
+      "started_unix": 1792634947.379562,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 661143074,
+        "merges": 0,
+        "free_disk": 375795150848,
+        "parts": 6,
+        "time": 1792634947.384895
+      },
+      "success": true,
+      "seconds": 0.046825791941955686,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 661303178,
+        "merges": 0,
+        "free_disk": 375795150848,
+        "parts": 6,
+        "time": 1792634947.4315012
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-06",
+      "query_id": "synerise_native_9b688423e1c44ad78251764ff67b3c44",
+      "started_unix": 1792634947.4384909,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 661699874,
+        "merges": 0,
+        "free_disk": 375795150848,
+        "parts": 6,
+        "time": 1792634947.4438999
+      },
+      "success": true,
+      "seconds": 0.07921558292582631,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 661854290,
+        "merges": 0,
+        "free_disk": 375795150848,
+        "parts": 6,
+        "time": 1792634947.531133
+      }
+    },
+    {
+      "label": "product_buy insert 2022-06",
+      "query_id": "synerise_native_6bb92ec6587b402383a034388f72d3b5",
+      "started_unix": 1792634947.542461,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 662118754,
+        "merges": 0,
+        "free_disk": 375795150848,
+        "parts": 6,
+        "time": 1792634947.549945
+      },
+      "success": true,
+      "seconds": 0.10009366692975163,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 658885498,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.647668
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-06",
+      "query_id": "synerise_native_d154d8e402b24dd38ad1964430f0703d",
+      "started_unix": 1792634947.654998,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 659149962,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.66033
+      },
+      "success": true,
+      "seconds": 0.030833540949970484,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 659318570,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.691666
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-07",
+      "query_id": "synerise_native_7dac008638074afb8645a1ca45214096",
+      "started_unix": 1792634947.6994,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 659583034,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.705017
+      },
+      "success": true,
+      "seconds": 0.15230129100382328,
+      "resources_after": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 659748202,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.8586612
+      }
+    },
+    {
+      "label": "product_buy insert 2022-07",
+      "query_id": "synerise_native_ab1b247931ff4317a2d852b0b018e17b",
+      "started_unix": 1792634947.868673,
+      "resources_before": {
+        "CGroupMemoryUsed": 5678129152,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1761755136,
+        "tracked": 660012666,
+        "merges": 0,
+        "free_disk": 375793135616,
+        "parts": 7,
+        "time": 1792634947.874559
+      },
+      "success": true,
+      "seconds": 0.17434350005351007,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 660429042,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.048778
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-07",
+      "query_id": "synerise_native_546cb0ad2b6d4241867b92eeef9f699a",
+      "started_unix": 1792634948.06012,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 660693506,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.065483
+      },
+      "success": true,
+      "seconds": 0.11016408400610089,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 660867898,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.175909
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-08",
+      "query_id": "synerise_native_f614e97d84f6496e8e68316276eb8b37",
+      "started_unix": 1792634948.188086,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 661132362,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.193721
+      },
+      "success": true,
+      "seconds": 0.15294412500225008,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 661297466,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.346408
+      }
+    },
+    {
+      "label": "product_buy insert 2022-08",
+      "query_id": "synerise_native_09642f59160945f9aed408a40f661765",
+      "started_unix": 1792634948.3559759,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 661561930,
+        "merges": 0,
+        "free_disk": 375787843584,
+        "parts": 11,
+        "time": 1792634948.361644
+      },
+      "success": true,
+      "seconds": 0.17260054196231067,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 661977794,
+        "merges": 0,
+        "free_disk": 375782531072,
+        "parts": 15,
+        "time": 1792634948.534604
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-08",
+      "query_id": "synerise_native_57adbe072d9849a193cf450cd34cf7ca",
+      "started_unix": 1792634948.5457149,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 662242258,
+        "merges": 0,
+        "free_disk": 375782531072,
+        "parts": 15,
+        "time": 1792634948.5516129
+      },
+      "success": true,
+      "seconds": 0.1217530828434974,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 664863407,
+        "merges": 0,
+        "free_disk": 375781994496,
+        "parts": 15,
+        "time": 1792634948.6730602
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-09",
+      "query_id": "synerise_native_7d451844432a4b8bbc855f54e3a0392d",
+      "started_unix": 1792634948.685597,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 665127871,
+        "merges": 0,
+        "free_disk": 375781994496,
+        "parts": 15,
+        "time": 1792634948.691267
+      },
+      "success": true,
+      "seconds": 0.1440870831720531,
+      "resources_after": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 665292975,
+        "merges": 0,
+        "free_disk": 375781994496,
+        "parts": 15,
+        "time": 1792634948.834892
+      }
+    },
+    {
+      "label": "product_buy insert 2022-09",
+      "query_id": "synerise_native_d96f6b2bffd84f83ab244ba54de350d5",
+      "started_unix": 1792634948.845953,
+      "resources_before": {
+        "CGroupMemoryUsed": 5757292544,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1839173632,
+        "tracked": 665557439,
+        "merges": 0,
+        "free_disk": 375781994496,
+        "parts": 15,
+        "time": 1792634948.8518138
+      },
+      "success": true,
+      "seconds": 0.17517733410932124,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 665973183,
+        "merges": 0,
+        "free_disk": 375776579584,
+        "parts": 19,
+        "time": 1792634949.026633
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-09",
+      "query_id": "synerise_native_813ecda502eb4ab5add84879b2ed4c36",
+      "started_unix": 1792634949.03794,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 666237647,
+        "merges": 0,
+        "free_disk": 375776579584,
+        "parts": 19,
+        "time": 1792634949.0436149
+      },
+      "success": true,
+      "seconds": 0.13111316598951817,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 666419463,
+        "merges": 0,
+        "free_disk": 375776579584,
+        "parts": 19,
+        "time": 1792634949.173932
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-10",
+      "query_id": "synerise_native_2f2523536e91429e9d4751f014cb073e",
+      "started_unix": 1792634949.18607,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 666683927,
+        "merges": 0,
+        "free_disk": 375776579584,
+        "parts": 19,
+        "time": 1792634949.191575
+      },
+      "success": true,
+      "seconds": 0.1866044169291854,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 667127477,
+        "merges": 0,
+        "free_disk": 375776501760,
+        "parts": 19,
+        "time": 1792634949.378004
+      }
+    },
+    {
+      "label": "product_buy insert 2022-10",
+      "query_id": "synerise_native_1b6e433d846d4beab078bd6959588f55",
+      "started_unix": 1792634949.3897338,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 667391941,
+        "merges": 0,
+        "free_disk": 375776501760,
+        "parts": 19,
+        "time": 1792634949.395338
+      },
+      "success": true,
+      "seconds": 0.19522254192270339,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 667833061,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634949.590522
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-10",
+      "query_id": "synerise_native_e1ca2ea38786442683ff5df787ca5d33",
+      "started_unix": 1792634949.602148,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 668097525,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634949.609128
+      },
+      "success": true,
+      "seconds": 0.1584879169240594,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 668285981,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634949.766888
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-11",
+      "query_id": "synerise_native_e12b16dedfda4c66bb6055aaf41e8b54",
+      "started_unix": 1792634949.780554,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 668550445,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634949.786604
+      },
+      "success": true,
+      "seconds": 0.19594812486320734,
+      "resources_after": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 668715549,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634949.982146
+      }
+    },
+    {
+      "label": "product_buy insert 2022-11",
+      "query_id": "synerise_native_4005cb8033c241168b73005bbf19dff7",
+      "started_unix": 1792634949.994751,
+      "resources_before": {
+        "CGroupMemoryUsed": 5786234880,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1846874112,
+        "tracked": 669112245,
+        "merges": 0,
+        "free_disk": 375770435584,
+        "parts": 24,
+        "time": 1792634950.000204
+      },
+      "success": true,
+      "seconds": 0.22000470804050565,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 699759541,
+        "merges": 1,
+        "free_disk": 375763374080,
+        "parts": 30,
+        "time": 1792634950.2197828
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-11",
+      "query_id": "synerise_native_367adc5965974dd295b43b6d47a43152",
+      "started_unix": 1792634950.23136,
+      "resources_before": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 739937426,
+        "merges": 1,
+        "free_disk": 375763374080,
+        "parts": 30,
+        "time": 1792634950.237758
+      },
+      "success": true,
+      "seconds": 0.1879474997986108,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 669942429,
+        "merges": 0,
+        "free_disk": 375756898304,
+        "parts": 25,
+        "time": 1792634950.424778
+      }
+    },
+    {
+      "label": "product_buy source checksum 2022-12",
+      "query_id": "synerise_native_2147709e756a466bb073ceb5c1847afe",
+      "started_unix": 1792634950.438485,
+      "resources_before": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 670206893,
+        "merges": 0,
+        "free_disk": 375756898304,
+        "parts": 25,
+        "time": 1792634950.444384
+      },
+      "success": true,
+      "seconds": 0.10055233305320144,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 670497389,
+        "merges": 0,
+        "free_disk": 375756898304,
+        "parts": 25,
+        "time": 1792634950.544853
+      }
+    },
+    {
+      "label": "product_buy insert 2022-12",
+      "query_id": "synerise_native_dcc7f80743cf4ac3b8ea5328017a628e",
+      "started_unix": 1792634950.5570319,
+      "resources_before": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 670761917,
+        "merges": 0,
+        "free_disk": 375756898304,
+        "parts": 25,
+        "time": 1792634950.562628
+      },
+      "success": true,
+      "seconds": 0.11089158290997148,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 670982901,
+        "merges": 0,
+        "free_disk": 375754878976,
+        "parts": 27,
+        "time": 1792634950.67292
+      }
+    },
+    {
+      "label": "product_buy destination checksum 2022-12",
+      "query_id": "synerise_native_b8e17c0fec40421da41de76f0af60b9b",
+      "started_unix": 1792634950.685556,
+      "resources_before": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 671247365,
+        "merges": 0,
+        "free_disk": 375754878976,
+        "parts": 27,
+        "time": 1792634950.691351
+      },
+      "success": true,
+      "seconds": 0.09690512507222593,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 671436277,
+        "merges": 0,
+        "free_disk": 375754878976,
+        "parts": 27,
+        "time": 1792634950.787161
+      }
+    },
+    {
+      "label": "product_buy provenance/clock",
+      "query_id": "synerise_native_df5dda80fc0948f4a9360712d661e273",
+      "started_unix": 1792634950.801613,
+      "resources_before": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 671700741,
+        "merges": 0,
+        "free_disk": 375754878976,
+        "parts": 27,
+        "time": 1792634950.807196
+      },
+      "success": true,
+      "seconds": 0.18019983312115073,
+      "resources_after": {
+        "CGroupMemoryUsed": 5833736192,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1894465536,
+        "tracked": 671919717,
+        "merges": 0,
+        "free_disk": 375754878976,
+        "parts": 27,
+        "time": 1792634950.985355
+      }
+    },
+    {
+      "label": "remove_from_cart source bounds",
+      "query_id": "synerise_native_f0dd6bab6bf6468a8c98a91fa6b03291",
+      "started_unix": 1792634951.0330172,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 672651333,
+        "merges": 0,
+        "free_disk": 375754858496,
+        "parts": 27,
+        "time": 1792634951.0389178
+      },
+      "success": true,
+      "seconds": 0.05751600000075996,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 672812269,
+        "merges": 0,
+        "free_disk": 375754858496,
+        "parts": 27,
+        "time": 1792634951.095155
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-06",
+      "query_id": "synerise_native_c83e319bbeb34aeb9c0eebab7ea08432",
+      "started_unix": 1792634951.103101,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 673076733,
+        "merges": 0,
+        "free_disk": 375754858496,
+        "parts": 27,
+        "time": 1792634951.1082492
+      },
+      "success": true,
+      "seconds": 0.09156291605904698,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 673241837,
+        "merges": 0,
+        "free_disk": 375754858496,
+        "parts": 27,
+        "time": 1792634951.200833
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-06",
+      "query_id": "synerise_native_873ac6dd2ec04dd18bd2f2fe4dddf3aa",
+      "started_unix": 1792634951.213033,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 673506365,
+        "merges": 0,
+        "free_disk": 375754858496,
+        "parts": 27,
+        "time": 1792634951.218422
+      },
+      "success": true,
+      "seconds": 0.09977991692721844,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 673700205,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.3191109
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-06",
+      "query_id": "synerise_native_bfb33ed87dbc412cb5568244a62f5383",
+      "started_unix": 1792634951.331564,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 673964669,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.3371148
+      },
+      "success": true,
+      "seconds": 0.03419762500561774,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 674133421,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.370972
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-07",
+      "query_id": "synerise_native_dcd6fc786eeb481b9bf0a8bcdded1a1e",
+      "started_unix": 1792634951.3865511,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 674397885,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.392291
+      },
+      "success": true,
+      "seconds": 0.1787921660579741,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 674695349,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.5690722
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-07",
+      "query_id": "synerise_native_31d00e031dbc439f95e2986be02eaab1",
+      "started_unix": 1792634951.582135,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 674959877,
+        "merges": 0,
+        "free_disk": 375753940992,
+        "parts": 28,
+        "time": 1792634951.587998
+      },
+      "success": true,
+      "seconds": 0.168814874952659,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 675241013,
+        "merges": 0,
+        "free_disk": 375749341184,
+        "parts": 32,
+        "time": 1792634951.754684
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-07",
+      "query_id": "synerise_native_bf870f621daa4df1b35cfaef163c79b7",
+      "started_unix": 1792634951.765044,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 675505477,
+        "merges": 0,
+        "free_disk": 375749341184,
+        "parts": 32,
+        "time": 1792634951.7705321
+      },
+      "success": true,
+      "seconds": 0.12716454197652638,
+      "resources_after": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 675679565,
+        "merges": 0,
+        "free_disk": 375749341184,
+        "parts": 32,
+        "time": 1792634951.898155
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-08",
+      "query_id": "synerise_native_f9c6fd8f90d2477dbf8661cc3c30a12b",
+      "started_unix": 1792634951.9118552,
+      "resources_before": {
+        "CGroupMemoryUsed": 5907247104,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1938837504,
+        "tracked": 675944029,
+        "merges": 0,
+        "free_disk": 375749341184,
+        "parts": 32,
+        "time": 1792634951.917584
+      },
+      "success": true,
+      "seconds": 0.18981258291751146,
+      "resources_after": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 672503171,
+        "merges": 0,
+        "free_disk": 375749136384,
+        "parts": 32,
+        "time": 1792634952.107924
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-08",
+      "query_id": "synerise_native_b8915dca939b44e78f027e8d9538d447",
+      "started_unix": 1792634952.1200871,
+      "resources_before": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 672767699,
+        "merges": 0,
+        "free_disk": 375749136384,
+        "parts": 32,
+        "time": 1792634952.125877
+      },
+      "success": true,
+      "seconds": 0.18836512509733438,
+      "resources_after": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 673051203,
+        "merges": 0,
+        "free_disk": 375743807488,
+        "parts": 36,
+        "time": 1792634952.3130822
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-08",
+      "query_id": "synerise_native_8dfd76383d1f4bf8b11eb12382b50cd6",
+      "started_unix": 1792634952.326064,
+      "resources_before": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 673315731,
+        "merges": 0,
+        "free_disk": 375743807488,
+        "parts": 36,
+        "time": 1792634952.331785
+      },
+      "success": true,
+      "seconds": 0.1650106671731919,
+      "resources_after": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 673494115,
+        "merges": 0,
+        "free_disk": 375743807488,
+        "parts": 36,
+        "time": 1792634952.495168
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-09",
+      "query_id": "synerise_native_99de54f332984d8fad711b9d2e7d469f",
+      "started_unix": 1792634952.510848,
+      "resources_before": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 673677671,
+        "merges": 0,
+        "free_disk": 375743746048,
+        "parts": 36,
+        "time": 1792634952.516425
+      },
+      "success": true,
+      "seconds": 0.20571458293125033,
+      "resources_after": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 673975071,
+        "merges": 0,
+        "free_disk": 375743746048,
+        "parts": 36,
+        "time": 1792634952.72134
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-09",
+      "query_id": "synerise_native_bc4c9936f6ec41909d9b357020835782",
+      "started_unix": 1792634952.7345338,
+      "resources_before": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 674239535,
+        "merges": 0,
+        "free_disk": 375743746048,
+        "parts": 36,
+        "time": 1792634952.740175
+      },
+      "success": true,
+      "seconds": 0.20831429190002382,
+      "resources_after": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 674550991,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634952.946133
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-09",
+      "query_id": "synerise_native_721f4601d173488ba45fb6bdb6938885",
+      "started_unix": 1792634952.955206,
+      "resources_before": {
+        "CGroupMemoryUsed": 5864562688,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1884749824,
+        "tracked": 674815455,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634952.960541
+      },
+      "success": true,
+      "seconds": 0.1923562081065029,
+      "resources_after": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 675131151,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634953.152779
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-10",
+      "query_id": "synerise_native_cfb1bc7394de4859bc7ccad89cf0748a",
+      "started_unix": 1792634953.165118,
+      "resources_before": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 675395679,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634953.17033
+      },
+      "success": true,
+      "seconds": 0.2525866669602692,
+      "resources_after": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 675560911,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634953.4236522
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-10",
+      "query_id": "synerise_native_3005875ea9274c8687001ac44e674b25",
+      "started_unix": 1792634953.437846,
+      "resources_before": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 675825375,
+        "merges": 0,
+        "free_disk": 375737503744,
+        "parts": 41,
+        "time": 1792634953.443392
+      },
+      "success": true,
+      "seconds": 0.2496691660489887,
+      "resources_after": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 706613275,
+        "merges": 1,
+        "free_disk": 375729586176,
+        "parts": 47,
+        "time": 1792634953.6915379
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-10",
+      "query_id": "synerise_native_70bcb1c21c494c13891b40b603301a44",
+      "started_unix": 1792634953.701397,
+      "resources_before": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 744329351,
+        "merges": 1,
+        "free_disk": 375729586176,
+        "parts": 47,
+        "time": 1792634953.707111
+      },
+      "success": true,
+      "seconds": 0.24719104217365384,
+      "resources_after": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 676761481,
+        "merges": 0,
+        "free_disk": 375722364928,
+        "parts": 42,
+        "time": 1792634953.954756
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-11",
+      "query_id": "synerise_native_585e26c230b24f0ab5cf4ac66b388cfa",
+      "started_unix": 1792634953.9710631,
+      "resources_before": {
+        "CGroupMemoryUsed": 5756694528,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1770553344,
+        "tracked": 677025945,
+        "merges": 0,
+        "free_disk": 375722364928,
+        "parts": 42,
+        "time": 1792634953.976809
+      },
+      "success": true,
+      "seconds": 0.2981801249552518,
+      "resources_after": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 677323601,
+        "merges": 0,
+        "free_disk": 375722364928,
+        "parts": 42,
+        "time": 1792634954.273823
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-11",
+      "query_id": "synerise_native_1b9f8a5c2e2b4e0dbea55213206f5729",
+      "started_unix": 1792634954.2888849,
+      "resources_before": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 677588065,
+        "merges": 0,
+        "free_disk": 375722364928,
+        "parts": 42,
+        "time": 1792634954.294729
+      },
+      "success": true,
+      "seconds": 0.27492483309470117,
+      "resources_after": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 716829424,
+        "merges": 1,
+        "free_disk": 375712964608,
+        "parts": 49,
+        "time": 1792634954.5685718
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-11",
+      "query_id": "synerise_native_c9bfcefd41c94fac9d47eb3b7bfdbca4",
+      "started_unix": 1792634954.584171,
+      "resources_before": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 746086454,
+        "merges": 1,
+        "free_disk": 375712964608,
+        "parts": 49,
+        "time": 1792634954.590702
+      },
+      "success": true,
+      "seconds": 0.313925749855116,
+      "resources_after": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 678600001,
+        "merges": 0,
+        "free_disk": 375705313280,
+        "parts": 44,
+        "time": 1792634954.9035141
+      }
+    },
+    {
+      "label": "remove_from_cart source checksum 2022-12",
+      "query_id": "synerise_native_03d3b78d8f3348a28a30feabeaca7c81",
+      "started_unix": 1792634954.919334,
+      "resources_before": {
+        "CGroupMemoryUsed": 5876482048,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1882841088,
+        "tracked": 678864465,
+        "merges": 0,
+        "free_disk": 375705313280,
+        "parts": 44,
+        "time": 1792634954.924733
+      },
+      "success": true,
+      "seconds": 0.1469305839855224,
+      "resources_after": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 679029633,
+        "merges": 0,
+        "free_disk": 375705313280,
+        "parts": 44,
+        "time": 1792634955.071392
+      }
+    },
+    {
+      "label": "remove_from_cart insert 2022-12",
+      "query_id": "synerise_native_154d13becbe641dbad44fc081ceb8efa",
+      "started_unix": 1792634955.08527,
+      "resources_before": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 679294097,
+        "merges": 0,
+        "free_disk": 375705313280,
+        "parts": 44,
+        "time": 1792634955.0907269
+      },
+      "success": true,
+      "seconds": 0.15489458292722702,
+      "resources_after": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 661043333,
+        "merges": 0,
+        "free_disk": 375702089728,
+        "parts": 47,
+        "time": 1792634955.243368
+      }
+    },
+    {
+      "label": "remove_from_cart destination checksum 2022-12",
+      "query_id": "synerise_native_72571f4107444309b84c5648b9bb42fd",
+      "started_unix": 1792634955.25686,
+      "resources_before": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 661307797,
+        "merges": 0,
+        "free_disk": 375702089728,
+        "parts": 47,
+        "time": 1792634955.2625191
+      },
+      "success": true,
+      "seconds": 0.1493103331886232,
+      "resources_after": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 661496069,
+        "merges": 0,
+        "free_disk": 375702089728,
+        "parts": 47,
+        "time": 1792634955.410413
+      }
+    },
+    {
+      "label": "remove_from_cart provenance/clock",
+      "query_id": "synerise_native_547516160849488f9dc167b4a12029fe",
+      "started_unix": 1792634955.427813,
+      "resources_before": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 661760533,
+        "merges": 0,
+        "free_disk": 375702089728,
+        "parts": 47,
+        "time": 1792634955.433362
+      },
+      "success": true,
+      "seconds": 0.22867291583679616,
+      "resources_after": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 662111173,
+        "merges": 0,
+        "free_disk": 375702089728,
+        "parts": 47,
+        "time": 1792634955.661792
+      }
+    },
+    {
+      "label": "add_to_cart source bounds",
+      "query_id": "synerise_native_6510dd6e7ab9428fa02bd6307f0c8549",
+      "started_unix": 1792634955.749957,
+      "resources_before": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 662703141,
+        "merges": 0,
+        "free_disk": 375702069248,
+        "parts": 47,
+        "time": 1792634955.7558
+      },
+      "success": true,
+      "seconds": 0.1510304999537766,
+      "resources_after": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 662864109,
+        "merges": 0,
+        "free_disk": 375702069248,
+        "parts": 47,
+        "time": 1792634955.9054751
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-06",
+      "query_id": "synerise_native_2cb3c44fe8d8490c844a9b980717ed56",
+      "started_unix": 1792634955.915431,
+      "resources_before": {
+        "CGroupMemoryUsed": 5879828480,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1857863680,
+        "tracked": 663128637,
+        "merges": 0,
+        "free_disk": 375702069248,
+        "parts": 47,
+        "time": 1792634955.920964
+      },
+      "success": true,
+      "seconds": 0.23919720901176333,
+      "resources_after": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 666106232,
+        "merges": 1,
+        "free_disk": 375701528576,
+        "parts": 47,
+        "time": 1792634956.1604311
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-06",
+      "query_id": "synerise_native_c678a94e538b45c68bf226e23698b87c",
+      "started_unix": 1792634956.174572,
+      "resources_before": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 683148040,
+        "merges": 1,
+        "free_disk": 375701528576,
+        "parts": 47,
+        "time": 1792634956.1803389
+      },
+      "success": true,
+      "seconds": 0.2594245420768857,
+      "resources_after": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 669063370,
+        "merges": 0,
+        "free_disk": 375696723968,
+        "parts": 49,
+        "time": 1792634956.438957
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-06",
+      "query_id": "synerise_native_3ede329e5d3d4cfdb459a775606cc8ae",
+      "started_unix": 1792634956.455559,
+      "resources_before": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 669327834,
+        "merges": 0,
+        "free_disk": 375696723968,
+        "parts": 49,
+        "time": 1792634956.4612942
+      },
+      "success": true,
+      "seconds": 0.06738224998116493,
+      "resources_after": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 669498322,
+        "merges": 0,
+        "free_disk": 375696723968,
+        "parts": 49,
+        "time": 1792634956.525756
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-07",
+      "query_id": "synerise_native_6219ab27dd6444669bded15dcd7e5b4f",
+      "started_unix": 1792634956.5419781,
+      "resources_before": {
+        "CGroupMemoryUsed": 5676085248,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1642090496,
+        "tracked": 669762786,
+        "merges": 0,
+        "free_disk": 375696723968,
+        "parts": 49,
+        "time": 1792634956.5474198
+      },
+      "success": true,
+      "seconds": 0.46923370799049735,
+      "resources_after": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 670286121,
+        "merges": 0,
+        "free_disk": 375696629760,
+        "parts": 49,
+        "time": 1792634957.0167239
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-07",
+      "query_id": "synerise_native_4f19028edbfb4202a8aa5f24d5cc4650",
+      "started_unix": 1792634957.031997,
+      "resources_before": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 670550585,
+        "merges": 0,
+        "free_disk": 375696629760,
+        "parts": 49,
+        "time": 1792634957.0376608
+      },
+      "success": true,
+      "seconds": 0.47830570791848004,
+      "resources_after": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 671203643,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634957.5138571
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-07",
+      "query_id": "synerise_native_c5056fac5bc14a02aadd967ed8fe80d2",
+      "started_unix": 1792634957.5280142,
+      "resources_before": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 671468107,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634957.53341
+      },
+      "success": true,
+      "seconds": 0.3134595830924809,
+      "resources_after": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 671781427,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634957.845796
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-08",
+      "query_id": "synerise_native_5945f102a0b848edaa48d8f4a268efd2",
+      "started_unix": 1792634957.863276,
+      "resources_before": {
+        "CGroupMemoryUsed": 5920440320,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1818259456,
+        "tracked": 672045891,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634957.868743
+      },
+      "success": true,
+      "seconds": 0.47879870794713497,
+      "resources_after": {
+        "CGroupMemoryUsed": 5975302144,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1912356864,
+        "tracked": 672343547,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634958.34714
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-08",
+      "query_id": "synerise_native_ea4d07e23edc4d269c4faedb9664b3a7",
+      "started_unix": 1792634958.3621361,
+      "resources_before": {
+        "CGroupMemoryUsed": 5975302144,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1912356864,
+        "tracked": 672608011,
+        "merges": 0,
+        "free_disk": 375671820288,
+        "parts": 55,
+        "time": 1792634958.3674
+      },
+      "success": true,
+      "seconds": 0.4978277909103781,
+      "resources_after": {
+        "CGroupMemoryUsed": 5975302144,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1912356864,
+        "tracked": 707873214,
+        "merges": 1,
+        "free_disk": 375645876224,
+        "parts": 62,
+        "time": 1792634958.863477
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-08",
+      "query_id": "synerise_native_cad1f6496a5a4811aa6b44cdc24c2289",
+      "started_unix": 1792634958.8799481,
+      "resources_before": {
+        "CGroupMemoryUsed": 5975302144,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1912356864,
+        "tracked": 740542663,
+        "merges": 1,
+        "free_disk": 375645876224,
+        "parts": 62,
+        "time": 1792634958.8862238
+      },
+      "success": true,
+      "seconds": 0.36343899997882545,
+      "resources_after": {
+        "CGroupMemoryUsed": 6143864832,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1981546496,
+        "tracked": 673905411,
+        "merges": 0,
+        "free_disk": 375638282240,
+        "parts": 57,
+        "time": 1792634959.2468538
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-09",
+      "query_id": "synerise_native_d21107cc410640aeb14789ec1146ccef",
+      "started_unix": 1792634959.264728,
+      "resources_before": {
+        "CGroupMemoryUsed": 6143864832,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1981546496,
+        "tracked": 674169875,
+        "merges": 0,
+        "free_disk": 375638282240,
+        "parts": 57,
+        "time": 1792634959.270698
+      },
+      "success": true,
+      "seconds": 0.521295125130564,
+      "resources_after": {
+        "CGroupMemoryUsed": 6143864832,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1981546496,
+        "tracked": 673778103,
+        "merges": 0,
+        "free_disk": 375638110208,
+        "parts": 57,
+        "time": 1792634959.790694
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-09",
+      "query_id": "synerise_native_d1bce94a4013486dbd1fe904868d955c",
+      "started_unix": 1792634959.804959,
+      "resources_before": {
+        "CGroupMemoryUsed": 6143864832,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1981546496,
+        "tracked": 674032815,
+        "merges": 0,
+        "free_disk": 375638110208,
+        "parts": 57,
+        "time": 1792634959.8110132
+      },
+      "success": true,
+      "seconds": 0.5342941249255091,
+      "resources_after": {
+        "CGroupMemoryUsed": 6162415616,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2040688640,
+        "tracked": 714481981,
+        "merges": 1,
+        "free_disk": 375610605568,
+        "parts": 65,
+        "time": 1792634960.343627
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-09",
+      "query_id": "synerise_native_f833c504fdd44efe907c9fe07c279ef0",
+      "started_unix": 1792634960.359823,
+      "resources_before": {
+        "CGroupMemoryUsed": 6162415616,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2040688640,
+        "tracked": 744552258,
+        "merges": 1,
+        "free_disk": 375610605568,
+        "parts": 65,
+        "time": 1792634960.36723
+      },
+      "success": true,
+      "seconds": 0.42213195795193315,
+      "resources_after": {
+        "CGroupMemoryUsed": 6162415616,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2040688640,
+        "tracked": 676169322,
+        "merges": 0,
+        "free_disk": 375602147328,
+        "parts": 60,
+        "time": 1792634960.785727
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-10",
+      "query_id": "synerise_native_518df2de25924f38a7de4c4ee846c204",
+      "started_unix": 1792634960.802845,
+      "resources_before": {
+        "CGroupMemoryUsed": 6162415616,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2040688640,
+        "tracked": 676433786,
+        "merges": 0,
+        "free_disk": 375602147328,
+        "parts": 60,
+        "time": 1792634960.80811
+      },
+      "success": true,
+      "seconds": 0.5585180830676109,
+      "resources_after": {
+        "CGroupMemoryUsed": 6086467584,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1936785408,
+        "tracked": 676721818,
+        "merges": 0,
+        "free_disk": 375602147328,
+        "parts": 60,
+        "time": 1792634961.366442
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-10",
+      "query_id": "synerise_native_93087f3651e246048562196b5115e0b4",
+      "started_unix": 1792634961.382197,
+      "resources_before": {
+        "CGroupMemoryUsed": 6086467584,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1936785408,
+        "tracked": 676986282,
+        "merges": 0,
+        "free_disk": 375602147328,
+        "parts": 60,
+        "time": 1792634961.387817
+      },
+      "success": true,
+      "seconds": 0.6197891670744866,
+      "resources_after": {
+        "CGroupMemoryUsed": 6086467584,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1936785408,
+        "tracked": 746273959,
+        "merges": 1,
+        "free_disk": 375568420864,
+        "parts": 71,
+        "time": 1792634962.00848
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-10",
+      "query_id": "synerise_native_4f2b050f21c14f46bc9c8dd486d6b2a0",
+      "started_unix": 1792634962.024765,
+      "resources_before": {
+        "CGroupMemoryUsed": 6246875136,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2022612992,
+        "tracked": 746590321,
+        "merges": 1,
+        "free_disk": 375568420864,
+        "parts": 71,
+        "time": 1792634962.031064
+      },
+      "success": true,
+      "seconds": 0.5271272920072079,
+      "resources_after": {
+        "CGroupMemoryUsed": 6246875136,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2022612992,
+        "tracked": 678416450,
+        "merges": 0,
+        "free_disk": 375563251712,
+        "parts": 66,
+        "time": 1792634962.555416
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-11",
+      "query_id": "synerise_native_98e598b6512b4647b2d2686ae74546fb",
+      "started_unix": 1792634962.573267,
+      "resources_before": {
+        "CGroupMemoryUsed": 6246875136,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2022612992,
+        "tracked": 678680978,
+        "merges": 0,
+        "free_disk": 375563251712,
+        "parts": 66,
+        "time": 1792634962.578995
+      },
+      "success": true,
+      "seconds": 0.6191305420361459,
+      "resources_after": {
+        "CGroupMemoryUsed": 6079033344,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1859981312,
+        "tracked": 669321630,
+        "merges": 0,
+        "free_disk": 375563456512,
+        "parts": 66,
+        "time": 1792634963.19535
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-11",
+      "query_id": "synerise_native_fb8ad758bb2c4a9cb313c43175a5515b",
+      "started_unix": 1792634963.206362,
+      "resources_before": {
+        "CGroupMemoryUsed": 6079033344,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1859981312,
+        "tracked": 669586094,
+        "merges": 0,
+        "free_disk": 375563456512,
+        "parts": 66,
+        "time": 1792634963.212218
+      },
+      "success": true,
+      "seconds": 0.654969209106639,
+      "resources_after": {
+        "CGroupMemoryUsed": 6079033344,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1859981312,
+        "tracked": 707709253,
+        "merges": 1,
+        "free_disk": 375520047104,
+        "parts": 74,
+        "time": 1792634963.866476
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-11",
+      "query_id": "synerise_native_58514bbb77774567a0a67a14976be9e1",
+      "started_unix": 1792634963.8822122,
+      "resources_before": {
+        "CGroupMemoryUsed": 6079033344,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1859981312,
+        "tracked": 741214160,
+        "merges": 1,
+        "free_disk": 375520047104,
+        "parts": 74,
+        "time": 1792634963.888441
+      },
+      "success": true,
+      "seconds": 0.6210287499707192,
+      "resources_after": {
+        "CGroupMemoryUsed": 6253068288,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1965678592,
+        "tracked": 673418442,
+        "merges": 0,
+        "free_disk": 375511986176,
+        "parts": 69,
+        "time": 1792634964.507929
+      }
+    },
+    {
+      "label": "add_to_cart source checksum 2022-12",
+      "query_id": "synerise_native_5b543947772f41e8be4742c754ac69aa",
+      "started_unix": 1792634964.525671,
+      "resources_before": {
+        "CGroupMemoryUsed": 6253068288,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1965678592,
+        "tracked": 673682906,
+        "merges": 0,
+        "free_disk": 375511986176,
+        "parts": 69,
+        "time": 1792634964.531229
+      },
+      "success": true,
+      "seconds": 0.2980207910295576,
+      "resources_after": {
+        "CGroupMemoryUsed": 6253068288,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1965678592,
+        "tracked": 673872298,
+        "merges": 0,
+        "free_disk": 375511986176,
+        "parts": 69,
+        "time": 1792634964.829281
+      }
+    },
+    {
+      "label": "add_to_cart insert 2022-12",
+      "query_id": "synerise_native_dc81f377f6404900963cc5b3a0b888c7",
+      "started_unix": 1792634964.8434281,
+      "resources_before": {
+        "CGroupMemoryUsed": 6253068288,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1965678592,
+        "tracked": 674242330,
+        "merges": 0,
+        "free_disk": 375511986176,
+        "parts": 69,
+        "time": 1792634964.848941
+      },
+      "success": true,
+      "seconds": 0.335112958913669,
+      "resources_after": {
+        "CGroupMemoryUsed": 6206271488,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1941757952,
+        "tracked": 704884428,
+        "merges": 1,
+        "free_disk": 375504293888,
+        "parts": 75,
+        "time": 1792634965.183529
+      }
+    },
+    {
+      "label": "add_to_cart destination checksum 2022-12",
+      "query_id": "synerise_native_ee085c583ee34ca9a63b284d67fad239",
+      "started_unix": 1792634965.200641,
+      "resources_before": {
+        "CGroupMemoryUsed": 6206271488,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1941757952,
+        "tracked": 741080790,
+        "merges": 1,
+        "free_disk": 375504293888,
+        "parts": 75,
+        "time": 1792634965.20676
+      },
+      "success": true,
+      "seconds": 0.32037283293902874,
+      "resources_after": {
+        "CGroupMemoryUsed": 6206271488,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1941757952,
+        "tracked": 675221990,
+        "merges": 0,
+        "free_disk": 375497162752,
+        "parts": 70,
+        "time": 1792634965.524528
+      }
+    },
+    {
+      "label": "add_to_cart provenance/clock",
+      "query_id": "synerise_native_f620d19851714a968c8c6079fd913d9b",
+      "started_unix": 1792634965.543521,
+      "resources_before": {
+        "CGroupMemoryUsed": 6206271488,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1941757952,
+        "tracked": 675486454,
+        "merges": 0,
+        "free_disk": 375497162752,
+        "parts": 70,
+        "time": 1792634965.54912
+      },
+      "success": true,
+      "seconds": 0.5428476249799132,
+      "resources_after": {
+        "CGroupMemoryUsed": 6113587200,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1810927616,
+        "tracked": 675856470,
+        "merges": 0,
+        "free_disk": 375497162752,
+        "parts": 70,
+        "time": 1792634966.091774
+      }
+    },
+    {
+      "label": "search_query source bounds",
+      "query_id": "synerise_native_e66f3ee3d4604a638e71d23339678876",
+      "started_unix": 1792634966.304818,
+      "resources_before": {
+        "CGroupMemoryUsed": 6113587200,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1810927616,
+        "tracked": 676461638,
+        "merges": 0,
+        "free_disk": 375497142272,
+        "parts": 70,
+        "time": 1792634966.310791
+      },
+      "success": true,
+      "seconds": 0.211389624979347,
+      "resources_after": {
+        "CGroupMemoryUsed": 6113587200,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1810927616,
+        "tracked": 676763726,
+        "merges": 0,
+        "free_disk": 375497142272,
+        "parts": 70,
+        "time": 1792634966.521804
+      }
+    },
+    {
+      "label": "search_query source checksum 2022-06",
+      "query_id": "synerise_native_d5004af960ce4957a567d1362d9befdf",
+      "started_unix": 1792634966.5365078,
+      "resources_before": {
+        "CGroupMemoryUsed": 6113587200,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1810927616,
+        "tracked": 677028190,
+        "merges": 0,
+        "free_disk": 375497142272,
+        "parts": 70,
+        "time": 1792634966.5427442
+      },
+      "success": true,
+      "seconds": 0.6897713749203831,
+      "resources_after": {
+        "CGroupMemoryUsed": 6473949184,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1947754496,
+        "tracked": 676698682,
+        "merges": 0,
+        "free_disk": 375497420800,
+        "parts": 70,
+        "time": 1792634967.231874
+      }
+    },
+    {
+      "label": "search_query insert 2022-06",
+      "query_id": "synerise_native_8f7cee7e832746af82acbdf21c3c719c",
+      "started_unix": 1792634971.291426,
+      "resources_before": {
+        "CGroupMemoryUsed": 5937893376,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1347776512,
+        "tracked": 674784265,
+        "merges": 0,
+        "free_disk": 375496642560,
+        "parts": 70,
+        "time": 1792634971.299312
+      },
+      "success": true,
+      "seconds": 0.8582499590702355,
+      "resources_after": {
+        "CGroupMemoryUsed": 6127542272,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1540558848,
+        "tracked": 674889571,
+        "merges": 0,
+        "free_disk": 375487524864,
+        "parts": 75,
+        "time": 1792634972.149699
+      }
+    },
+    {
+      "label": "search_query destination checksum 2022-06",
+      "query_id": "synerise_native_ef2e0100e6c74f33a33d2762829ca85a",
+      "started_unix": 1792634972.168233,
+      "resources_before": {
+        "CGroupMemoryUsed": 6127542272,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1540558848,
+        "tracked": 675154035,
+        "merges": 0,
+        "free_disk": 375487524864,
+        "parts": 75,
+        "time": 1792634972.17368
+      },
+      "success": true,
+      "seconds": 0.17374520795419812,
+      "resources_after": {
+        "CGroupMemoryUsed": 6127542272,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1540558848,
+        "tracked": 675256587,
+        "merges": 0,
+        "free_disk": 375488311296,
+        "parts": 75,
+        "time": 1792634972.3450692
+      }
+    },
+    {
+      "label": "search_query source checksum 2022-07",
+      "query_id": "synerise_native_0c715ffb5a364f868c7357e5b8d9f453",
+      "started_unix": 1792634972.362974,
+      "resources_before": {
+        "CGroupMemoryUsed": 6127542272,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1540558848,
+        "tracked": 675521051,
+        "merges": 0,
+        "free_disk": 375488311296,
+        "parts": 75,
+        "time": 1792634972.368354
+      },
+      "success": true,
+      "seconds": 1.2788496250286698,
+      "resources_after": {
+        "CGroupMemoryUsed": 6140682240,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1675255808,
+        "tracked": 676100003,
+        "merges": 0,
+        "free_disk": 375488311296,
+        "parts": 75,
+        "time": 1792634973.645588
+      }
+    },
+    {
+      "label": "search_query insert 2022-07",
+      "query_id": "synerise_native_25cf9cbf2067475ea11d460065198571",
+      "started_unix": 1792634973.6566699,
+      "resources_before": {
+        "CGroupMemoryUsed": 6140682240,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 1675255808,
+        "tracked": 676364467,
+        "merges": 0,
+        "free_disk": 375488311296,
+        "parts": 75,
+        "time": 1792634973.6621382
+      },
+      "success": true,
+      "seconds": 1.4666993750724941,
+      "resources_after": {
+        "CGroupMemoryUsed": 7060004864,
+        "CGroupMemoryTotal": 8589934592,
+        "MemoryResident": 2388103168,
+        "tracked": 763764839,
+        "merges": 1,
+        "free_disk": 375412088832,
+        "parts": 87,
+        "time": 1792634975.135972
+      }
+    }
+  ],
+  "resource_samples": [
+    {
+      "CGroupMemoryUsed": 5090336768,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1267056640,
+      "tracked": 673381555,
+      "merges": 0,
+      "free_disk": 375868157952,
+      "parts": 0,
+      "time": 1792634945.38533
+    },
+    {
+      "CGroupMemoryUsed": 5090336768,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1267056640,
+      "tracked": 673714355,
+      "merges": 0,
+      "free_disk": 375868121088,
+      "parts": 0,
+      "time": 1792634945.424949
+    },
+    {
+      "CGroupMemoryUsed": 5090336768,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1267056640,
+      "tracked": 715245019,
+      "merges": 0,
+      "free_disk": 375868121088,
+      "parts": 0,
+      "time": 1792634945.903815
+    },
+    {
+      "CGroupMemoryUsed": 5211774976,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1388089344,
+      "tracked": 674271795,
+      "merges": 0,
+      "free_disk": 375868121088,
+      "parts": 0,
+      "time": 1792634946.0219672
+    },
+    {
+      "CGroupMemoryUsed": 5211774976,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1388089344,
+      "tracked": 825174369,
+      "merges": 1,
+      "free_disk": 375829344256,
+      "parts": 10,
+      "time": 1792634946.416469
+    },
+    {
+      "CGroupMemoryUsed": 5211774976,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1388089344,
+      "tracked": 769084351,
+      "merges": 2,
+      "free_disk": 375803891712,
+      "parts": 11,
+      "time": 1792634946.585846
+    },
+    {
+      "CGroupMemoryUsed": 5211774976,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1388089344,
+      "tracked": 684408472,
+      "merges": 0,
+      "free_disk": 375790809088,
+      "parts": 6,
+      "time": 1792634946.926489
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 660236106,
+      "merges": 0,
+      "free_disk": 375795171328,
+      "parts": 6,
+      "time": 1792634947.275618
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 661010826,
+      "merges": 0,
+      "free_disk": 375795150848,
+      "parts": 6,
+      "time": 1792634947.3788958
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 664660956,
+      "merges": 0,
+      "free_disk": 375795150848,
+      "parts": 6,
+      "time": 1792634947.43758
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 661488130,
+      "merges": 0,
+      "free_disk": 375795150848,
+      "parts": 6,
+      "time": 1792634947.437879
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 661986522,
+      "merges": 0,
+      "free_disk": 375795150848,
+      "parts": 6,
+      "time": 1792634947.54142
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 659017730,
+      "merges": 0,
+      "free_disk": 375793135616,
+      "parts": 7,
+      "time": 1792634947.654305
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 659450802,
+      "merges": 0,
+      "free_disk": 375793135616,
+      "parts": 7,
+      "time": 1792634947.6986911
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 659880434,
+      "merges": 0,
+      "free_disk": 375793135616,
+      "parts": 7,
+      "time": 1792634947.8668659
+    },
+    {
+      "CGroupMemoryUsed": 5678129152,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1761755136,
+      "tracked": 724997428,
+      "merges": 0,
+      "free_disk": 375791624192,
+      "parts": 7,
+      "time": 1792634947.9465878
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 660561274,
+      "merges": 0,
+      "free_disk": 375787843584,
+      "parts": 11,
+      "time": 1792634948.058323
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 661000130,
+      "merges": 0,
+      "free_disk": 375787843584,
+      "parts": 11,
+      "time": 1792634948.186482
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 661429698,
+      "merges": 0,
+      "free_disk": 375787843584,
+      "parts": 11,
+      "time": 1792634948.354476
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 780050751,
+      "merges": 0,
+      "free_disk": 375785013248,
+      "parts": 12,
+      "time": 1792634948.459548
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 662110026,
+      "merges": 0,
+      "free_disk": 375782531072,
+      "parts": 15,
+      "time": 1792634948.5440059
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 664995639,
+      "merges": 0,
+      "free_disk": 375781994496,
+      "parts": 15,
+      "time": 1792634948.683699
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 665425207,
+      "merges": 0,
+      "free_disk": 375781994496,
+      "parts": 15,
+      "time": 1792634948.844262
+    },
+    {
+      "CGroupMemoryUsed": 5757292544,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1839173632,
+      "tracked": 759953634,
+      "merges": 0,
+      "free_disk": 375779115008,
+      "parts": 16,
+      "time": 1792634948.97101
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 666105415,
+      "merges": 0,
+      "free_disk": 375776579584,
+      "parts": 19,
+      "time": 1792634949.03597
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 666551695,
+      "merges": 0,
+      "free_disk": 375776579584,
+      "parts": 19,
+      "time": 1792634949.184008
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 667259709,
+      "merges": 0,
+      "free_disk": 375776501760,
+      "parts": 19,
+      "time": 1792634949.38779
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 799876530,
+      "merges": 0,
+      "free_disk": 375775158272,
+      "parts": 19,
+      "time": 1792634949.480612
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 667965293,
+      "merges": 0,
+      "free_disk": 375770435584,
+      "parts": 24,
+      "time": 1792634949.600517
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 668418213,
+      "merges": 0,
+      "free_disk": 375770435584,
+      "parts": 24,
+      "time": 1792634949.778466
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 668874629,
+      "merges": 0,
+      "free_disk": 375770435584,
+      "parts": 24,
+      "time": 1792634949.9922528
+    },
+    {
+      "CGroupMemoryUsed": 5786234880,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1846874112,
+      "tracked": 668900309,
+      "merges": 0,
+      "free_disk": 375770435584,
+      "parts": 24,
+      "time": 1792634949.992543
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 735918914,
+      "merges": 1,
+      "free_disk": 375763374080,
+      "parts": 30,
+      "time": 1792634950.229148
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 670074661,
+      "merges": 0,
+      "free_disk": 375756898304,
+      "parts": 25,
+      "time": 1792634950.4364889
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 713105051,
+      "merges": 0,
+      "free_disk": 375756898304,
+      "parts": 25,
+      "time": 1792634950.503844
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 670629685,
+      "merges": 0,
+      "free_disk": 375756898304,
+      "parts": 25,
+      "time": 1792634950.5546932
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 671115133,
+      "merges": 0,
+      "free_disk": 375754878976,
+      "parts": 27,
+      "time": 1792634950.682761
+    },
+    {
+      "CGroupMemoryUsed": 5833736192,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1894465536,
+      "tracked": 671568509,
+      "merges": 0,
+      "free_disk": 375754878976,
+      "parts": 27,
+      "time": 1792634950.799078
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 672133141,
+      "merges": 0,
+      "free_disk": 375754878976,
+      "parts": 27,
+      "time": 1792634951.0129468
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 672519085,
+      "merges": 0,
+      "free_disk": 375754858496,
+      "parts": 27,
+      "time": 1792634951.0318341
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 672944501,
+      "merges": 0,
+      "free_disk": 375754858496,
+      "parts": 27,
+      "time": 1792634951.101959
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 673374069,
+      "merges": 0,
+      "free_disk": 375754858496,
+      "parts": 27,
+      "time": 1792634951.2116969
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 673832437,
+      "merges": 0,
+      "free_disk": 375753940992,
+      "parts": 28,
+      "time": 1792634951.329026
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 674265653,
+      "merges": 0,
+      "free_disk": 375753940992,
+      "parts": 28,
+      "time": 1792634951.383565
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 720482152,
+      "merges": 0,
+      "free_disk": 375753940992,
+      "parts": 28,
+      "time": 1792634951.524412
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 674827645,
+      "merges": 0,
+      "free_disk": 375753940992,
+      "parts": 28,
+      "time": 1792634951.579096
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 675373245,
+      "merges": 0,
+      "free_disk": 375749341184,
+      "parts": 32,
+      "time": 1792634951.7635798
+    },
+    {
+      "CGroupMemoryUsed": 5907247104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1938837504,
+      "tracked": 675811797,
+      "merges": 0,
+      "free_disk": 375749341184,
+      "parts": 32,
+      "time": 1792634951.910466
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 720781166,
+      "merges": 0,
+      "free_disk": 375749341184,
+      "parts": 32,
+      "time": 1792634952.036778
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 672635467,
+      "merges": 0,
+      "free_disk": 375749136384,
+      "parts": 32,
+      "time": 1792634952.117667
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 673183435,
+      "merges": 0,
+      "free_disk": 375743807488,
+      "parts": 36,
+      "time": 1792634952.323051
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 673626347,
+      "merges": 0,
+      "free_disk": 375743746048,
+      "parts": 36,
+      "time": 1792634952.508049
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 727804131,
+      "merges": 0,
+      "free_disk": 375743746048,
+      "parts": 36,
+      "time": 1792634952.5485282
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 674107303,
+      "merges": 0,
+      "free_disk": 375743746048,
+      "parts": 36,
+      "time": 1792634952.7316108
+    },
+    {
+      "CGroupMemoryUsed": 5864562688,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1884749824,
+      "tracked": 674683223,
+      "merges": 0,
+      "free_disk": 375737503744,
+      "parts": 41,
+      "time": 1792634952.953578
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 684620817,
+      "merges": 0,
+      "free_disk": 375737503744,
+      "parts": 41,
+      "time": 1792634953.058669
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 675263447,
+      "merges": 0,
+      "free_disk": 375737503744,
+      "parts": 41,
+      "time": 1792634953.163487
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 675693143,
+      "merges": 0,
+      "free_disk": 375737503744,
+      "parts": 41,
+      "time": 1792634953.434489
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 802493238,
+      "merges": 0,
+      "free_disk": 375734693888,
+      "parts": 42,
+      "time": 1792634953.570976
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 745253349,
+      "merges": 1,
+      "free_disk": 375729586176,
+      "parts": 47,
+      "time": 1792634953.699873
+    },
+    {
+      "CGroupMemoryUsed": 5756694528,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1770553344,
+      "tracked": 676893713,
+      "merges": 0,
+      "free_disk": 375722364928,
+      "parts": 42,
+      "time": 1792634953.9678998
+    },
+    {
+      "CGroupMemoryUsed": 5876482048,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1882841088,
+      "tracked": 727817348,
+      "merges": 0,
+      "free_disk": 375722364928,
+      "parts": 42,
+      "time": 1792634954.081645
+    },
+    {
+      "CGroupMemoryUsed": 5876482048,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1882841088,
+      "tracked": 677455833,
+      "merges": 0,
+      "free_disk": 375722364928,
+      "parts": 42,
+      "time": 1792634954.2852328
+    },
+    {
+      "CGroupMemoryUsed": 5876482048,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1882841088,
+      "tracked": 746354810,
+      "merges": 1,
+      "free_disk": 375712964608,
+      "parts": 49,
+      "time": 1792634954.581342
+    },
+    {
+      "CGroupMemoryUsed": 5876482048,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1882841088,
+      "tracked": 749315747,
+      "merges": 1,
+      "free_disk": 375712964608,
+      "parts": 49,
+      "time": 1792634954.5909948
+    },
+    {
+      "CGroupMemoryUsed": 5876482048,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1882841088,
+      "tracked": 678732233,
+      "merges": 0,
+      "free_disk": 375705313280,
+      "parts": 44,
+      "time": 1792634954.917269
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 679161865,
+      "merges": 0,
+      "free_disk": 375705313280,
+      "parts": 44,
+      "time": 1792634955.0816052
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 712417769,
+      "merges": 0,
+      "free_disk": 375705313280,
+      "parts": 44,
+      "time": 1792634955.101433
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 661175565,
+      "merges": 0,
+      "free_disk": 375702089728,
+      "parts": 47,
+      "time": 1792634955.253692
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 661628301,
+      "merges": 0,
+      "free_disk": 375702089728,
+      "parts": 47,
+      "time": 1792634955.426136
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 670380756,
+      "merges": 0,
+      "free_disk": 375702089728,
+      "parts": 47,
+      "time": 1792634955.6137018
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 662570893,
+      "merges": 0,
+      "free_disk": 375702069248,
+      "parts": 47,
+      "time": 1792634955.7480168
+    },
+    {
+      "CGroupMemoryUsed": 5879828480,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1857863680,
+      "tracked": 662996341,
+      "merges": 0,
+      "free_disk": 375702069248,
+      "parts": 47,
+      "time": 1792634955.913722
+    },
+    {
+      "CGroupMemoryUsed": 5676085248,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1642090496,
+      "tracked": 699183070,
+      "merges": 0,
+      "free_disk": 375702069248,
+      "parts": 47,
+      "time": 1792634956.127658
+    },
+    {
+      "CGroupMemoryUsed": 5676085248,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1642090496,
+      "tracked": 678821464,
+      "merges": 1,
+      "free_disk": 375701528576,
+      "parts": 47,
+      "time": 1792634956.171444
+    },
+    {
+      "CGroupMemoryUsed": 5676085248,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1642090496,
+      "tracked": 669195602,
+      "merges": 0,
+      "free_disk": 375696723968,
+      "parts": 49,
+      "time": 1792634956.451593
+    },
+    {
+      "CGroupMemoryUsed": 5676085248,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1642090496,
+      "tracked": 669630554,
+      "merges": 0,
+      "free_disk": 375696723968,
+      "parts": 49,
+      "time": 1792634956.540158
+    },
+    {
+      "CGroupMemoryUsed": 5676085248,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1642090496,
+      "tracked": 721385847,
+      "merges": 0,
+      "free_disk": 375696723968,
+      "parts": 49,
+      "time": 1792634956.6411881
+    },
+    {
+      "CGroupMemoryUsed": 5920440320,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1818259456,
+      "tracked": 670418353,
+      "merges": 0,
+      "free_disk": 375696629760,
+      "parts": 49,
+      "time": 1792634957.0288599
+    },
+    {
+      "CGroupMemoryUsed": 5920440320,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1818259456,
+      "tracked": 756806052,
+      "merges": 0,
+      "free_disk": 375693541376,
+      "parts": 50,
+      "time": 1792634957.156339
+    },
+    {
+      "CGroupMemoryUsed": 5920440320,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1818259456,
+      "tracked": 671335875,
+      "merges": 0,
+      "free_disk": 375671820288,
+      "parts": 55,
+      "time": 1792634957.524653
+    },
+    {
+      "CGroupMemoryUsed": 5920440320,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1818259456,
+      "tracked": 681367066,
+      "merges": 0,
+      "free_disk": 375671820288,
+      "parts": 55,
+      "time": 1792634957.669606
+    },
+    {
+      "CGroupMemoryUsed": 5920440320,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1818259456,
+      "tracked": 671913659,
+      "merges": 0,
+      "free_disk": 375671820288,
+      "parts": 55,
+      "time": 1792634957.861391
+    },
+    {
+      "CGroupMemoryUsed": 5975302144,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1912356864,
+      "tracked": 723974900,
+      "merges": 0,
+      "free_disk": 375671820288,
+      "parts": 55,
+      "time": 1792634958.182571
+    },
+    {
+      "CGroupMemoryUsed": 5975302144,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1912356864,
+      "tracked": 672475779,
+      "merges": 0,
+      "free_disk": 375671820288,
+      "parts": 55,
+      "time": 1792634958.358149
+    },
+    {
+      "CGroupMemoryUsed": 5975302144,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1912356864,
+      "tracked": 818695177,
+      "merges": 1,
+      "free_disk": 375661072384,
+      "parts": 61,
+      "time": 1792634958.695018
+    },
+    {
+      "CGroupMemoryUsed": 5975302144,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1912356864,
+      "tracked": 739705557,
+      "merges": 1,
+      "free_disk": 375645876224,
+      "parts": 62,
+      "time": 1792634958.876281
+    },
+    {
+      "CGroupMemoryUsed": 6143864832,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1981546496,
+      "tracked": 678344839,
+      "merges": 0,
+      "free_disk": 375638282240,
+      "parts": 57,
+      "time": 1792634959.2057128
+    },
+    {
+      "CGroupMemoryUsed": 6143864832,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1981546496,
+      "tracked": 674037643,
+      "merges": 0,
+      "free_disk": 375638282240,
+      "parts": 57,
+      "time": 1792634959.262645
+    },
+    {
+      "CGroupMemoryUsed": 6143864832,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1981546496,
+      "tracked": 716777122,
+      "merges": 0,
+      "free_disk": 375638110208,
+      "parts": 57,
+      "time": 1792634959.713514
+    },
+    {
+      "CGroupMemoryUsed": 6143864832,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1981546496,
+      "tracked": 673900583,
+      "merges": 0,
+      "free_disk": 375638110208,
+      "parts": 57,
+      "time": 1792634959.801018
+    },
+    {
+      "CGroupMemoryUsed": 6162415616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2040688640,
+      "tracked": 855502329,
+      "merges": 1,
+      "free_disk": 375620280320,
+      "parts": 65,
+      "time": 1792634960.236379
+    },
+    {
+      "CGroupMemoryUsed": 6162415616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2040688640,
+      "tracked": 743664590,
+      "merges": 1,
+      "free_disk": 375610605568,
+      "parts": 65,
+      "time": 1792634960.356315
+    },
+    {
+      "CGroupMemoryUsed": 6162415616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2040688640,
+      "tracked": 685818923,
+      "merges": 0,
+      "free_disk": 375602147328,
+      "parts": 60,
+      "time": 1792634960.7501938
+    },
+    {
+      "CGroupMemoryUsed": 6162415616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2040688640,
+      "tracked": 676301554,
+      "merges": 0,
+      "free_disk": 375602147328,
+      "parts": 60,
+      "time": 1792634960.800433
+    },
+    {
+      "CGroupMemoryUsed": 6086467584,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1936785408,
+      "tracked": 730793634,
+      "merges": 0,
+      "free_disk": 375602147328,
+      "parts": 60,
+      "time": 1792634961.259031
+    },
+    {
+      "CGroupMemoryUsed": 6086467584,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1936785408,
+      "tracked": 676854050,
+      "merges": 0,
+      "free_disk": 375602147328,
+      "parts": 60,
+      "time": 1792634961.378758
+    },
+    {
+      "CGroupMemoryUsed": 6086467584,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1936785408,
+      "tracked": 827690118,
+      "merges": 1,
+      "free_disk": 375585644544,
+      "parts": 68,
+      "time": 1792634961.774772
+    },
+    {
+      "CGroupMemoryUsed": 6246875136,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2022612992,
+      "tracked": 746511869,
+      "merges": 1,
+      "free_disk": 375568420864,
+      "parts": 71,
+      "time": 1792634962.020853
+    },
+    {
+      "CGroupMemoryUsed": 6246875136,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2022612992,
+      "tracked": 683449704,
+      "merges": 0,
+      "free_disk": 375563251712,
+      "parts": 66,
+      "time": 1792634962.288618
+    },
+    {
+      "CGroupMemoryUsed": 6246875136,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2022612992,
+      "tracked": 678548682,
+      "merges": 0,
+      "free_disk": 375563251712,
+      "parts": 66,
+      "time": 1792634962.5696661
+    },
+    {
+      "CGroupMemoryUsed": 6246875136,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2022612992,
+      "tracked": 722088899,
+      "merges": 0,
+      "free_disk": 375563100160,
+      "parts": 66,
+      "time": 1792634962.8021278
+    },
+    {
+      "CGroupMemoryUsed": 6079033344,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1859981312,
+      "tracked": 669453862,
+      "merges": 0,
+      "free_disk": 375563456512,
+      "parts": 66,
+      "time": 1792634963.204309
+    },
+    {
+      "CGroupMemoryUsed": 6079033344,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1859981312,
+      "tracked": 776809593,
+      "merges": 0,
+      "free_disk": 375560466432,
+      "parts": 67,
+      "time": 1792634963.314854
+    },
+    {
+      "CGroupMemoryUsed": 6079033344,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1859981312,
+      "tracked": 762368942,
+      "merges": 0,
+      "free_disk": 375522484224,
+      "parts": 71,
+      "time": 1792634963.825826
+    },
+    {
+      "CGroupMemoryUsed": 6079033344,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1859981312,
+      "tracked": 740834017,
+      "merges": 1,
+      "free_disk": 375520047104,
+      "parts": 74,
+      "time": 1792634963.878936
+    },
+    {
+      "CGroupMemoryUsed": 6253068288,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1965678592,
+      "tracked": 682826923,
+      "merges": 0,
+      "free_disk": 375511986176,
+      "parts": 69,
+      "time": 1792634964.338474
+    },
+    {
+      "CGroupMemoryUsed": 6253068288,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1965678592,
+      "tracked": 673550674,
+      "merges": 0,
+      "free_disk": 375511986176,
+      "parts": 69,
+      "time": 1792634964.523338
+    },
+    {
+      "CGroupMemoryUsed": 6253068288,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1965678592,
+      "tracked": 674004530,
+      "merges": 0,
+      "free_disk": 375511986176,
+      "parts": 69,
+      "time": 1792634964.840749
+    },
+    {
+      "CGroupMemoryUsed": 6253068288,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1965678592,
+      "tracked": 674136762,
+      "merges": 0,
+      "free_disk": 375511986176,
+      "parts": 69,
+      "time": 1792634964.84616
+    },
+    {
+      "CGroupMemoryUsed": 6206271488,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1941757952,
+      "tracked": 736699060,
+      "merges": 1,
+      "free_disk": 375504293888,
+      "parts": 75,
+      "time": 1792634965.196625
+    },
+    {
+      "CGroupMemoryUsed": 6206271488,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1941757952,
+      "tracked": 680452931,
+      "merges": 0,
+      "free_disk": 375497162752,
+      "parts": 70,
+      "time": 1792634965.359257
+    },
+    {
+      "CGroupMemoryUsed": 6206271488,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1941757952,
+      "tracked": 675354222,
+      "merges": 0,
+      "free_disk": 375497162752,
+      "parts": 70,
+      "time": 1792634965.541192
+    },
+    {
+      "CGroupMemoryUsed": 6206271488,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1941757952,
+      "tracked": 684163169,
+      "merges": 0,
+      "free_disk": 375497162752,
+      "parts": 70,
+      "time": 1792634965.873038
+    },
+    {
+      "CGroupMemoryUsed": 6113587200,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1810927616,
+      "tracked": 676329390,
+      "merges": 0,
+      "free_disk": 375497142272,
+      "parts": 70,
+      "time": 1792634966.3022249
+    },
+    {
+      "CGroupMemoryUsed": 6113587200,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1810927616,
+      "tracked": 700362629,
+      "merges": 0,
+      "free_disk": 375497142272,
+      "parts": 70,
+      "time": 1792634966.384867
+    },
+    {
+      "CGroupMemoryUsed": 6113587200,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1810927616,
+      "tracked": 676895958,
+      "merges": 0,
+      "free_disk": 375497142272,
+      "parts": 70,
+      "time": 1792634966.534071
+    },
+    {
+      "CGroupMemoryUsed": 6113587200,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1810927616,
+      "tracked": 748422585,
+      "merges": 0,
+      "free_disk": 375497551872,
+      "parts": 70,
+      "time": 1792634966.8974762
+    },
+    {
+      "CGroupMemoryUsed": 6473949184,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1947754496,
+      "tracked": 676830914,
+      "merges": 0,
+      "free_disk": 375497420800,
+      "parts": 70,
+      "time": 1792634967.245158
+    },
+    {
+      "CGroupMemoryUsed": 6473949184,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1947754496,
+      "tracked": 676963402,
+      "merges": 0,
+      "free_disk": 375497420800,
+      "parts": 70,
+      "time": 1792634967.413379
+    },
+    {
+      "CGroupMemoryUsed": 6473949184,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1947754496,
+      "tracked": 676659210,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634967.935135
+    },
+    {
+      "CGroupMemoryUsed": 6471151616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1865928704,
+      "tracked": 676791698,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634968.4534159
+    },
+    {
+      "CGroupMemoryUsed": 6471151616,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1865928704,
+      "tracked": 676924442,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634968.974078
+    },
+    {
+      "CGroupMemoryUsed": 6471110656,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1865965568,
+      "tracked": 677056866,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634969.267605
+    },
+    {
+      "CGroupMemoryUsed": 6471110656,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1865965568,
+      "tracked": 677189162,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634969.4964612
+    },
+    {
+      "CGroupMemoryUsed": 6471110656,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1865965568,
+      "tracked": 677321650,
+      "merges": 0,
+      "free_disk": 375497302016,
+      "parts": 70,
+      "time": 1792634970.019947
+    },
+    {
+      "CGroupMemoryUsed": 6266777600,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1659166720,
+      "tracked": 671864382,
+      "merges": 0,
+      "free_disk": 375497183232,
+      "parts": 70,
+      "time": 1792634970.536912
+    },
+    {
+      "CGroupMemoryUsed": 5937893376,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1347776512,
+      "tracked": 671996998,
+      "merges": 0,
+      "free_disk": 375497183232,
+      "parts": 70,
+      "time": 1792634971.055881
+    },
+    {
+      "CGroupMemoryUsed": 5937893376,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1347776512,
+      "tracked": 674652033,
+      "merges": 0,
+      "free_disk": 375496642560,
+      "parts": 70,
+      "time": 1792634971.2840261
+    },
+    {
+      "CGroupMemoryUsed": 5937893376,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1347776512,
+      "tracked": 793559951,
+      "merges": 0,
+      "free_disk": 375494410240,
+      "parts": 70,
+      "time": 1792634971.566187
+    },
+    {
+      "CGroupMemoryUsed": 6127542272,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1540558848,
+      "tracked": 769066482,
+      "merges": 0,
+      "free_disk": 375489957888,
+      "parts": 72,
+      "time": 1792634972.079846
+    },
+    {
+      "CGroupMemoryUsed": 6127542272,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1540558848,
+      "tracked": 675021803,
+      "merges": 0,
+      "free_disk": 375487524864,
+      "parts": 75,
+      "time": 1792634972.1639612
+    },
+    {
+      "CGroupMemoryUsed": 6127542272,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1540558848,
+      "tracked": 675388819,
+      "merges": 0,
+      "free_disk": 375488311296,
+      "parts": 75,
+      "time": 1792634972.360524
+    },
+    {
+      "CGroupMemoryUsed": 6127542272,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1540558848,
+      "tracked": 747805022,
+      "merges": 0,
+      "free_disk": 375488311296,
+      "parts": 75,
+      "time": 1792634972.593432
+    },
+    {
+      "CGroupMemoryUsed": 6140682240,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1675255808,
+      "tracked": 764394023,
+      "merges": 0,
+      "free_disk": 375488311296,
+      "parts": 75,
+      "time": 1792634973.104225
+    },
+    {
+      "CGroupMemoryUsed": 6140682240,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1675255808,
+      "tracked": 712973905,
+      "merges": 0,
+      "free_disk": 375488311296,
+      "parts": 75,
+      "time": 1792634973.612534
+    },
+    {
+      "CGroupMemoryUsed": 6140682240,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1675255808,
+      "tracked": 676232235,
+      "merges": 0,
+      "free_disk": 375488311296,
+      "parts": 75,
+      "time": 1792634973.6543
+    },
+    {
+      "CGroupMemoryUsed": 6260989952,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1863700480,
+      "tracked": 820199324,
+      "merges": 0,
+      "free_disk": 375475576832,
+      "parts": 80,
+      "time": 1792634974.124529
+    },
+    {
+      "CGroupMemoryUsed": 6260989952,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1863700480,
+      "tracked": 935236063,
+      "merges": 1,
+      "free_disk": 375445151744,
+      "parts": 83,
+      "time": 1792634974.638891
+    },
+    {
+      "CGroupMemoryUsed": 7060004864,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2388103168,
+      "tracked": 767219004,
+      "merges": 1,
+      "free_disk": 375411040256,
+      "parts": 87,
+      "time": 1792634975.150579
+    },
+    {
+      "CGroupMemoryUsed": 7060004864,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 2388103168,
+      "tracked": 763923871,
+      "merges": 1,
+      "free_disk": 375411040256,
+      "parts": 87,
+      "time": 1792634975.1508532
+    },
+    {
+      "CGroupMemoryUsed": 6383407104,
+      "CGroupMemoryTotal": 8589934592,
+      "MemoryResident": 1702330368,
+      "tracked": 682595892,
+      "merges": 0,
+      "free_disk": 375406014464,
+      "parts": 82,
+      "time": 1792634977.1729689
+    }
+  ],
+  "database_uuid": "38d16f4b-f335-43e0-af6f-c0c7ee5f81cf",
+  "poc_reused": "Six exact native POCs passed in history/2026-10-21-failed/results.json; unchanged source hashes and DDL",
+  "error": "Resource stop: {\"CGroupMemoryUsed\": 7060004864, \"CGroupMemoryTotal\": 8589934592, \"MemoryResident\": 2388103168, \"tracked\": 767219004, \"merges\": 1, \"free_disk\": 375411040256, \"parts\": 87, \"time\": 1792634975.150579}",
+  "monitor_stop_reason": "Resource stop: {\"CGroupMemoryUsed\": 7060004864, \"CGroupMemoryTotal\": 8589934592, \"MemoryResident\": 2388103168, \"tracked\": 767219004, \"merges\": 1, \"free_disk\": 375411040256, \"parts\": 87, \"time\": 1792634975.150579}",
+  "runtime_seconds": 33.36211866606027,
+  "finished_utc": "2026-10-22T02:09:37.206364+00:00",
+  "rees46_rows_after": 20692840,
+  "database_retained": true,
+  "preservation": {
+    "file_hashes": true,
+    "tables": true,
+    "grants": true,
+    "volumes": true,
+    "container_memory": true,
+    "nanocpus": true,
+    "rees46_rows": true,
+    "other_ecommerce_container_ids": true
+  },
+  "protected_file_count": 17,
+  "archive_and_source_hashes_match_before_after": true,
+  "query_logs": [
+    {
+      "query_id": "synerise_native_ce663faba064462c9b73d9f66a43b135",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 98704167,
+      "written_rows": 0,
+      "query_duration_ms": 573,
+      "cpu_user_us": 624805,
+      "cpu_system_us": 21990
+    },
+    {
+      "query_id": "synerise_native_2bdff1404ca849fc9fde33bf9271d835",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 181028570,
+      "written_rows": 1534050,
+      "query_duration_ms": 541,
+      "cpu_user_us": 477695,
+      "cpu_system_us": 59423
+    },
+    {
+      "query_id": "synerise_native_c07e69db5065481f9058c9e2889c7c57",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 14045360,
+      "written_rows": 0,
+      "query_duration_ms": 664,
+      "cpu_user_us": 596026,
+      "cpu_system_us": 5537
+    },
+    {
+      "query_id": "synerise_native_f3c080817515479a8a8f6de0e2681e65",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 10278126,
+      "written_rows": 0,
+      "query_duration_ms": 23,
+      "cpu_user_us": 22708,
+      "cpu_system_us": 379
+    },
+    {
+      "query_id": "synerise_native_df42e0745442427097929523052d6ac8",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 26808910,
+      "written_rows": 0,
+      "query_duration_ms": 40,
+      "cpu_user_us": 39957,
+      "cpu_system_us": 10310
+    },
+    {
+      "query_id": "synerise_native_9b688423e1c44ad78251764ff67b3c44",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55089428,
+      "written_rows": 0,
+      "query_duration_ms": 72,
+      "cpu_user_us": 91843,
+      "cpu_system_us": 10293
+    },
+    {
+      "query_id": "synerise_native_6bb92ec6587b402383a034388f72d3b5",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 63352385,
+      "written_rows": 75880,
+      "query_duration_ms": 90,
+      "cpu_user_us": 94579,
+      "cpu_system_us": 16862
+    },
+    {
+      "query_id": "synerise_native_d154d8e402b24dd38ad1964430f0703d",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 8139384,
+      "written_rows": 0,
+      "query_duration_ms": 24,
+      "cpu_user_us": 22864,
+      "cpu_system_us": 1003
+    },
+    {
+      "query_id": "synerise_native_7dac008638074afb8645a1ca45214096",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55602155,
+      "written_rows": 0,
+      "query_duration_ms": 144,
+      "cpu_user_us": 161240,
+      "cpu_system_us": 18098
+    },
+    {
+      "query_id": "synerise_native_ab1b247931ff4317a2d852b0b018e17b",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 127030013,
+      "written_rows": 357933,
+      "query_duration_ms": 165,
+      "cpu_user_us": 160154,
+      "cpu_system_us": 17663
+    },
+    {
+      "query_id": "synerise_native_546cb0ad2b6d4241867b92eeef9f699a",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9579594,
+      "written_rows": 0,
+      "query_duration_ms": 101,
+      "cpu_user_us": 101841,
+      "cpu_system_us": 35
+    },
+    {
+      "query_id": "synerise_native_f614e97d84f6496e8e68316276eb8b37",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55697233,
+      "written_rows": 0,
+      "query_duration_ms": 144,
+      "cpu_user_us": 170723,
+      "cpu_system_us": 11720
+    },
+    {
+      "query_id": "synerise_native_09642f59160945f9aed408a40f661765",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 126619485,
+      "written_rows": 374376,
+      "query_duration_ms": 164,
+      "cpu_user_us": 165195,
+      "cpu_system_us": 15553
+    },
+    {
+      "query_id": "synerise_native_57adbe072d9849a193cf450cd34cf7ca",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9619141,
+      "written_rows": 0,
+      "query_duration_ms": 113,
+      "cpu_user_us": 111424,
+      "cpu_system_us": 1426
+    },
+    {
+      "query_id": "synerise_native_7d451844432a4b8bbc855f54e3a0392d",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55269582,
+      "written_rows": 0,
+      "query_duration_ms": 135,
+      "cpu_user_us": 178748,
+      "cpu_system_us": 9999
+    },
+    {
+      "query_id": "synerise_native_d96f6b2bffd84f83ab244ba54de350d5",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 126644525,
+      "written_rows": 382762,
+      "query_duration_ms": 166,
+      "cpu_user_us": 160505,
+      "cpu_system_us": 16988
+    },
+    {
+      "query_id": "synerise_native_813ecda502eb4ab5add84879b2ed4c36",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9674637,
+      "written_rows": 0,
+      "query_duration_ms": 122,
+      "cpu_user_us": 121847,
+      "cpu_system_us": 248
+    },
+    {
+      "query_id": "synerise_native_2f2523536e91429e9d4751f014cb073e",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55874161,
+      "written_rows": 0,
+      "query_duration_ms": 178,
+      "cpu_user_us": 188862,
+      "cpu_system_us": 17664
+    },
+    {
+      "query_id": "synerise_native_1b6e433d846d4beab078bd6959588f55",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 138496077,
+      "written_rows": 452019,
+      "query_duration_ms": 186,
+      "cpu_user_us": 190594,
+      "cpu_system_us": 12545
+    },
+    {
+      "query_id": "synerise_native_e1ca2ea38786442683ff5df787ca5d33",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9729876,
+      "written_rows": 0,
+      "query_duration_ms": 148,
+      "cpu_user_us": 148421,
+      "cpu_system_us": 16
+    },
+    {
+      "query_id": "synerise_native_e12b16dedfda4c66bb6055aaf41e8b54",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55693201,
+      "written_rows": 0,
+      "query_duration_ms": 186,
+      "cpu_user_us": 219215,
+      "cpu_system_us": 6941
+    },
+    {
+      "query_id": "synerise_native_4005cb8033c241168b73005bbf19dff7",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 138516877,
+      "written_rows": 529373,
+      "query_duration_ms": 211,
+      "cpu_user_us": 208172,
+      "cpu_system_us": 14966
+    },
+    {
+      "query_id": "synerise_native_367adc5965974dd295b43b6d47a43152",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9807849,
+      "written_rows": 0,
+      "query_duration_ms": 178,
+      "cpu_user_us": 177002,
+      "cpu_system_us": 555
+    },
+    {
+      "query_id": "synerise_native_2147709e756a466bb073ceb5c1847afe",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55528056,
+      "written_rows": 0,
+      "query_duration_ms": 91,
+      "cpu_user_us": 112915,
+      "cpu_system_us": 8089
+    },
+    {
+      "query_id": "synerise_native_dcc7f80743cf4ac3b8ea5328017a628e",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 101362668,
+      "written_rows": 146159,
+      "query_duration_ms": 102,
+      "cpu_user_us": 107116,
+      "cpu_system_us": 8808
+    },
+    {
+      "query_id": "synerise_native_b8e17c0fec40421da41de76f0af60b9b",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9776427,
+      "written_rows": 0,
+      "query_duration_ms": 87,
+      "cpu_user_us": 85960,
+      "cpu_system_us": 1029
+    },
+    {
+      "query_id": "synerise_native_df5dda80fc0948f4a9360712d661e273",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 8373481,
+      "written_rows": 0,
+      "query_duration_ms": 171,
+      "cpu_user_us": 167173,
+      "cpu_system_us": 4062
+    },
+    {
+      "query_id": "synerise_native_f0dd6bab6bf6468a8c98a91fa6b03291",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 29527756,
+      "written_rows": 0,
+      "query_duration_ms": 49,
+      "cpu_user_us": 53446,
+      "cpu_system_us": 5502
+    },
+    {
+      "query_id": "synerise_native_c83e319bbeb34aeb9c0eebab7ea08432",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55414408,
+      "written_rows": 0,
+      "query_duration_ms": 84,
+      "cpu_user_us": 111392,
+      "cpu_system_us": 13698
+    },
+    {
+      "query_id": "synerise_native_873ac6dd2ec04dd18bd2f2fe4dddf3aa",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 64785527,
+      "written_rows": 59606,
+      "query_duration_ms": 92,
+      "cpu_user_us": 98475,
+      "cpu_system_us": 10767
+    },
+    {
+      "query_id": "synerise_native_bfb33ed87dbc412cb5568244a62f5383",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 8101961,
+      "written_rows": 0,
+      "query_duration_ms": 25,
+      "cpu_user_us": 23911,
+      "cpu_system_us": 1003
+    },
+    {
+      "query_id": "synerise_native_dcd6fc786eeb481b9bf0a8bcdded1a1e",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55501196,
+      "written_rows": 0,
+      "query_duration_ms": 169,
+      "cpu_user_us": 193984,
+      "cpu_system_us": 14030
+    },
+    {
+      "query_id": "synerise_native_31d00e031dbc439f95e2986be02eaab1",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 132869565,
+      "written_rows": 313673,
+      "query_duration_ms": 159,
+      "cpu_user_us": 164810,
+      "cpu_system_us": 13902
+    },
+    {
+      "query_id": "synerise_native_bf870f621daa4df1b35cfaef163c79b7",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9547984,
+      "written_rows": 0,
+      "query_duration_ms": 119,
+      "cpu_user_us": 117959,
+      "cpu_system_us": 1003
+    },
+    {
+      "query_id": "synerise_native_f9c6fd8f90d2477dbf8661cc3c30a12b",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55768200,
+      "written_rows": 0,
+      "query_duration_ms": 181,
+      "cpu_user_us": 220798,
+      "cpu_system_us": 12058
+    },
+    {
+      "query_id": "synerise_native_b8915dca939b44e78f027e8d9538d447",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 132662141,
+      "written_rows": 371817,
+      "query_duration_ms": 179,
+      "cpu_user_us": 174842,
+      "cpu_system_us": 19694
+    },
+    {
+      "query_id": "synerise_native_8dfd76383d1f4bf8b11eb12382b50cd6",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9590965,
+      "written_rows": 0,
+      "query_duration_ms": 155,
+      "cpu_user_us": 147258,
+      "cpu_system_us": 6958
+    },
+    {
+      "query_id": "synerise_native_99de54f332984d8fad711b9d2e7d469f",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55515412,
+      "written_rows": 0,
+      "query_duration_ms": 196,
+      "cpu_user_us": 244089,
+      "cpu_system_us": 12255
+    },
+    {
+      "query_id": "synerise_native_bc4c9936f6ec41909d9b357020835782",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 132727549,
+      "written_rows": 451586,
+      "query_duration_ms": 199,
+      "cpu_user_us": 203055,
+      "cpu_system_us": 18122
+    },
+    {
+      "query_id": "synerise_native_721f4601d173488ba45fb6bdb6938885",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9655348,
+      "written_rows": 0,
+      "query_duration_ms": 184,
+      "cpu_user_us": 184140,
+      "cpu_system_us": 137
+    },
+    {
+      "query_id": "synerise_native_cfb1bc7394de4859bc7ccad89cf0748a",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55755987,
+      "written_rows": 0,
+      "query_duration_ms": 244,
+      "cpu_user_us": 276673,
+      "cpu_system_us": 17626
+    },
+    {
+      "query_id": "synerise_native_3005875ea9274c8687001ac44e674b25",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 138580325,
+      "written_rows": 574463,
+      "query_duration_ms": 240,
+      "cpu_user_us": 237543,
+      "cpu_system_us": 19298
+    },
+    {
+      "query_id": "synerise_native_70bcb1c21c494c13891b40b603301a44",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9725890,
+      "written_rows": 0,
+      "query_duration_ms": 238,
+      "cpu_user_us": 235543,
+      "cpu_system_us": 3093
+    },
+    {
+      "query_id": "synerise_native_585e26c230b24f0ab5cf4ac66b388cfa",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55458712,
+      "written_rows": 0,
+      "query_duration_ms": 288,
+      "cpu_user_us": 329236,
+      "cpu_system_us": 11364
+    },
+    {
+      "query_id": "synerise_native_1b9f8a5c2e2b4e0dbea55213206f5729",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 138661485,
+      "written_rows": 691649,
+      "query_duration_ms": 264,
+      "cpu_user_us": 262773,
+      "cpu_system_us": 23262
+    },
+    {
+      "query_id": "synerise_native_c9bfcefd41c94fac9d47eb3b7bfdbca4",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9753201,
+      "written_rows": 0,
+      "query_duration_ms": 303,
+      "cpu_user_us": 300982,
+      "cpu_system_us": 1980
+    },
+    {
+      "query_id": "synerise_native_03d3b78d8f3348a28a30feabeaca7c81",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 55886391,
+      "written_rows": 0,
+      "query_duration_ms": 138,
+      "cpu_user_us": 170828,
+      "cpu_system_us": 9707
+    },
+    {
+      "query_id": "synerise_native_154d13becbe641dbad44fc081ceb8efa",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 109507483,
+      "written_rows": 226100,
+      "query_duration_ms": 144,
+      "cpu_user_us": 146914,
+      "cpu_system_us": 17487
+    },
+    {
+      "query_id": "synerise_native_72571f4107444309b84c5648b9bb42fd",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9723374,
+      "written_rows": 0,
+      "query_duration_ms": 139,
+      "cpu_user_us": 138292,
+      "cpu_system_us": 1022
+    },
+    {
+      "query_id": "synerise_native_547516160849488f9dc167b4a12029fe",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 8378383,
+      "written_rows": 0,
+      "query_duration_ms": 220,
+      "cpu_user_us": 217577,
+      "cpu_system_us": 2851
+    },
+    {
+      "query_id": "synerise_native_6510dd6e7ab9428fa02bd6307f0c8549",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 31713160,
+      "written_rows": 0,
+      "query_duration_ms": 142,
+      "cpu_user_us": 149672,
+      "cpu_system_us": 16166
+    },
+    {
+      "query_id": "synerise_native_2cb3c44fe8d8490c844a9b980717ed56",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 56752343,
+      "written_rows": 0,
+      "query_duration_ms": 230,
+      "cpu_user_us": 295792,
+      "cpu_system_us": 21452
+    },
+    {
+      "query_id": "synerise_native_c678a94e538b45c68bf226e23698b87c",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 114406108,
+      "written_rows": 198401,
+      "query_duration_ms": 249,
+      "cpu_user_us": 276903,
+      "cpu_system_us": 23476
+    },
+    {
+      "query_id": "synerise_native_3ede329e5d3d4cfdb459a775606cc8ae",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9562043,
+      "written_rows": 0,
+      "query_duration_ms": 56,
+      "cpu_user_us": 56268,
+      "cpu_system_us": 175
+    },
+    {
+      "query_id": "synerise_native_6219ab27dd6444669bded15dcd7e5b4f",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 57344083,
+      "written_rows": 0,
+      "query_duration_ms": 461,
+      "cpu_user_us": 539454,
+      "cpu_system_us": 22692
+    },
+    {
+      "query_id": "synerise_native_4f19028edbfb4202a8aa5f24d5cc4650",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 139946989,
+      "written_rows": 1048179,
+      "query_duration_ms": 468,
+      "cpu_user_us": 480677,
+      "cpu_system_us": 49186
+    },
+    {
+      "query_id": "synerise_native_c5056fac5bc14a02aadd967ed8fe80d2",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9673167,
+      "written_rows": 0,
+      "query_duration_ms": 303,
+      "cpu_user_us": 302519,
+      "cpu_system_us": 997
+    },
+    {
+      "query_id": "synerise_native_5945f102a0b848edaa48d8f4a268efd2",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 57407537,
+      "written_rows": 0,
+      "query_duration_ms": 470,
+      "cpu_user_us": 535933,
+      "cpu_system_us": 22649
+    },
+    {
+      "query_id": "synerise_native_ea4d07e23edc4d269c4faedb9664b3a7",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 140225429,
+      "written_rows": 1153278,
+      "query_duration_ms": 487,
+      "cpu_user_us": 489773,
+      "cpu_system_us": 51888
+    },
+    {
+      "query_id": "synerise_native_cad1f6496a5a4811aa6b44cdc24c2289",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9765647,
+      "written_rows": 0,
+      "query_duration_ms": 352,
+      "cpu_user_us": 351166,
+      "cpu_system_us": 985
+    },
+    {
+      "query_id": "synerise_native_d21107cc410640aeb14789ec1146ccef",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 57469663,
+      "written_rows": 0,
+      "query_duration_ms": 512,
+      "cpu_user_us": 610961,
+      "cpu_system_us": 14366
+    },
+    {
+      "query_id": "synerise_native_d1bce94a4013486dbd1fe904868d955c",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 140120437,
+      "written_rows": 1281740,
+      "query_duration_ms": 523,
+      "cpu_user_us": 540516,
+      "cpu_system_us": 39338
+    },
+    {
+      "query_id": "synerise_native_f833c504fdd44efe907c9fe07c279ef0",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9808231,
+      "written_rows": 0,
+      "query_duration_ms": 410,
+      "cpu_user_us": 408894,
+      "cpu_system_us": 1018
+    },
+    {
+      "query_id": "synerise_native_518df2de25924f38a7de4c4ee846c204",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 57749233,
+      "written_rows": 0,
+      "query_duration_ms": 549,
+      "cpu_user_us": 642041,
+      "cpu_system_us": 25797
+    },
+    {
+      "query_id": "synerise_native_93087f3651e246048562196b5115e0b4",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 140412925,
+      "written_rows": 1528147,
+      "query_duration_ms": 609,
+      "cpu_user_us": 639590,
+      "cpu_system_us": 45537
+    },
+    {
+      "query_id": "synerise_native_4f2b050f21c14f46bc9c8dd486d6b2a0",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9897767,
+      "written_rows": 0,
+      "query_duration_ms": 515,
+      "cpu_user_us": 509504,
+      "cpu_system_us": 4989
+    },
+    {
+      "query_id": "synerise_native_98e598b6512b4647b2d2686ae74546fb",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 57454771,
+      "written_rows": 0,
+      "query_duration_ms": 609,
+      "cpu_user_us": 712552,
+      "cpu_system_us": 30709
+    },
+    {
+      "query_id": "synerise_native_fb8ad758bb2c4a9cb313c43175a5515b",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 140248941,
+      "written_rows": 1789943,
+      "query_duration_ms": 646,
+      "cpu_user_us": 661096,
+      "cpu_system_us": 45331
+    },
+    {
+      "query_id": "synerise_native_58514bbb77774567a0a67a14976be9e1",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9925503,
+      "written_rows": 0,
+      "query_duration_ms": 610,
+      "cpu_user_us": 607139,
+      "cpu_system_us": 2011
+    },
+    {
+      "query_id": "synerise_native_5b543947772f41e8be4742c754ac69aa",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 56914561,
+      "written_rows": 0,
+      "query_duration_ms": 289,
+      "cpu_user_us": 385964,
+      "cpu_system_us": 22091
+    },
+    {
+      "query_id": "synerise_native_dc81f377f6404900963cc5b3a0b888c7",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 139903797,
+      "written_rows": 541429,
+      "query_duration_ms": 325,
+      "cpu_user_us": 352856,
+      "cpu_system_us": 25518
+    },
+    {
+      "query_id": "synerise_native_ee085c583ee34ca9a63b284d67fad239",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 9850332,
+      "written_rows": 0,
+      "query_duration_ms": 308,
+      "cpu_user_us": 306098,
+      "cpu_system_us": 935
+    },
+    {
+      "query_id": "synerise_native_f620d19851714a968c8c6079fd913d9b",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 8662060,
+      "written_rows": 0,
+      "query_duration_ms": 534,
+      "cpu_user_us": 528727,
+      "cpu_system_us": 4956
+    },
+    {
+      "query_id": "synerise_native_e66f3ee3d4604a638e71d23339678876",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 30196976,
+      "written_rows": 0,
+      "query_duration_ms": 201,
+      "cpu_user_us": 239818,
+      "cpu_system_us": 21338
+    },
+    {
+      "query_id": "synerise_native_d5004af960ce4957a567d1362d9befdf",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 90653425,
+      "written_rows": 0,
+      "query_duration_ms": 679,
+      "cpu_user_us": 838760,
+      "cpu_system_us": 84264
+    },
+    {
+      "query_id": "synerise_native_8f7cee7e832746af82acbdf21c3c719c",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 180331235,
+      "written_rows": 414549,
+      "query_duration_ms": 842,
+      "cpu_user_us": 889903,
+      "cpu_system_us": 56687
+    },
+    {
+      "query_id": "synerise_native_ef2e0100e6c74f33a33d2762829ca85a",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 10039841,
+      "written_rows": 0,
+      "query_duration_ms": 162,
+      "cpu_user_us": 162695,
+      "cpu_system_us": 120
+    },
+    {
+      "query_id": "synerise_native_0c715ffb5a364f868c7357e5b8d9f453",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 91324936,
+      "written_rows": 0,
+      "query_duration_ms": 1270,
+      "cpu_user_us": 1526521,
+      "cpu_system_us": 76393
+    },
+    {
+      "query_id": "synerise_native_25cf9cbf2067475ea11d460065198571",
+      "type": "QueryFinish",
+      "exception_code": 0,
+      "exception": "",
+      "memory_usage": 181026893,
+      "written_rows": 2141382,
+      "query_duration_ms": 1458,
+      "cpu_user_us": 1437347,
+      "cpu_system_us": 146361
+    }
+  ],
+  "query_logs_complete": true,
+  "validated_destination_counts": {
+    "product_properties": 1534050,
+    "product_buy": 2318502,
+    "remove_from_cart": 2688894,
+    "add_to_cart": 7541117
+  },
+  "retained_total_rows": 14082563,
+  "retained_event_rows": 12548513,
+  "server_errors": [],
+  "publication": "Private; incomplete release is not published and no consumer grants changed",
+  "release_databases_remaining": [
+    {
+      "name": "synerise_raw__8efbe3d95dfc431cb1fa66f980f13a67"
+    }
+  ],
+  "final_runtime": {
+    "health": "healthy",
+    "memory_bytes": 8589934592,
+    "nanocpus": 2000000000,
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "ecommerce-ml_clickhouse-data",
+        "Source": "/var/lib/docker/volumes/ecommerce-ml_clickhouse-data/_data",
+        "Destination": "/var/lib/clickhouse",
+        "RW": true
+      },
+      {
+        "Type": "volume",
+        "Name": "ecommerce-ml_clickhouse-logs",
+        "Source": "/var/lib/docker/volumes/ecommerce-ml_clickhouse-logs/_data",
+        "Destination": "/var/log/clickhouse-server",
+        "RW": true
+      },
+      {
+        "Type": "bind",
+        "Name": null,
+        "Source": "/host_mnt/Users/konstantinlofichenko/GitHub/ecommerce-ml-analytics/infra/clickhouse/development.xml",
+        "Destination": "/etc/clickhouse-server/config.d/development.xml",
+        "RW": false
+      },
+      {
+        "Type": "bind",
+        "Name": null,
+        "Source": "/host_mnt/Users/konstantinlofichenko/GitHub/ecommerce-ml-analytics/data/external/synerise/source",
+        "Destination": "/var/lib/clickhouse/user_files/synerise/e90b8fde",
+        "RW": false
+      }
+    ],
+    "server_limit": [
+      {
+        "value": "6442450944"
+      }
+    ],
+    "memory": [
+      {
+        "metric": "CGroupMemoryUsed",
+        "value": 5942947840
+      },
+      {
+        "metric": "CGroupMemoryTotal",
+        "value": 8589934592
+      },
+      {
+        "metric": "MemoryResident",
+        "value": 1365544960
+      }
+    ],
+    "tracked": [
+      {
+        "value": 672893322
+      }
+    ],
+    "active_queries": [],
+    "raw": [
+      {
+        "uuid": "9242f083-29f7-465e-a9ee-165c03a53f47",
+        "total_rows": 20692840
+      }
+    ],
+    "source_mount_read_only": true
+  },
+  "post_stop_cgroup_stat": {
+    "anon": 1079754752,
+    "file": 4001538048,
+    "kernel": 145133568,
+    "kernel_stack": 4308992,
+    "pagetables": 7839744,
+    "sec_pagetables": 0,
+    "percpu": 44960,
+    "sock": 0,
+    "vmalloc": 16384,
+    "shmem": 0,
+    "zswap": 0,
+    "zswapped": 0,
+    "file_mapped": 393216,
+    "file_dirty": 13926400,
+    "file_writeback": 0,
+    "swapcached": 0,
+    "anon_thp": 358612992,
+    "file_thp": 0,
+    "shmem_thp": 0,
+    "inactive_anon": 0,
+    "active_anon": 1766596608,
+    "inactive_file": 3986423808,
+    "active_file": 15007744,
+    "unevictable": 0,
+    "slab_reclaimable": 128850152,
+    "slab_unreclaimable": 4029352,
+    "slab": 132879504,
+    "workingset_refault_anon": 0,
+    "workingset_refault_file": 3615,
+    "workingset_activate_anon": 0,
+    "workingset_activate_file": 3440,
+    "workingset_restore_anon": 0,
+    "workingset_restore_file": 63,
+    "workingset_nodereclaim": 0,
+    "pgdemote_kswapd": 0,
+    "pgdemote_direct": 0,
+    "pgdemote_khugepaged": 0,
+    "pgdemote_proactive": 0,
+    "pgscan": 0,
+    "pgsteal": 0,
+    "pswpin": 0,
+    "pswpout": 0,
+    "pgscan_kswapd": 0,
+    "pgscan_direct": 0,
+    "pgscan_khugepaged": 0,
+    "pgscan_proactive": 0,
+    "pgsteal_kswapd": 0,
+    "pgsteal_direct": 0,
+    "pgsteal_khugepaged": 0,
+    "pgsteal_proactive": 0,
+    "pgfault": 252130386,
+    "pgmajfault": 5,
+    "pgrefill": 0,
+    "pgactivate": 0,
+    "pgdeactivate": 0,
+    "pglazyfree": 0,
+    "pglazyfreed": 0,
+    "swpin_zero": 0,
+    "swpout_zero": 0,
+    "zswpin": 0,
+    "zswpout": 0,
+    "zswpwb": 0,
+    "thp_fault_alloc": 1490278,
+    "thp_collapse_alloc": 17,
+    "thp_swpout": 0,
+    "thp_swpout_fallback": 0
+  },
+  "consumer_access_checks": {
+    "BI": "access denied",
+    "DBT": "access denied"
+  }
+}

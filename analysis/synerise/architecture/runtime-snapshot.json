@@ -1,0 +1,127 @@
+{
+  "memory": [
+    {
+      "metric": "CGroupMemoryUsed",
+      "value": 1948897280
+    },
+    {
+      "metric": "CGroupMemoryTotal",
+      "value": 2147483648
+    },
+    {
+      "metric": "MemoryResident",
+      "value": 1074606080
+    }
+  ],
+  "raw": [
+    {
+      "uuid": "9242f083-29f7-465e-a9ee-165c03a53f47",
+      "total_rows": 20692840
+    }
+  ],
+  "grants": [
+    {
+      "user_name": "ecommerce_bi",
+      "access_type": "SELECT",
+      "database": "ecommerce",
+      "table": "raw_events"
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "SELECT",
+      "database": "ecommerce",
+      "table": "raw_events"
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "SELECT",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "INSERT",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "ALTER TABLE",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "ALTER VIEW",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "CREATE TABLE",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "CREATE VIEW",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "DROP TABLE",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "DROP VIEW",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_dbt",
+      "access_type": "TRUNCATE",
+      "database": "ecommerce_analytics",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "SELECT",
+      "database": "ecommerce",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "INSERT",
+      "database": "ecommerce",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "ALTER TABLE",
+      "database": "ecommerce",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "CREATE TABLE",
+      "database": "ecommerce",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "DROP TABLE",
+      "database": "ecommerce",
+      "table": null
+    },
+    {
+      "user_name": "ecommerce_ingest",
+      "access_type": "TRUNCATE",
+      "database": "ecommerce",
+      "table": null
+    }
+  ],
+  "leftover_poc": []
+}

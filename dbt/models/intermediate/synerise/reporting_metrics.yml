@@ -1,0 +1,26 @@
+version: 2
+models:
+  - name: int_synerise_product_funnel_metrics
+    description: >
+      Narrow all-time SKU metrics. Distinct customers with a cart; same-SKU purchase
+      at or after first cart. Default rebuild uses raw staging events. One-time documented
+      bootstrap copies the previously validated canonical fact without recomputing events.
+    columns:
+      - name: sku
+        data_tests: [not_null, catalog_unique]
+      - name: cart_customers
+        data_tests: [not_null]
+      - name: purchase_customers
+        data_tests: [not_null]
+  - name: int_synerise_category_funnel_metrics
+    description: >
+      Narrow all-time category metrics. Same-category SKUs may differ; ties accepted.
+      Default rebuild uses raw staging events, with no session or conversion deadline.
+      One-time bootstrap reuses the existing validated category fact.
+    columns:
+      - name: category_id
+        data_tests: [not_null, catalog_unique]
+      - name: cart_customers
+        data_tests: [not_null]
+      - name: purchase_customers
+        data_tests: [not_null]

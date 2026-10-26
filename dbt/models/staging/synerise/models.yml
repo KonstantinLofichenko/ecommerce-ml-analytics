@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: stg_synerise_product_properties
+    description: >
+      Synerise product properties with anonymized product
+      names parsed into arrays of integer codes.
+
+    columns:
+      - name: sku
+        data_tests:
+          - not_null
+          - unique
+
+      - name: name_codes
+        description: >
+          Array of 16 anonymized integer codes representing
+          the original encoded product name.
+          These are not readable product names.
+
+  - name: stg_synerise_product_buy
+    description: >
+      Product-level purchase events from Synerise.
+      Multiple records can share a client and timestamp.
+      No transaction identifier is available.
+
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+
+      - name: event_time_raw
+        data_tests:
+          - not_null
+
+      - name: sku
+        data_tests:
+          - not_null
+
+  - name: stg_synerise_add_to_cart
+    description: >
+      Product-level add-to-cart events from Synerise.
+      Duplicate source records are preserved.
+
+    columns:
+      - name: client_id
+        data_tests: [not_null]
+
+      - name: event_time_raw
+        data_tests: [not_null]
+
+      - name: sku
+        data_tests: [not_null]
+
+  - name: stg_synerise_remove_from_cart
+    description: >
+      Product-level remove-from-cart events from Synerise.
+      Original duplicate records are preserved.
+
+    columns:
+      - name: client_id
+        data_tests: [not_null]
+
+      - name: event_time_raw
+        data_tests: [not_null]
+
+      - name: sku
+        data_tests: [not_null]
+
+  - name: stg_synerise_search_query
+    description: >
+      Customer search events with anonymized
+      16-code query representations.
+
+    columns:
+      - name: client_id
+        data_tests: [not_null]
+
+      - name: event_time_raw
+        data_tests: [not_null]
+
+      - name: query_codes
+        data_tests: [not_null]
+
+  - name: stg_synerise_page_visit
+    description: >
+      Customer page-visit events with anonymized page identifiers.
+      Duplicate source events are preserved.
+
+    columns:
+      - name: client_id
+        data_tests: [not_null]
+
+      - name: event_time_raw
+        data_tests: [not_null]
+
+      - name: page_id
+        data_tests: [not_null]

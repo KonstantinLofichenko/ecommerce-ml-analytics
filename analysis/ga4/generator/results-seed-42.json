@@ -1,0 +1,263 @@
+{
+  "event_files": 90,
+  "output_bytes": 686705299,
+  "events": {
+    "events": 285408,
+    "pseudo_ids": 1109,
+    "login_ids": 308,
+    "first_utc": "2024-12-31 11:20:47.413302",
+    "last_utc": "2025-03-31 10:58:21.039750",
+    "null_login_events": 217991,
+    "null_pseudo_events": 0,
+    "null_session_events": 0
+  },
+  "event_names": [
+    {
+      "name": "add_payment_info",
+      "events": 1451
+    },
+    {
+      "name": "add_shipping_info",
+      "events": 1436
+    },
+    {
+      "name": "add_to_cart",
+      "events": 2735
+    },
+    {
+      "name": "begin_checkout",
+      "events": 1893
+    },
+    {
+      "name": "first_visit",
+      "events": 977
+    },
+    {
+      "name": "login",
+      "events": 6287
+    },
+    {
+      "name": "logout",
+      "events": 311
+    },
+    {
+      "name": "page_view",
+      "events": 139594
+    },
+    {
+      "name": "purchase",
+      "events": 1440
+    },
+    {
+      "name": "refund",
+      "events": 57
+    },
+    {
+      "name": "remove_from_cart",
+      "events": 29
+    },
+    {
+      "name": "search",
+      "events": 5662
+    },
+    {
+      "name": "select_item",
+      "events": 5310
+    },
+    {
+      "name": "select_promotion",
+      "events": 2531
+    },
+    {
+      "name": "session_start",
+      "events": 29838
+    },
+    {
+      "name": "sign_up",
+      "events": 201
+    },
+    {
+      "name": "view_cart",
+      "events": 2341
+    },
+    {
+      "name": "view_item",
+      "events": 7588
+    },
+    {
+      "name": "view_item_list",
+      "events": 71497
+    },
+    {
+      "name": "view_promotion",
+      "events": 4230
+    }
+  ],
+  "purchase_quality": {
+    "purchase_events": 1440,
+    "transactions": 1440,
+    "missing_transactions": 0,
+    "purchasing_pseudo_ids": 389,
+    "purchasing_login_ids": 303,
+    "missing_login_purchases": 0,
+    "orders": 1563,
+    "unique_orders": 1563,
+    "ordering_customers": 305,
+    "orders_without_purchase_event": 123
+  },
+  "history": {
+    "repeat_pseudo_ids": 316,
+    "median_observed_span_days": 81.0,
+    "pseudo_ids_with_60d_span": 1030,
+    "purchase_gaps": 1051,
+    "min_gap_days": 0.0034446226501906358,
+    "median_gap_days": 9.306673268819297,
+    "p90_gap_days": 33.54069651384321
+  },
+  "identity_quality": {
+    "pseudo_ids_with_multiple_login_ids": 36,
+    "pseudo_ids_with_changing_first_touch": 1098,
+    "duplicate_customer_master_ids": 0
+  },
+  "repeat_by_identity": [
+    {
+      "identity": "observed_login_id",
+      "purchasing_customers": 303,
+      "repeat_customers": 285,
+      "median_purchases_per_customer": 5.0,
+      "median_purchase_span_days": 50.0,
+      "median_gap_days": 8.482376403342242
+    },
+    {
+      "identity": "order_customer_id",
+      "purchasing_customers": 305,
+      "repeat_customers": 287,
+      "median_purchases_per_customer": 5.0,
+      "median_purchase_span_days": 52.0,
+      "median_gap_days": 8.079925061180084
+    }
+  ],
+  "snapshots": [
+    {
+      "identity": "observed_login_id",
+      "snapshot": "2025-02-01 00:00:00",
+      "eligible": 205,
+      "positives": 110,
+      "negatives": 95,
+      "positive_rate": 0.5365853658536586,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "observed_login_id",
+      "snapshot": "2025-02-15 00:00:00",
+      "eligible": 253,
+      "positives": 130,
+      "negatives": 123,
+      "positive_rate": 0.5138339920948617,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "observed_login_id",
+      "snapshot": "2025-03-01 00:00:00",
+      "eligible": 281,
+      "positives": 154,
+      "negatives": 127,
+      "positive_rate": 0.5480427046263345,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "observed_login_id",
+      "snapshot": "2025-03-15 00:00:00",
+      "eligible": 295,
+      "positives": 166,
+      "negatives": 129,
+      "positive_rate": 0.5627118644067797,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "order_customer_id",
+      "snapshot": "2025-02-01 00:00:00",
+      "eligible": 217,
+      "positives": 121,
+      "negatives": 96,
+      "positive_rate": 0.5576036866359447,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "order_customer_id",
+      "snapshot": "2025-02-15 00:00:00",
+      "eligible": 260,
+      "positives": 135,
+      "negatives": 125,
+      "positive_rate": 0.5192307692307693,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "order_customer_id",
+      "snapshot": "2025-03-01 00:00:00",
+      "eligible": 288,
+      "positives": 165,
+      "negatives": 123,
+      "positive_rate": 0.5729166666666666,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "order_customer_id",
+      "snapshot": "2025-03-15 00:00:00",
+      "eligible": 300,
+      "positives": 177,
+      "negatives": 123,
+      "positive_rate": 0.59,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "pseudo_id",
+      "snapshot": "2025-02-01 00:00:00",
+      "eligible": 229,
+      "positives": 101,
+      "negatives": 128,
+      "positive_rate": 0.4410480349344978,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "pseudo_id",
+      "snapshot": "2025-02-15 00:00:00",
+      "eligible": 297,
+      "positives": 130,
+      "negatives": 167,
+      "positive_rate": 0.4377104377104377,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "pseudo_id",
+      "snapshot": "2025-03-01 00:00:00",
+      "eligible": 342,
+      "positives": 155,
+      "negatives": 187,
+      "positive_rate": 0.45321637426900585,
+      "minimum_prior_purchases": 1
+    },
+    {
+      "identity": "pseudo_id",
+      "snapshot": "2025-03-15 00:00:00",
+      "eligible": 370,
+      "positives": 168,
+      "negatives": 202,
+      "positive_rate": 0.4540540540540541,
+      "minimum_prior_purchases": 1
+    }
+  ],
+  "funnel": {
+    "sessions": 29838,
+    "presence_page": 29834,
+    "presence_item": 5656,
+    "presence_cart": 2288,
+    "presence_checkout": 1724,
+    "presence_purchase": 1337,
+    "strict_page": 29834,
+    "strict_item": 5656,
+    "strict_cart": 2288,
+    "strict_checkout": 1724,
+    "strict_purchase": 1337
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "assessment_date": "2026-10-21",
+  "dataset_url": "https://data.recsys.synerise.com/dataset/synerise_dataset.tar.gz",
+  "official_code_commit": "e91c1a62f84611151a399ce157e6031a4a73618f",
+  "archive_sha256": "e90b8fded8bc7a87b8c51ced7d5eead75f6deb09852ea701f5f22934e78b66e7",
+  "source_hashes_reverified": true,
+  "physical_ram_bytes": 137438953472,
+  "free_disk_preflight": "approximately 1.4 TiB",
+  "memory_per_analysis_process": "2 GB",
+  "threads_per_process": 2,
+  "spill_cap": "80 GB in main runner",
+  "initial_failure": "Unpartitioned page_visit exact duplicates exceeded 2 GB working memory.",
+  "recovery": "32 client-hash partitions; source files never changed.",
+  "production_database_access": false,
+  "docker_operations": false,
+  "model_training": false,
+  "not_measured": [
+    "source timezone",
+    "true orders",
+    "ClickHouse storage",
+    "ClickHouse load runtime",
+    "model quality"
+  ],
+  "status": "complete",
+  "decision": "CONDITIONAL GO",
+  "tests": "2 passed",
+  "ruff": "lint and format passed",
+  "executed_query_count": 142,
+  "queries_unexecuted": [],
+  "source_coverage": "169 source-clock dates for all five event types",
+  "conservation_checks": "Daily/monthly totals, duplicate accounting, all partition totals, A/B/C labels and feature cutoff checks passed"
+}

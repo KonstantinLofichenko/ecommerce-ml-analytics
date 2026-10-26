@@ -1,0 +1,28 @@
+{
+  "fixture": "three synthetic SQL rows: signed IDs, Unicode, empty string, null, duplicate",
+  "reference": "independent Python hashlib and byte encoding",
+  "expected": {
+    "md5_sum": 648210332412642544000802140485253625572,
+    "sha256_sum": 829681409222669501506917456026470090682,
+    "sha256_xor": 5355640309994708837
+  },
+  "actual": {
+    "rows": 3,
+    "md5_sum": 648210332412642544000802140485253625572,
+    "sha256_sum": 829681409222669501506917456026470090682,
+    "sha256_xor": 5355640309994708837,
+    "null_sku": 1,
+    "min_sku": -9,
+    "max_sku": -9,
+    "null_category": 0,
+    "min_category": 3,
+    "max_category": 3,
+    "null_price": 0,
+    "min_price": -1,
+    "max_price": 0,
+    "null_name": 0,
+    "min_bytes_name": 0,
+    "max_bytes_name": 11
+  },
+  "passed": true
+}
