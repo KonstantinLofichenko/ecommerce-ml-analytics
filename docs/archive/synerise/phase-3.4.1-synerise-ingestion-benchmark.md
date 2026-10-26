@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.4.1 — Synerise ingestion benchmark
 
 Measured 21 October 2026 on ClickHouse **25.8.33.6**, Python 3.11.16 and PyArrow 20.0.0.
@@ -6,9 +9,9 @@ stopped at a global server-memory error. No ingestion method is approved for the
 full historical load.** ArrowStream is the leading candidate for the next controlled
 trial, subject to diagnosing tracked-memory pressure at the existing resource limits.
 
-[Scripts and reproduction](../../analysis/synerise/architecture/benchmark/README.md),
-[complete measurements](../../analysis/synerise/architecture/benchmark/results.json),
-[per-trial metrics](../../analysis/synerise/architecture/benchmark/trials.csv).
+[Scripts and reproduction](../../../analysis/synerise/architecture/benchmark/README.md),
+[complete measurements](../../../analysis/synerise/architecture/benchmark/results.json),
+[per-trial metrics](../../../analysis/synerise/architecture/benchmark/trials.csv).
 
 ## Running configuration and safety
 

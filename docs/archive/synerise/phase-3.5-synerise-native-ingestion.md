@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.5 continuation — simplified Synerise native ingestion
 
 Assessed **22 October 2026**. **PARTIALLY COMPLETED; stopped at the cgroup safety
@@ -12,12 +15,12 @@ No publication pointer, consumer grant, dbt source or Metabase connection was ch
 Read probes confirmed that the restricted BI and dbt accounts cannot select from
 this database. The existing administrator remains privileged.
 
-[Scripts and instructions](../../analysis/synerise/ingestion/README.md),
-[run manifest](../../analysis/synerise/ingestion/results.json),
-[reconciliation values](../../analysis/synerise/ingestion/reconciliation.csv),
-[performance measurements](../../analysis/synerise/ingestion/performance.csv).
+[Scripts and instructions](../../../analysis/synerise/ingestion/README.md),
+[run manifest](../../../analysis/synerise/ingestion/results.json),
+[reconciliation values](../../../analysis/synerise/ingestion/reconciliation.csv),
+[performance measurements](../../../analysis/synerise/ingestion/performance.csv).
 The prior failed report/results/SQL are preserved under
-[history/2026-10-21-failed](../../analysis/synerise/ingestion/history/2026-10-21-failed/).
+[history/2026-10-21-failed](../../../analysis/synerise/ingestion/history/2026-10-21-failed).
 
 ## Scope and live configuration
 
@@ -71,7 +74,7 @@ Canonical encoding policy **`synerise-row-v2`** includes source name, ordered co
 names and logical types, then one null marker or byte-length-prefixed UTF-8 value
 per original field. Signed integers use signed decimal text. The SQL expression
 and independent Python byte encoder are in `native.py`; reference-test results
-are in [encoding-validation.json](../../analysis/synerise/ingestion/encoding-validation.json).
+are in [encoding-validation.json](../../../analysis/synerise/ingestion/encoding-validation.json).
 
 Two separate digest functions operate on every original row:
 

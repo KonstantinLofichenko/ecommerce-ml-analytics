@@ -1,22 +1,27 @@
-# Reports and retained evidence
+# Validation reports and source evidence
 
-The current Dashboard V1.0 report is [metabase-v1-synerise-refactor.md](metabase-v1-synerise-refactor.md).
-It is the single final dashboard validation/rebuild report. Supporting aggregate
-baselines remain in `analysis/catalog/metabase-v1/validation.json`.
+The single current Dashboard V1.0 acceptance report is
+[metabase-v1-synerise-refactor.md](metabase-v1-synerise-refactor.md).
+Its aggregate baseline is [validation.json](../../analysis/catalog/metabase-v1/validation.json).
+Use the [funnel contract](../funnel-data-contract.md) for definitions and
+[operations guide](../dashboard-v1-operations.md) for rebuilds and memory guidance.
 
-Other reports are historical milestones, not alternate dashboard acceptance reports:
+Retained reports with distinct scope:
 
-- Phase 1–2 reports preserve REES46 ingestion, feature definitions and baseline evaluation.
-- Phase 3.1–3.2 preserve infrastructure, permissions, migration and reconciliation evidence.
-- GA4 assessments preserve executed versus unexecuted research and generator limitations.
-- Synerise assessment/provenance preserve unresolved archive counts, licensing and clock semantics.
-- Architecture/benchmark/native-ingestion reports preserve distinct memory failures,
-  checksum policies and partial private releases; the later bulk-load report describes
-  the completed count-only permanent load. Earlier policies are not current acceptance gates.
-- The publisher inquiry is an unsent draft, not evidence of external contact.
+- REES46 [behavior](phase-1.2-october-2019.md),
+  [dataset build](phase-1.3a-october-2019-february-2020.md),
+  [features](phase-2.3-features.md) and [baselines](phase-2.4-baselines.md)
+  preserve the independent original analytics and ML project.
+- [ClickHouse REES46 migration](phase-3.2-migration.md) preserves reconciliation
+  and recovery evidence, including its stronger validation policy.
+- [Synerise assessment](phase-3.3-synerise-assessment.md) and
+  [provenance](phase-3.3-synerise-provenance.md) preserve unresolved source-version,
+  clock and licensing assumptions. The assessment renderer keeps its original path.
+- [Completed Synerise bulk load](phase-3.5-synerise-bulk-load.md) records the
+  permanent dataset's count-only acceptance; it does not claim value reconciliation.
 
-No report was deleted or relocated: these documents contain unique technical decisions
-or validation evidence, and their existing reproduction links remain valid. Historical
-SQL audits under `analysis/` are evidence, not safe scripts to replay blindly. Generated
-runtime logs and temporary validation outputs are excluded from Git; source scripts,
-small aggregate evidence and fixtures are retained.
+Superseded infrastructure, GA4 investigations, Synerise design/benchmark and partial
+load reports are indexed in the [historical archive](../archive/README.md).
+Those findings are retained, not discarded or promoted to current acceptance claims.
+SQL execution audits are evidence and must not be replayed blindly. No original
+research scripts, tests or unique validation data were deleted during organization.

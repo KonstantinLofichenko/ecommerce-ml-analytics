@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.3 — GA4 e-commerce dataset suitability assessment
 
 Assessment date: 20 October 2026. **Decision: INCONCLUSIVE.** No authorized local
@@ -28,7 +31,7 @@ billing. The same documentation warns of placeholder values and limited internal
 consistency. These are documentation findings, not measurements of this project's
 query results. [Official dataset documentation](https://developers.google.com/analytics/bigquery/web-ecommerce-demo-dataset).
 
-Minimum setup and dry-run commands are in [research instructions](../../analysis/ga4/README.md).
+Minimum setup and dry-run commands are in [research instructions](../../../analysis/ga4/README.md).
 Choose an existing authorized project and verify Sandbox/free access. If account,
 project, API activation or credentials are needed, stop for user setup. No billing
 activation or paid execution is authorized by this research task.
@@ -237,9 +240,9 @@ compressed bytes), with uncertainty. No dollar/runtime/storage estimate is inven
 | Transactions | purchase events lack order IDs | candidate transaction field; reliability unknown |
 | Storage | validated DuckDB/ClickHouse reference | nested mapping proposed, no migration |
 
-Local comparison evidence: [migration report](phase-3.2-migration.md),
-[behavior report](phase-1.2-october-2019.md) and
-[baseline report](phase-2.4-baselines.md). The baseline report records the implemented
+Local comparison evidence: [migration report](../../reports/phase-3.2-migration.md),
+[behavior report](../../reports/phase-1.2-october-2019.md) and
+[baseline report](../../reports/phase-2.4-baselines.md). The baseline report records the implemented
 event-based labels; these should not be confused with older purchasing-session
 feasibility counts.
 

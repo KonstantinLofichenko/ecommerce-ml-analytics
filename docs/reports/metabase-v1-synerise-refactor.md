@@ -5,6 +5,9 @@ ClickHouse 25.8.33.6. All four canonical tables were rebuilt and validated.
 **91 relevant dbt tests passed**, with no skips or warnings. Metabase was read only;
 no cards, dashboards, connections or field metadata were edited.
 
+Definitions and source limitations are centralized in the
+[funnel data contract](../funnel-data-contract.md).
+
 ## Results and preservation
 
 | Canonical table | Before rows | After rows | Unique business IDs | Build seconds |

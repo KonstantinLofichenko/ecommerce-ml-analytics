@@ -1,6 +1,6 @@
 # ec_demo generator assessment
 
-See [decision report](../../../docs/reports/phase-3.3-ga4-generator-assessment.md).
+See [decision report](../../../docs/archive/ga4/phase-3.3-ga4-generator-assessment.md).
 This is synthetic local output, separate from Google's public sample dataset.
 No BigQuery or production database is needed. Only aggregates are retained here;
 raw generated JSONL/CSVs remain in `/tmp/ec-demo-evaluation-output` and may expire.

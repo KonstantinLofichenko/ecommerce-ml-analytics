@@ -13,7 +13,7 @@ Its custom memory gates and detailed acceptance policy do not apply to `bulk.py`
 # Phase 3.5 continuation — native load with streaming acceptance
 
 **Partial, private, stopped at the cgroup safety threshold.**
-[Report](../../../docs/reports/phase-3.5-synerise-native-ingestion.md).
+[Report](../../../docs/archive/synerise/phase-3.5-synerise-native-ingestion.md).
 Database: `synerise_raw__8efbe3d95dfc431cb1fa66f980f13a67`.
 Four validated tables retain 14,082,563 rows; search staging was retired and page
 was not attempted. BI/dbt access probes were denied. No publication pointer exists.
@@ -32,7 +32,8 @@ No Compose/service/resource configuration changed during this continuation.
   original-file hashes, source/destination checks, query IDs, resources and cleanup.
 - `executed.sql`: exact SQL audit for this release, **not an idempotent replay script**.
 - `reconciliation.csv`, `performance.csv`: generated numeric comparisons/metrics;
-  `counts.md`, `performance.md` are corresponding report tables.
+  `counts.md`, `performance.md` are ignored generated summaries, recreated by `report.py`;
+  the same tables are preserved in the archived native-ingestion report.
 - `validate_encoding.py`, `encoding-validation.json`: independent hashlib/byte
   reference versus synthetic SQL, including null, UTF-8, signed IDs and duplicates.
 - `preflight.py`: idle/resource preservation baseline; credential hashes stay in

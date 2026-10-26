@@ -1,7 +1,7 @@
 # GA4 suitability research — Phase 3.3
 
 Status: **unexecuted BigQuery queries / INCONCLUSIVE decision**. See the
-[assessment](../../docs/reports/phase-3.3-ga4-assessment.md) and
+[assessment](../../docs/archive/ga4/phase-3.3-ga4-assessment.md) and
 [execution manifest](execution-status.json). No production data or configuration is changed.
 
 All SQL is GoogleSQL SELECT/CTE only. There are no persistent or temporary writes,

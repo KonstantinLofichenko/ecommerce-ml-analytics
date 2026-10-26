@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.4 — Synerise → ClickHouse architecture
 
 Designed 21 October 2026. **CONDITIONAL GO for staged implementation**, beginning
@@ -43,8 +46,8 @@ headroom**, versus the required 256 MiB. The safety gate was not relaxed.
 | Source/destination equivalence | not executed | not executed |
 
 No performance comparison or successful end-to-end schema validation is claimed.
-See [benchmark protocol](../../analysis/synerise/architecture/benchmark-plan.md),
-[status](../../analysis/synerise/architecture/benchmark-status.json), initial failure
+See [benchmark protocol](benchmark-plan.md),
+[status](../../../analysis/synerise/architecture/benchmark-status.json), initial failure
 manifest and runtime snapshot. MemoryResident is process RSS; cgroup memory also
 includes other accounted memory such as cache. These are samples, not ingestion
 peaks. Do not substitute RSS for cgroup headroom or force eviction/restarts to pass.
@@ -79,7 +82,7 @@ REES46-specific JSONEachRow insert helper or its DuckDB source logic unchanged.
 
 ## Source-preserving schemas
 
-[Proposed DDL](../../analysis/synerise/architecture/proposed-ddl.sql) is entirely
+[Proposed DDL](../../../analysis/synerise/architecture/proposed-ddl.sql) is entirely
 commented, with release/attempt placeholders. The same renderer supports only the
 isolated POC. It has not passed full server DDL/data tests after the constraint fix.
 
@@ -231,7 +234,7 @@ Rollback selects the retained previous release pointer, never modifies REES46.
 Changing Metabase connections or BI mart deployments is a separate approved step;
 a raw pointer alone cannot switch several dashboards atomically. No database-wide
 rename/swap or mutable multi-source routing is assumed. See
-[workflow and state transitions](../../analysis/synerise/architecture/workflow.md).
+[workflow and state transitions](workflow.md).
 
 ## Source-to-destination reconciliation
 
@@ -264,7 +267,7 @@ prefixes without holding the whole dataset in a Python set. This validator is a
 future implementation requirement, not implemented performance evidence here.
 Bound buffers by measured RSS, not raw bytes alone. DuckDB research outputs provide
 additional regression expectations, but do not participate in ingestion or replace
-fresh Parquet validation. [Example reconciliation SQL](../../analysis/synerise/architecture/reconciliation.sql).
+fresh Parquet validation. [Example reconciliation SQL](../../../analysis/synerise/architecture/reconciliation.sql).
 
 ## Proposed dbt analytical layers
 
@@ -356,7 +359,7 @@ verification. No full data inserts, source changes, service-limit changes, exist
 table exchanges, production models, credential changes, commits or pushes occurred.
 
 Design artifacts, schema renderer, guarded POC, status and workflow live under
-[analysis/synerise/architecture](../../analysis/synerise/architecture/README.md).
+[analysis/synerise/architecture](../../../analysis/synerise/architecture/README.md).
 Proposed production DDL/reconciliation queries remain unexecuted. Live benchmark
 limitations are explicit rather than invented metrics; local design/temporal checks
 and protected-file comparison are recorded in the handoff artifacts. All 37

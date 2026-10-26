@@ -7,10 +7,10 @@ reconciliation triggered ClickHouse code 241. Execution stopped; its incomplete
 attempt and empty release database were removed. **Zero Synerise rows are retained
 or published.** No further load was attempted and no resource limit was increased.
 
-[Reproduction and scripts](../../analysis/synerise/ingestion/README.md),
-[aggregate results](../../analysis/synerise/ingestion/results.json),
-[executed SQL audit](../../analysis/synerise/ingestion/executed.sql),
-[failed file manifest](../../analysis/synerise/ingestion/product_properties-validation.json).
+[Reproduction and scripts](../../README.md),
+[aggregate results](results.json),
+[executed SQL audit](executed.sql),
+[failed file manifest](product_properties-validation.json).
 
 ## Configuration and preservation
 

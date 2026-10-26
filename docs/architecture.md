@@ -1,5 +1,42 @@
 # Architecture
 
+## Current: Synerise Dashboard V1.0
+
+```text
+Pinned Synerise Parquet → native ClickHouse file() bulk import → synerise_raw
+    → dbt staging (source-clock strings, no UTC claim)
+        → first visit/cart/purchase intermediates → overall customer funnel
+        → narrow category/SKU metric intermediates → canonical funnel facts
+Amazon Reviews 2023 metadata → external_catalog.amazon_products → Amazon staging
+    → deterministic synthetic category dimension → synthetic product dimension
+        → display enrichment of canonical facts → Metabase Dashboard V1.0
+```
+
+Canonical facts are `fct_synerise_funnel_by_category` and
+`fct_synerise_funnel_by_product`. They expose five scalar category levels and the
+full hierarchy, eliminating large Metabase joins. The overall funnel remains separate.
+Equal-second cart/purchase chronology is accepted (`>=`); these all-time funnels
+are not the strict REES46 session funnels. Synthetic labels are display-only.
+
+Metric intermediates normally rebuild from raw staging. The documented one-time
+bootstrap reused validated historical metrics; future raw refreshes must use the
+default path. Use the local catalog target, one thread and bounded query settings.
+ClickHouse remains at 8 GiB container / 6 GiB server. Background merges and the
+known global tracker discrepancy require adequate idle headroom before validation.
+The legacy dashboard copy was already absent at the last repository-preparation
+check; it is not a canonical dependency. No table was dropped by documentation cleanup.
+
+See the [current validation report](reports/metabase-v1-synerise-refactor.md) for
+model dependencies, rebuild commands, preservation evidence and limitations.
+The phase sections below describe historical REES46 milestones, not the current
+Synerise implementation status. Existing ML features and baselines remain independent.
+
+## Historical REES46 milestones and infrastructure decisions
+
+The sections below retain phase-specific scope and implementation details. Their
+then-future statements are historical, not the current Synerise deployment status.
+The [funnel data contract](funnel-data-contract.md) is authoritative for V1.0 semantics.
+
 ## Historical foundation: local batch exploration
 
 ```text
@@ -19,7 +56,8 @@ to disk. Exact distinct-row counting may be the most expensive aggregation.
 Input values remain strings to preserve identifiers and duplicate semantics;
 timestamps are validated and cast for temporal queries. Dates are grouped in UTC.
 Synthetic tests exercise data quality and CLI failure behavior without a dataset
-download. Reserved package directories contain no infrastructure implementation.
+download. At this initial milestone, reserved package directories contained no
+infrastructure implementation.
 
 ## Implemented: Phase 1.2 behavior exploration
 
@@ -103,7 +141,8 @@ other source and analytical tables remain intact. The 2 GB/two-thread DuckDB
 configuration and temporary spill space follow ingestion conventions. Synthetic
 boundary, invariance and rollback tests run without the production database.
 See [feature definitions](customer-features.md) for missing-ID handling, observed
-history limits and reproducible commands. No model training is implemented.
+history limits and reproducible commands. This feature-building phase does not
+train models; the separate Phase 2.4 pipeline does.
 
 ## Implemented: Phase 2.4 provisional chronological baselines
 
@@ -137,8 +176,8 @@ Separate application roles/databases isolate Airflow and Metabase metadata.
 Persistent volumes are Compose-scoped. All published ports bind to 127.0.0.1,
 with host defaults distinct from AIS. No AIS resources are reused or changed.
 
-At the end of Phase 3.1, ClickHouse was empty apart from its dedicated database. dbt contains
-only an infrastructure SQL test; Metabase's built-in ClickHouse driver is used.
+At the end of Phase 3.1, ClickHouse was empty apart from its dedicated database,
+and dbt contained only an infrastructure SQL test; Metabase's built-in ClickHouse driver is used.
 Airflow standalone is optional local development infrastructure, with no DAGs;
 its metadata is PostgreSQL. ML is an optional execution image that reuses the
 package; its host data mount is read-only. These Python environments are separate.
@@ -164,13 +203,14 @@ session / time sorting support later batch transformations without uniqueness
 assumptions. See [migration design](clickhouse-migration.md) for normalization,
 resource limits, permissions and recovery operations.
 
-Dedicated ingestion, dbt and read-only BI users are provisioned without changing
-legacy credentials. dbt reads `ecommerce.raw_events` and writes only in
+For the REES46 migration, dedicated ingestion, dbt and read-only BI users were
+provisioned without changing legacy credentials. That restricted dbt role reads `ecommerce.raw_events` and writes only in
 `ecommerce_analytics`; a source declaration and quality tests are present, but
-production session/funnel/customer/feature models are not implemented. Airflow
-DAGs, dashboards and further training remain deferred. AIS is untouched.
+REES46 session/customer/feature transformations remain in DuckDB. Synerise dbt
+funnel models and Dashboard V1.0 were implemented subsequently, as described above.
+Airflow ingestion/ML DAGs remain future work. AIS is untouched.
 
-## Planned: agreed target architecture
+## Historical target: REES46 transformation roadmap
 
 ```text
 Public REES46 CSVs → validated ClickHouse ingestion
@@ -183,38 +223,8 @@ Docker Compose → independent local service/runtime boundary
 ```
 
 This target replaces the older exploratory Kafka/MLflow roadmap; neither system
-is part of the agreed stack or implemented here. Data migration, production dbt
-models, dashboards, ingestion/ML DAGs and further training are deliberately later
-phases. Preserve UTC event windows, raw duplicate policy and event-based target
-definitions when reconciling ClickHouse against DuckDB. Session timeout and
+is part of the agreed stack or implemented here. At that roadmap milestone,
+data migration, dbt models, dashboards and DAGs were future work. Raw migration and the separate Synerise dashboard have since completed;
+REES46 feature migration, orchestration and further training remain future work.
+Preserve UTC event windows, raw duplicate policy and event-based target definitions when reconciling ClickHouse against DuckDB. Session timeout and
 production deduplication decisions remain unresolved.
-
-## Current: Synerise Dashboard V1.0
-
-```text
-Pinned Synerise Parquet → native ClickHouse file() bulk import → synerise_raw
-    → dbt staging (source-clock strings, no UTC claim)
-        → first visit/cart/purchase intermediates → overall customer funnel
-        → narrow category/SKU metric intermediates → canonical funnel facts
-Amazon Reviews 2023 metadata → external_catalog.amazon_products → Amazon staging
-    → deterministic synthetic category dimension → synthetic product dimension
-        → display enrichment of canonical facts → Metabase Dashboard V1.0
-```
-
-Canonical facts are `fct_synerise_funnel_by_category` and
-`fct_synerise_funnel_by_product`. They expose five scalar category levels and the
-full hierarchy, eliminating large Metabase joins. The overall funnel remains separate.
-Equal-second cart/purchase chronology is accepted (`>=`); these all-time funnels
-are not the strict REES46 session funnels. Synthetic labels are display-only.
-
-Metric intermediates normally rebuild from raw staging. The documented one-time
-bootstrap reused validated historical metrics; future raw refreshes must use the
-default path. Use the local catalog target, one thread and bounded query settings.
-ClickHouse remains at 8 GiB container / 6 GiB server. Background merges and the
-known global tracker discrepancy require adequate idle headroom before validation.
-The disabled legacy dashboard fact remains in ClickHouse pending approved removal.
-
-See the [current validation report](reports/metabase-v1-synerise-refactor.md) for
-model dependencies, rebuild commands, preservation evidence and limitations.
-Earlier phase sections above describe historical REES46 milestones, not the current
-Synerise implementation status. Existing ML features and baselines remain independent.

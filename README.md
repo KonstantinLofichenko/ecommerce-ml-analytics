@@ -14,6 +14,13 @@ Start with the [Dashboard V1.0 validation and rebuild guide](docs/reports/metaba
 [Amazon import instructions](docs/amazon-catalog.md), and [infrastructure setup](docs/infrastructure.md).
 Historical research is indexed in [docs/reports/README.md](docs/reports/README.md).
 
+The [funnel data contract](docs/funnel-data-contract.md) defines customer, category
+and SKU cohorts, chronology, denominators, coverage and attribution limitations.
+Canonical reporting tables in `synerise_analytics` are `fct_synerise_funnel`,
+`fct_synerise_funnel_by_category`, and `fct_synerise_funnel_by_product`; synthetic
+display dimensions are `dim_synerise_categories` and `dim_synerise_products`.
+Superseded investigations are indexed in the [historical archive](docs/archive/README.md).
+
 ## Technology stack
 
 Python 3.11+, DuckDB for full-file SQL aggregation, Pandas for small aggregate
@@ -236,7 +243,7 @@ Metabase is at `http://127.0.0.1:13000`; ClickHouse HTTP is at port 18123.
 Airflow (`--profile airflow`) and Python execution (`--profile ml`) are optional.
 The AIS project remains independent. No event data is migrated and no models
 are trained by infrastructure startup. See [infrastructure instructions](docs/infrastructure.md)
-and the [runtime verification report](docs/reports/phase-3.1-infrastructure.md).
+and the [runtime verification report](docs/archive/infrastructure/phase-3.1-infrastructure.md).
 
 ## Phase 3.2: validated ClickHouse raw history
 

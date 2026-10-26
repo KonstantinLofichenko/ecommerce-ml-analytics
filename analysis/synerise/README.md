@@ -1,7 +1,9 @@
 # Synerise RecSys 2025 feasibility research
 
 Original Synerise events, not the competition's selected/preprocessed population.
-Research only: no production database, Docker or ML access. See the
+This directory preserves the original offline feasibility investigation, which did
+not access production databases, Docker or ML. Current deployed analytics are
+described in the [funnel contract](../../docs/funnel-data-contract.md). See the historical
 [assessment](../../docs/reports/phase-3.3-synerise-assessment.md).
 
 ## Provenance and attribution

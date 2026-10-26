@@ -1,7 +1,9 @@
 # Dashboard V1.0 operations and implementation notes
 
 The measured acceptance summary is in the [final validation report](reports/metabase-v1-synerise-refactor.md).
-The following preserves the implementation, memory investigation and rebuild details.
+Current semantics are defined in the [funnel data contract](funnel-data-contract.md).
+Build guidance below remains applicable; measured timings, card IDs and migration
+observations are dated refactor evidence rather than a live dashboard inventory.
 
 ## Hierarchy and synthetic semantics
 
@@ -135,20 +137,23 @@ cart actions, equal timestamps, purchase-before-cart, different-SKU/same-categor
 conversion, wrong-category rejection, purchase-only customers and no time deadline.
 Ruff lint passed; all 97 Python files passed format checking.
 
-## Manual Metabase changes
+## Metabase query guidance and historical migration observations
 
-Read-only metadata inspection found these saved SQL questions:
+During the V1.0 refactor, read-only metadata inspection found these saved SQL questions
+requiring migration. The dashboard is now declared complete; the entries below are
+historical observations, not outstanding changes or a fresh inspection:
 
-| Card | Saved name | Required manual change |
+| Card at inspection | Saved name | Migration guidance recorded then |
 | --- | --- | --- |
 | 39 | Synerise — Funnel by Category | Remove dimension join; select hierarchy directly from the canonical category fact. |
 | 40 | Sunerise — Funnel by Product | Remove dimension join; select hierarchy directly from the canonical product fact. |
 
-Both currently select top ten IDs first, then join the category dimension. Move
+At that inspection both selected top ten IDs first, then joined the category dimension.
+For any future query changes, move
 all hierarchy filters **before ORDER BY/LIMIT**, otherwise filtering a preselected
-top ten can return incorrect rankings. They already reference canonical facts.
-No saved question definition directly named the legacy dashboard table. Its
-Metabase table ID is 27; the canonical category/product table IDs are 25/26.
+top ten can return incorrect rankings. They referenced canonical facts at the inspection.
+At that inspection no saved question definition directly named the legacy dashboard
+table. Its Metabase table ID was 27; canonical category/product table IDs were 25/26.
 Do not redirect cards 39/40 to new copies or create runtime dimension joins.
 
 Example replacement for card 40:
@@ -181,12 +186,11 @@ HTTP on this local server. They returned ten rows each. Product filtering still
 scanned all 1,444,160 narrow fact rows because sorting remains by SKU; no claim of
 hierarchy-index pruning or cold-cache performance is made.
 
-The existing `fct_synerise_funnel_by_product_dashboard` remains physically intact,
-with its original UUID, 1,444,160 rows and unchanged fingerprint. Its dbt node is
-now disabled, so normal builds do not perpetuate a duplicate reporting concept.
-No dbt model depends on it. Removal of that frozen legacy relation remains a
-separate explicitly approved action after the user's Metabase review.
-
+At refactor validation, `fct_synerise_funnel_by_product_dashboard` remained physically intact,
+with its original UUID, 1,444,160 rows and unchanged fingerprint. Its dbt node was
+disabled, so normal builds would not perpetuate a duplicate reporting concept.
+No dbt model depended on it. This retention statement describes that historical
+validation only; the later observation below supersedes its deployment status.
 
 ## Repository preparation observation
 

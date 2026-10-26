@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.3 follow-up — ec_demo generator assessment
 
 Assessed 20 October 2026 at upstream commit
@@ -21,10 +24,10 @@ and client were not needed. Local DuckDB analysis used temporary relations only.
 No project datasets, credentials, infrastructure or earlier results were changed.
 No model was trained. There were no cloud jobs or cloud query charges.
 
-Artifacts: [execution manifest](../../analysis/ga4/generator/run-manifest.json),
-[configuration](../../analysis/ga4/generator/evaluated-config.yaml),
-[aggregate results](../../analysis/ga4/generator/results-seed-42.json),
-[evaluator and reproduction](../../analysis/ga4/generator/README.md).
+Artifacts: [execution manifest](../../../analysis/ga4/generator/run-manifest.json),
+[configuration](../../../analysis/ga4/generator/evaluated-config.yaml),
+[aggregate results](../../../analysis/ga4/generator/results-seed-42.json),
+[evaluator and reproduction](../../../analysis/ga4/generator/README.md).
 All figures below are measured from this single run, unless marked code inspection.
 The source README's approximate counts are not substituted for measured output.
 

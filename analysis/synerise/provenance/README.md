@@ -1,7 +1,7 @@
 # Focused Synerise provenance and clock verification
 
 See [findings](../../../docs/reports/phase-3.3-synerise-provenance.md) and
-[unsent publisher inquiry](../../../docs/reports/phase-3.3-synerise-publisher-inquiry.md).
+[unsent publisher inquiry](../../../docs/archive/synerise/phase-3.3-synerise-publisher-inquiry.md).
 Earlier assessment and source files are preserved.
 
 `verification.json` contains reverified archive/member/extracted hashes, archive

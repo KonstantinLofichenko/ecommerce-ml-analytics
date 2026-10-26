@@ -1,3 +1,10 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
+Supporting scripts and fixtures retain their original paths in
+`analysis/synerise/architecture/`; relative code filenames in this historical
+proposal refer to that directory, not this archive.
+
 # Proposed workflow — not a full-migration entry point
 
 No commands here start services, change mounts, grant users or publish data.

@@ -297,7 +297,7 @@ They need not block planning a research system that preserves the uncertainty.
 The prior order/session, static-attribute, identity and NonCommercial limitations
 remain applicable; this follow-up does not remove them.
 
-Review the [unsent publisher inquiry](phase-3.3-synerise-publisher-inquiry.md) and
+Review the [unsent publisher inquiry](../archive/synerise/phase-3.3-synerise-publisher-inquiry.md) and
 approve contact separately if desired. Official contact was taken from the README;
 no email or GitHub issue was sent/created. Do not begin migration or implementation
 until review and explicit approval.

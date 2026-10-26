@@ -1,6 +1,6 @@
 # Phase 3.4.1 bounded ingestion experiment
 
-**INCONCLUSIVE.** See [report](../../../../docs/reports/phase-3.4.1-synerise-ingestion-benchmark.md).
+**INCONCLUSIVE.** See [report](../../../../docs/archive/synerise/phase-3.4.1-synerise-ingestion-benchmark.md).
 65 successful trials / 3,140,000 reconciled source rows; one global server-memory
 abort. No production ingestion or migration. `results.json` is the complete evidence;
 `trials.csv` gives every completed trial's metrics, `comparison.md` the balanced 50k

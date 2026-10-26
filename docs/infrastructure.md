@@ -234,7 +234,7 @@ docker compose --profile '*' down --volumes
 That deletes this project's database/log/auth volumes, not the bind-mounted
 DuckDB/raw data, and was **not** run during verification. Recreate credentials
 only if intentionally rotating the entire local environment. See the
-[verification report](reports/phase-3.1-infrastructure.md) for actual checks and
+[verification report](archive/infrastructure/phase-3.1-infrastructure.md) for actual checks and
 outstanding first-run steps.
 
 ## Primary references

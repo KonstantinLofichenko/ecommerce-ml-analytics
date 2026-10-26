@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Synerise dataset publisher inquiry — unsent draft
 
 Status: **Draft only. Not sent; no GitHub issue created.**

@@ -1,3 +1,6 @@
+> Historical archive: this document records an earlier investigation or proposal.
+> It does not describe current deployment state. See the [current funnel contract](../../funnel-data-contract.md).
+
 # Phase 3.1 — Independent Docker infrastructure verification
 
 Verified locally on 20 October 2026, Europe/Moscow. Project: `ecommerce-ml`.
@@ -119,7 +122,7 @@ Generated dbt logs/targets are also ignored. No commits or pushes were made.
 
 ## Reproduction and remaining decisions
 
-See [infrastructure instructions](../infrastructure.md) for configuration,
+See [infrastructure instructions](../../infrastructure.md) for configuration,
 profiles, versions, ports, operations, safe reset and optional host dbt setup.
 For a fresh checkout, first initialize developer credentials, then:
 

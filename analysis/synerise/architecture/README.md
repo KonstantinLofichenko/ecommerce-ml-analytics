@@ -1,12 +1,12 @@
 # Phase 3.4 architecture artifacts
 
-[Architecture report](../../../docs/reports/phase-3.4-synerise-architecture.md).
+[Architecture report](../../../docs/archive/synerise/phase-3.4-synerise-architecture.md).
 
 - `proposed-ddl.sql`: six proposed raw tables; entirely commented, no automatic execution.
 - `schema.py`: renderer shared with the isolated POC; not a migration runner.
-- `workflow.md`: native/Python alternatives, recovery and release publication.
+- [Archived workflow](../../../docs/archive/synerise/workflow.md): native/Python alternatives, recovery and release publication.
 - `reconciliation.sql`: SELECT examples, explicitly parameterized Synerise database.
-- `benchmark-plan.md`, `benchmark.py`: opt-in bounded POC, source/time/multiplicity checks.
+- [Archived benchmark plan](../../../docs/archive/synerise/benchmark-plan.md), `benchmark.py`: opt-in bounded POC, source/time/multiplicity checks.
 - `benchmark-status.json`: attempts and reasons for safe rejection; no throughput invented.
 - `benchmark-initial-schema-error.json`: failed initial DDL attempt and verified cleanup.
 - `runtime-snapshot.json`: read-only live grants, memory and REES46 identity.
