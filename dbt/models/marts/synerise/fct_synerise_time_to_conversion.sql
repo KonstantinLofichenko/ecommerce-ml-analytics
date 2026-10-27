@@ -113,7 +113,3 @@ SELECT
     ) AS conversion_7d_pct
 
 FROM summary
-
-SETTINGS
-    max_threads = 1,
-    max_memory_usage = 1073741824

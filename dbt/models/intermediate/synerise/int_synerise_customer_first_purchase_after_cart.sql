@@ -24,10 +24,3 @@ WHERE
 
 GROUP BY
     p.client_id
-
-SETTINGS
-    max_threads = 1,
-    max_memory_usage = 1073741824,
-    join_algorithm = 'grace_hash',
-    max_bytes_in_join = 67108864,
-    max_bytes_before_external_group_by = 268435456

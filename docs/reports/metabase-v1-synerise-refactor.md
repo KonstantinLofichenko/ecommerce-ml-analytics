@@ -122,3 +122,75 @@ finalization. The allocation files are included as the user's reviewed configura
 changes. Metabase was not modified. Its cumulative-category refresh ordering remains
 an accepted presentation limitation; timezone/censoring and historical full-refresh
 resource limitations remain documented.
+
+## V2.1 segment validation — 27 October 2026
+
+Six new models were built sequentially, without rebuilding V1/V2, dimensions or
+sources. Parse passed. **60/60 dbt tests passed in 7.98 seconds**: 40 new checks and
+the existing 20 V2 customer tests. New checks cover composite uniqueness, null/flag
+integrity, chronology/exact durations, first-cart population preservation, mature
+cohorts, monotonic counts/rates, summary consistency, hierarchy validity and exact
+V1 reconciliation. No correctness or memory failures occurred.
+
+| Grain | Reporting rows | Cart memberships | Converted memberships | Seven-day eligible memberships |
+| --- | ---: | ---: | ---: | ---: |
+| Original category | 6,880 | 4,335,239 | 995,059 | 4,037,787 |
+| SKU | 1,444,160 | 5,791,963 | 1,182,574 | 5,385,921 |
+
+Cart and converter counts match V1 **at every category/SKU**, with zero differences.
+Totals are memberships, not distinct people across grains. V2's existing customer
+summary and both V1 reporting-table fingerprints match the pre-build baseline;
+protected raw-table UUIDs and metadata counts are unchanged. Source files and
+existing model SQL were not modified. Catalog mappings were reused, not regenerated.
+
+Independent raw-event queries verified complete cohorts for categories **258, 791**
+and SKUs **219232, 1243077**, including first qualifying purchases, cart/converter
+counts, exact P50/P75/P90, mature denominators and all window numerators.
+For example, category 258 has 102,796 cart memberships, 22,232 converters and
+95,744 eligible memberships; P50/P75/P90 are 360/1,909/139,950 seconds.
+SKU 219232 has 5,655 carts, 1,283 converters and 5,224 eligible memberships;
+P50/P75/P90 are 1,710/72,654/528,045 seconds. These spot checks supplement the
+whole-grain reconciliation and null-integrity tests, not complete value-level raw
+reconciliation of every timestamp.
+
+| New model | dbt build seconds | Logged INSERT peak bytes |
+| --- | ---: | ---: |
+| int_synerise_category_first_cart | 2.69 | 280,244,837 |
+| int_synerise_product_first_cart | 1.36 | 87,359,414 |
+| int_synerise_category_conversion_times | 2.38 | 394,719,881 |
+| int_synerise_product_conversion_times | 2.39 | 361,858,533 |
+| fct_synerise_time_to_conversion_by_category | 0.19 | 88,237,460 |
+| fct_synerise_time_to_conversion_by_product | 6.39 | 454,778,603 |
+
+Peak values are per-query ClickHouse tracker measurements, not continuous global
+or container peaks. The three two-model invocations took 4.22, 4.87 and 6.69 seconds;
+these exclude source spot checks, parse, tests and documentation. No memory limit
+was increased; the existing 16 GiB container / 12 GiB server allocation was retained.
+Generated logs and detailed temporary checks stay outside Git. Metabase SQL and
+manual filter instructions are in the [operations guide](../dashboard-v1-operations.md#v21-category-and-product-segments).
+No dashboard/tab was created or edited by the repository implementation. The
+initial review did not commit or push; final publication is recorded below.
+
+Censoring, unverified source-clock elapsed time, converter-only percentile selection,
+small cohorts, synthetic display labels and the lack of true orders/sessions remain
+limitations. No causality or statistical confidence claim is made from these metrics.
+
+### Final V2.1 publication validation
+
+On 27 October 2026 the user confirmed category/product Metabase integration and
+formatting were complete in the existing Time to Conversion tab. Repository
+finalization did not inspect or edit the dashboard. Reference questions and filter
+configuration remain documented for reproduction.
+
+Final `dbt parse` and **60/60 tests passed in 7.59 seconds** with one dbt thread.
+Ruff, internal documentation links and whitespace checks passed. Existing V1
+funnel/catalog fingerprints and V2 customer summary match their baselines;
+protected REES46/Synerise/Amazon raw UUIDs and metadata counts are unchanged.
+
+This checkpoint includes the successful subset of the user-requested SETTINGS
+removal experiment: six models rebuilt with identical complete fingerprints.
+Customer conversion retains required NULL-join semantics via dbt configuration.
+The category conversion-history experiment exceeded the 1 GiB query limit, so its
+original settings were restored and its existing table verified intact. Remaining
+models retain their controls. See [operations](../dashboard-v1-operations.md#final-v21-settings-experiment-and-publication-checkpoint)
+for the exact scope. No validated business definitions or memory limits changed.

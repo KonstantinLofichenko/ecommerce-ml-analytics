@@ -1,0 +1,88 @@
+version: 2
+models:
+- name: int_synerise_category_first_cart
+  description: Original Synerise customer x category_id; source-clock first cart;
+    no page-visit prerequisite.
+  data_tests:
+  - unique_in_order:
+      arguments:
+        column_name: category_id, client_id
+  columns:
+  - name: category_id
+    data_tests:
+    - not_null
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: first_cart_time
+    data_tests:
+    - not_null
+- name: int_synerise_category_conversion_times
+  description: Original Synerise customer x category_id; source-clock first cart and
+    earliest same-grain purchase >= cart; NULL time/duration for non-converters.
+  data_tests:
+  - unique_in_order:
+      arguments:
+        column_name: category_id, client_id
+  columns:
+  - name: category_id
+    data_tests:
+    - not_null
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: first_cart_time
+    data_tests:
+    - not_null
+  - name: converted
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+- name: int_synerise_product_first_cart
+  description: Original Synerise customer x sku; source-clock first cart; no page-visit
+    prerequisite.
+  data_tests:
+  - unique_in_order:
+      arguments:
+        column_name: sku, client_id
+  columns:
+  - name: sku
+    data_tests:
+    - not_null
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: first_cart_time
+    data_tests:
+    - not_null
+- name: int_synerise_product_conversion_times
+  description: Original Synerise customer x sku; source-clock first cart and earliest
+    same-grain purchase >= cart; NULL time/duration for non-converters.
+  data_tests:
+  - unique_in_order:
+      arguments:
+        column_name: sku, client_id
+  columns:
+  - name: sku
+    data_tests:
+    - not_null
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: first_cart_time
+    data_tests:
+    - not_null
+  - name: converted
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false

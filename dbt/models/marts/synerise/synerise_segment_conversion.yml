@@ -1,0 +1,42 @@
+version: 2
+models:
+- name: fct_synerise_time_to_conversion_by_category
+  description: Exact observed-converter duration statistics in seconds; cumulative
+    rates share seven-day mature cohort. Synthetic labels are display-only, excluded
+    from ML.
+  data_tests:
+  - category_hierarchy_valid
+  columns:
+  - name: category_id
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: cart_customers
+    data_tests:
+    - not_null
+  - name: converted_customers
+    data_tests:
+    - not_null
+  - name: eligible_customers_7d
+    data_tests:
+    - not_null
+- name: fct_synerise_time_to_conversion_by_product
+  description: Exact observed-converter duration statistics in seconds; cumulative
+    rates share seven-day mature cohort. Synthetic labels are display-only, excluded
+    from ML.
+  data_tests:
+  - category_hierarchy_valid
+  columns:
+  - name: sku
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: cart_customers
+    data_tests:
+    - not_null
+  - name: converted_customers
+    data_tests:
+    - not_null
+  - name: eligible_customers_7d
+    data_tests:
+    - not_null

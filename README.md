@@ -1,7 +1,8 @@
 # E-Commerce ML Analytics
 
-Synerise Funnel Analytics V2.0 extends the completed V1.0 customer/category/SKU
-funnels and synthetic display catalog with customer-level Time to Conversion.
+Synerise Funnel Analytics V2.1 extends the completed V1.0 customer/category/SKU
+funnels and synthetic display catalog with customer, category and product
+Time to Conversion.
 The existing Metabase dashboard has two tabs: **Funnel Analytics** and
 **Time to Conversion**; no separate dashboard is required.
 ClickHouse and dbt serve canonical, denormalized tables to Metabase. Source-clock
@@ -40,6 +41,23 @@ The conversion-times table retains non-converters with NULL purchase time/durati
 See the [data contract](docs/funnel-data-contract.md#customer-time-to-conversion--v20),
 [build/test commands](docs/dashboard-v1-operations.md#v20-build-and-test), and
 [dated validation checkpoint](docs/reports/metabase-v1-synerise-refactor.md#v20-validation-checkpoint--27-october-2026).
+
+## Category and product Time to Conversion — V2.1
+
+V2.1 adds per-customer first-cart cohorts within each original category and SKU,
+retaining non-converters. New denormalized facts are
+`fct_synerise_time_to_conversion_by_category` and
+`fct_synerise_time_to_conversion_by_product`. Exact converter-only percentiles and
+common seven-day-cohort cumulative rates reconcile with V1's per-grain counts.
+These are customer memberships across grains, not additive distinct-customer totals.
+
+See the [definitions](docs/funnel-data-contract.md#category-and-product-time-to-conversion--v21),
+[build/test and manual Metabase instructions](docs/dashboard-v1-operations.md#v21-category-and-product-segments),
+and [validation](docs/reports/metabase-v1-synerise-refactor.md#v21-segment-validation--27-october-2026).
+Both category and product tables are integrated into the existing Time to Conversion
+tab, with formatting completed by the user. Join-free reference SQL and filter
+instructions remain available for reproduction; overall customer KPI cards remain
+unfiltered. Repository finalization does not modify Metabase.
 
 ## Technology stack
 

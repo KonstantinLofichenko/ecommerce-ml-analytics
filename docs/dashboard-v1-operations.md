@@ -233,8 +233,9 @@ export CLICKHOUSE_PORT=18123
 
 Refs enforce build order: first cart, first qualifying purchase, conversion times,
 then reporting summary. Models use a 1 GiB query cap and one execution thread;
-join models use `grace_hash` with a 64 MiB join threshold. Raw grouping models also
-specify a 256 MiB external aggregation threshold. Their query settings remain unchanged;
+the original join models used `grace_hash` with a 64 MiB join threshold and raw
+grouping used a 256 MiB external aggregation threshold. The later successful
+settings-removal experiment below supersedes those model-local controls where noted;
 the user increased the container/server allocation for the completed V2 checkpoint.
 
 ### Memory-efficient uniqueness and validation history
@@ -291,3 +292,99 @@ match current files. The earlier pass/failure history above is retained as histo
 evidence; it is not the final checkpoint status. No additional whole-suite reruns,
 raw-event aggregation rebuilds, service changes or Metabase edits were needed for
 finalization. Generated logs and dbt artifacts remain ignored.
+
+## V2.1 category and product segments
+
+Definitions are in the [V2.1 contract](funnel-data-contract.md#category-and-product-time-to-conversion--v21).
+This extension adds six tables: two narrow first-cart cohorts, two nullable
+conversion histories, and the two denormalized reporting facts. Only new models
+are selected; omit `+` to preserve existing parents and historical models.
+Use the same private credentials and `catalog` target configuration as V2 above.
+
+```bash
+.venv-dbt/bin/dbt parse --project-dir dbt --profiles-dir dbt --target catalog
+.venv-dbt/bin/dbt run --project-dir dbt --profiles-dir dbt --target catalog \
+  --select int_synerise_category_first_cart int_synerise_product_first_cart \
+  int_synerise_category_conversion_times int_synerise_product_conversion_times \
+  fct_synerise_time_to_conversion_by_category \
+  fct_synerise_time_to_conversion_by_product --threads 1
+.venv-dbt/bin/dbt test --project-dir dbt --profiles-dir dbt --target catalog \
+  --select int_synerise_category_first_cart int_synerise_product_first_cart \
+  int_synerise_category_conversion_times int_synerise_product_conversion_times \
+  fct_synerise_time_to_conversion_by_category fct_synerise_time_to_conversion_by_product \
+  int_synerise_customer_first_cart int_synerise_customer_first_purchase_after_cart \
+  int_synerise_customer_conversion_times fct_synerise_time_to_conversion \
+  path:tests/synerise_segment_conversion path:tests/synerise_time_to_conversion --threads 1
+```
+
+Refs enforce dependency order. `synerise_segment_summary` computes raw-second
+statistics and unrounded fraction rates from sorted narrow histories. Streaming
+composite uniqueness reuses `unique_in_order`; exact aggregation in order bounds
+per-grain state. Joins use a 64 MiB grace-hash threshold, query memory is 1 GiB,
+external aggregation is 64 MiB and external sort is 32 MiB. Limits are unchanged.
+Refresh cohorts before facts if source data changes; update the pinned observation
+endpoint and reconcile V1 definitions deliberately rather than bypassing failures.
+
+### Completed Metabase integration and reference filter setup
+
+On 27 October 2026, the user confirmed both tables were added to the existing
+Time to Conversion tab and formatting was complete. This is user-confirmed UI
+status, not an independent dashboard inspection. The following SQL and setup
+instructions are retained for reproduction; no outstanding UI action is implied.
+
+Reference native SQL:
+
+- [Time to Conversion by Category](metabase/time-to-conversion-by-category.sql)
+- [Time to Conversion by Product](metabase/time-to-conversion-by-product.sql)
+
+These files contain Metabase optional-variable syntax, not dbt Jinja. Each queries
+only its final reporting fact, with no dimension joins. Add both saved questions
+to the **existing Time to Conversion tab**, not a new dashboard/tab.
+
+For each question, configure `category_level_1` through `category_level_4` as
+**Field Filters**, mapped to the identically named scalar column on that question's
+reporting fact, never to the dimension table. Connect the existing dashboard
+hierarchy filters to these variables on the two new cards. Cascading filters may
+be configured manually. Do **not** connect category filters to the existing overall
+customer KPI cards/charts: those remain global and unfiltered.
+
+Set the three minimum-volume variables as basic **Number** parameters. Suggested
+starting defaults are `min_cart_customers=100`, `min_converted_customers=30`, and
+`min_eligible_customers=100`; these are practical display safeguards, not guarantees
+of statistical reliability. Use zero or omit them for complete long-tail exploration.
+They are applied before ORDER BY/LIMIT and do not remove data from the dbt models.
+A high cart count does not compensate for very few converters; display both cohort
+sizes and converter counts alongside duration statistics. Small samples, especially
+P90, require caution and may merit higher thresholds for comparisons.
+
+Recommended table columns: original category ID or SKU/title, levels 1–4 and leaf,
+cart/converted/eligible customers, P50 minutes, P75 hours, P90 days, and the three
+cumulative rates. Optional detail columns include depth, level 5, average hours and
+window conversion counts. Format durations to two decimals and rates as percentages
+without multiplying the stored fractions by 100. NULL statistics mean no observed
+conversion or no eligible denominator, not zero time/rate. Both queries return the
+top 100 by converter count after filtering; edit this display limit as needed.
+The known Metabase refresh ordering issue is unchanged; no UI edits were performed.
+
+### Final V2.1 settings experiment and publication checkpoint
+
+A later user-requested experiment removed model SQL `SETTINGS` clauses one at a
+time, rebuilding and testing each model and comparing complete result fingerprints.
+Six passed unchanged: customer first cart, customer first qualifying purchase,
+customer conversion times, customer summary, category first cart and product first
+cart. Their shared memory/thread bounds now come from the unchanged `catalog`
+profile. Customer conversion times keeps `join_use_nulls=1` in dbt `query_settings`
+configuration because it controls unmatched-purchase semantics, not just performance.
+
+Removing the category conversion-history settings exceeded the **1 GiB query cap**.
+That source was restored; its last successful table remained intact and reconciled
+with V1. Remaining SQL settings were not removed. In particular, both segmented
+conversion-history models and reporting facts retain their original explicit
+controls. No server limit increase or metric-definition change accompanied this
+experiment. This is a documented execution limit, not an unresolved duplicate or
+conversion-count finding. The earlier initial-build timings remain historical.
+
+After these changes, final parse and **60/60 tests passed in 7.59 seconds**, with
+one thread and no errors/skips/warnings. V1 reporting/catalog fingerprints, the V2
+customer summary, and protected raw-table UUIDs/counts still match their baselines.
+No tables or dashboard objects were rebuilt or changed during final validation.

@@ -253,3 +253,27 @@ data migration, dbt models, dashboards and DAGs were future work. Raw migration 
 REES46 feature migration, orchestration and further training remain future work.
 Preserve UTC event windows, raw duplicate policy and event-based target definitions when reconciling ClickHouse against DuckDB. Session timeout and
 production deduplication decisions remain unresolved.
+
+## V2.1 category and SKU duration extension
+
+```text
+existing cart staging + original properties (category only)
+  → int_synerise_category_first_cart / int_synerise_product_first_cart
+existing purchase staging + first-cart cohorts + original properties (category only)
+  → int_synerise_category_conversion_times / int_synerise_product_conversion_times
+  → narrow per-category/SKU summaries (shared synerise_segment_summary macro)
+  → canonical dimensions joined after aggregation
+  → fct_synerise_time_to_conversion_by_category / ..._by_product
+  → two manually configured questions in the existing Time to Conversion tab
+```
+
+The four supporting tables live in `dbt/models/intermediate/synerise/`; the two
+facts live in `dbt/models/marts/synerise/`. First carts are materialized before
+joining raw purchase activity; matching is same original category or same SKU,
+with `>=` chronology. No raw cart/purchase many-to-many join is used. Customer
+cohorts sort by `(category_id, client_id)` or `(sku, client_id)`, making exact
+uniqueness and final grouping memory-efficient. Summaries attach existing catalog
+labels after aggregation; the original dimensions and V1/V2 models are not rebuilt.
+Models use one thread, 1 GiB query caps, bounded grace-hash joins and external
+aggregation/sort settings under the existing 16/12 GiB container/server limits.
+No source dataset, synthetic mapping, ML pipeline, or Metabase object is changed.

@@ -225,3 +225,44 @@ histories for distribution analysis are in `int_synerise_customer_conversion_tim
 Metabase may reorder cumulative-chart categories after refresh. This is an accepted
 presentation-only limitation for this milestone; no sorting fix or dashboard edit
 is part of repository finalization.
+
+## Category and product Time to Conversion — V2.1
+
+These are **per-grain first-cart cohorts**, not category filters applied to V2's
+single global first-cart anchor. Category histories have one row per
+`(category_id, client_id)`; product histories have one per `(sku, client_id)`.
+Neither requires a page visit. Category assignment uses original Synerise product
+properties, exactly as the V1 category funnel: first cart in a category → first
+purchase in that category at or after the cart; purchased SKU may differ.
+Product matching requires the same SKU. Original product eligibility is unchanged.
+
+Non-converters remain with `converted=0`, NULL purchase timestamp and NULL elapsed
+seconds. All-time conversion counts reconcile to V1 at the original category/SKU
+grain. Repeated customers across grains are intentional; summed memberships are
+not unique customers and must not be compared to the overall customer funnel.
+
+Reporting models are `fct_synerise_time_to_conversion_by_category` and
+`fct_synerise_time_to_conversion_by_product`. They store exact P50/P75/P90 in
+**seconds**, plus average seconds, among observed converters only. If no customer
+converts, those statistics are NULL, not zero. Presentation converts P50 to minutes,
+P75 to hours and P90 to days. Exact quantile semantics match V2's `quantileExactIf`;
+V2.1 does not round stored durations or fractions.
+
+Each grain independently defines `eligible_customers_7d` using its first cart
+`<= 2022-12-08 00:09:59 - INTERVAL 7 DAY`. That same denominator is used for
+`conversion_1h_rate`, `conversion_24h_rate` and `conversion_7d_rate`, with inclusive
+elapsed-second thresholds 3,600 / 86,400 / 604,800. Numerators are `converted_1h`,
+`converted_24h` and `converted_7d`; all are restricted to this mature cohort.
+Non-converters remain in the denominator. Zero denominator means NULL rates.
+Converter-only percentiles and mature-cohort rates have different populations.
+
+V2's source-clock representation, timezone uncertainty, tied timestamps, static
+product properties, incomplete observation and dataset-end censoring limitations
+also apply here. The endpoint is pinned, not inferred as a guarantee of continuous
+logging. Catalog paths/titles remain synthetic display-only labels with unchanged
+`amazon_catalog_v1` assignments; original IDs define the cohorts. Do not use labels
+as ML predictors. Model tables retain all volumes, including zero-conversion and
+small-sample grains; minimum-volume filters are presentation guidance only.
+
+See [build/filter instructions](dashboard-v1-operations.md#v21-category-and-product-segments)
+and the [existing validation report](reports/metabase-v1-synerise-refactor.md#v21-segment-validation--27-october-2026).
