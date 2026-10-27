@@ -1,4 +1,4 @@
-# Dashboard V1.0 operations and implementation notes
+# Funnel Analytics V1.0 / V2.0 operations and implementation notes
 
 The measured acceptance summary is in the [final validation report](reports/metabase-v1-synerise-refactor.md).
 Current semantics are defined in the [funnel data contract](funnel-data-contract.md).
@@ -96,12 +96,13 @@ the pinned historical release require explicit reconciliation and an update to
 
 ## Memory and validation
 
-Container memory remains **8,589,934,592 bytes (8 GiB)**, server memory remains
-**6,442,450,944 bytes (6 GiB)** and CPU allocation remains two CPUs. The catalog
+At the V1 refactor, container memory was **8,589,934,592 bytes (8 GiB)** and server memory was
+**6,442,450,944 bytes (6 GiB)**. These are historical limits; V2 now uses 16/12 GiB.
+CPU allocation remains two CPUs. The catalog
 target uses **one dbt thread** and one ClickHouse execution thread, 1 GiB per-query
 memory, 64 MiB external aggregation and 32 MiB external sort thresholds. Insert
 blocks and join memory are bounded; the product reporting join can spill with
-`grace_hash` at 64 MiB. Neither memory limit was increased.
+`grace_hash` at 64 MiB. Neither memory limit was increased during that V1 refactor.
 
 Inspection of the installed adapter confirms `custom_settings` are copied into
 connection settings. Actual INSERT query-log records independently show
@@ -198,3 +199,95 @@ At the later repository-preparation check, the disabled legacy dashboard relatio
 was already absent (`EXISTS TABLE` returned 0). No DROP was performed by this task.
 Earlier retention statements above describe the refactor-time state, not the later
 live state. The canonical facts remain unchanged and validated.
+
+## V2.0 build and test
+
+The existing Metabase dashboard's second tab is completed; do not recreate or edit
+it as part of validation. Its refresh-ordering issue is presentation-only. Consult
+the [V2 data contract](funnel-data-contract.md#customer-time-to-conversion--v20)
+before comparing its first-cart cohort with V1's page-visit-qualified cohort.
+
+With the existing authorized credentials privately exported, use the catalog target
+and paths below. Raw models need not be rebuilt merely to test existing tables.
+
+```bash
+export CLICKHOUSE_DATABASE=synerise_analytics
+export CLICKHOUSE_HOST=127.0.0.1
+export CLICKHOUSE_PORT=18123
+# CLICKHOUSE_USER and CLICKHOUSE_PASSWORD already exported privately.
+.venv-dbt/bin/dbt parse --project-dir dbt --profiles-dir dbt --target catalog
+
+.venv-dbt/bin/dbt test --project-dir dbt --profiles-dir dbt --target catalog \
+  --select int_synerise_customer_first_cart \
+  int_synerise_customer_first_purchase_after_cart \
+  int_synerise_customer_conversion_times fct_synerise_time_to_conversion \
+  path:tests/synerise_time_to_conversion --threads 1
+
+# Explicit rebuild only when required; this scans raw cart/purchase histories.
+# Not executed during the V2 documentation/validation checkpoint.
+.venv-dbt/bin/dbt run --project-dir dbt --profiles-dir dbt --target catalog \
+  --select int_synerise_customer_first_cart \
+  int_synerise_customer_first_purchase_after_cart \
+  int_synerise_customer_conversion_times fct_synerise_time_to_conversion --threads 1
+```
+
+Refs enforce build order: first cart, first qualifying purchase, conversion times,
+then reporting summary. Models use a 1 GiB query cap and one execution thread;
+join models use `grace_hash` with a 64 MiB join threshold. Raw grouping models also
+specify a 256 MiB external aggregation threshold. Their query settings remain unchanged;
+the user increased the container/server allocation for the completed V2 checkpoint.
+
+### Memory-efficient uniqueness and validation history
+
+All three customer tables are sorted by `client_id`. Their uniqueness checks use
+exact `GROUP BY client_id HAVING count()>1` with
+`optimize_aggregation_in_order=1`, `max_threads=1` and a 1 GiB query cap.
+`dbt/macros/tests/unique_in_order.sql` supplies the generic checks on first cart
+and first purchase. Conversion times instead uses the single singular test
+`dbt/tests/synerise_time_to_conversion/assert_synerise_customer_conversion_unique.sql`;
+it has no redundant generic uniqueness check. The one-row fact retains generic
+uniqueness on `metric_scope`.
+
+The final inventory is **20 tests**: 15 model/column checks and five singular tests,
+rather than the initially reported 15. Parse passed. All 20 passed on
+**27 October 2026 at 06:06:39–06:06:40 Moscow time** (03:06:39–03:06:40 UTC).
+The isolated optimized uniqueness test also passed before that suite.
+
+A subsequent attempt failed before tests started in adapter
+`list_relations_without_caching`, a metadata aggregation over `system.tables` and
+`system.databases`. Query ID `4ea706f7-d71a-4dc6-a534-8a7001e48b14` recorded code 241 and
+6,898,548 bytes query memory while the global tracker reported the 6 GiB ceiling.
+This did not establish duplicate customers or a metric correctness failure.
+Read-only follow-up found no competing active query/mutation, but system metric-log
+merges were active. Those current samples do not reconstruct the earlier peak;
+the global tracker discrepancy remains unresolved.
+
+The previous pass is accepted as the unchanged-code checkpoint: all 20 successful
+server test queries match current compiled SQL; current model texts match the parsed
+manifest; all V2 source-file modification times predate that pass; and intervening
+parse logs record zero added/deleted/changed files. The suite was not repeatedly
+rerun to force a pass. Raw tables, Metabase and resource settings were not changed.
+Future runs still require headroom because adapter metadata discovery itself can
+hit the global limit before memory-bounded tests execute.
+
+### Current memory allocation and final V2 checkpoint
+
+On **27 October 2026**, the user increased ClickHouse allocation to:
+
+| Scope | Configuration | Verified bytes |
+| --- | --- | ---: |
+| Docker container | `compose.yaml`, ClickHouse `mem_limit: 16g` | 17,179,869,184 |
+| ClickHouse server | `infra/clickhouse/development.xml`, `max_server_memory_usage` | 12,884,901,888 |
+
+Container inspection and `system.server_settings` confirmed both active limits;
+Compose configuration validation passed. CPU, credentials, ports, source mounts,
+server pools and model query caps were not changed by this checkpoint. The increased
+allocation does not establish a root-cause fix for the earlier tracker discrepancy.
+
+The latest existing result artifact records **20/20 tests passing**, one thread,
+**0.61 seconds** suite elapsed, completed **27 October 2026 at 06:24:09 Moscow time**
+(03:24:09 UTC), after the user increased allocation. Model texts in its manifest
+match current files. The earlier pass/failure history above is retained as historical
+evidence; it is not the final checkpoint status. No additional whole-suite reruns,
+raw-event aggregation rebuilds, service changes or Metabase edits were needed for
+finalization. Generated logs and dbt artifacts remain ignored.

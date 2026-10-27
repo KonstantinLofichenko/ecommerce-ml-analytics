@@ -24,7 +24,7 @@ services:
       - ./infra/clickhouse/development.xml:/etc/clickhouse-server/config.d/development.xml:ro
       - ./data/external/synerise/source:/var/lib/clickhouse/user_files/synerise/e90b8fde:ro
     networks: [ecommerce-analytics]
-    mem_limit: 8g
+    mem_limit: 16g
     cpus: 2
     ulimits:
       nofile: {soft: 262144, hard: 262144}

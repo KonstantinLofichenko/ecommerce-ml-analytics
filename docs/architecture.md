@@ -1,5 +1,29 @@
 # Architecture
 
+## Current extension: customer Time to Conversion V2.0
+
+The existing dashboard now has Funnel Analytics (V1) and Time to Conversion (V2)
+tabs. V1 reporting logic and the independent REES46/ML project are unchanged.
+
+```text
+source('synerise', 'add_to_cart')
+  → int_synerise_customer_first_cart (one customer, first observed cart)
+source('synerise', 'product_buy') + first cart
+  → int_synerise_customer_first_purchase_after_cart (first purchase >= cart)
+first cart LEFT JOIN first qualifying purchase
+  → int_synerise_customer_conversion_times (all cart customers, NULL non-converters)
+  → fct_synerise_time_to_conversion (one customer-scope summary row)
+  → existing Metabase Time to Conversion tab
+```
+
+The first three SQL models and their schema YAML are in
+`dbt/models/intermediate/synerise/`; the fact is in `dbt/models/marts/synerise/`.
+Raw tables use `source()`, model dependencies use `ref()`. V2 does not require a
+page visit and must not be equated with V1's overall customer funnel. The
+[data contract](funnel-data-contract.md#customer-time-to-conversion--v20) explains
+populations, denominators, units and clock representation. Builds/tests use the
+existing single-thread catalog target and unchanged server/container limits.
+
 ## Current: Synerise Dashboard V1.0
 
 ```text
@@ -21,7 +45,8 @@ are not the strict REES46 session funnels. Synthetic labels are display-only.
 Metric intermediates normally rebuild from raw staging. The documented one-time
 bootstrap reused validated historical metrics; future raw refreshes must use the
 default path. Use the local catalog target, one thread and bounded query settings.
-ClickHouse remains at 8 GiB container / 6 GiB server. Background merges and the
+Current ClickHouse limits are **16 GiB container / 12 GiB server**, increased by
+the user for V2.0 (V1 validation used 8/6 GiB). Background merges and the
 known global tracker discrepancy require adequate idle headroom before validation.
 The legacy dashboard copy was already absent at the last repository-preparation
 check; it is not a canonical dependency. No table was dropped by documentation cleanup.

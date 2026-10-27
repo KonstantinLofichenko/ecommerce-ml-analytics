@@ -1,7 +1,9 @@
 # E-Commerce ML Analytics
 
-Synerise Funnel Analytics Dashboard V1.0 provides an all-time customer funnel,
-category and SKU conversion metrics, and a synthetic Amazon-derived display catalog.
+Synerise Funnel Analytics V2.0 extends the completed V1.0 customer/category/SKU
+funnels and synthetic display catalog with customer-level Time to Conversion.
+The existing Metabase dashboard has two tabs: **Funnel Analytics** and
+**Time to Conversion**; no separate dashboard is required.
 ClickHouse and dbt serve canonical, denormalized tables to Metabase. Source-clock
 timestamps remain timezone-unverified; synthetic labels are not ML predictors.
 
@@ -20,6 +22,24 @@ Canonical reporting tables in `synerise_analytics` are `fct_synerise_funnel`,
 `fct_synerise_funnel_by_category`, and `fct_synerise_funnel_by_product`; synthetic
 display dimensions are `dim_synerise_categories` and `dim_synerise_products`.
 Superseded investigations are indexed in the [historical archive](docs/archive/README.md).
+
+## Customer Time to Conversion — V2.0
+
+V2 measures first observed cart → first qualifying purchase (`>=`), regardless of
+SKU and without requiring a page visit. V1's overall funnel requires page visit →
+qualifying cart → qualifying purchase, so its population is different. Percentiles
+use all observed converters; 1-hour/24-hour/7-day cumulative rates share the cohort
+with at least seven source-clock days of follow-up. This is not checkout-session
+duration, and source timezone remains unverified.
+
+Models build in dependency order:
+`int_synerise_customer_first_cart` →
+`int_synerise_customer_first_purchase_after_cart` →
+`int_synerise_customer_conversion_times` → `fct_synerise_time_to_conversion`.
+The conversion-times table retains non-converters with NULL purchase time/duration.
+See the [data contract](docs/funnel-data-contract.md#customer-time-to-conversion--v20),
+[build/test commands](docs/dashboard-v1-operations.md#v20-build-and-test), and
+[dated validation checkpoint](docs/reports/metabase-v1-synerise-refactor.md#v20-validation-checkpoint--27-october-2026).
 
 ## Technology stack
 

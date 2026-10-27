@@ -1,4 +1,4 @@
-# Independent local infrastructure — Phase 3.1
+# Independent local infrastructure
 
 This stack is for local infrastructure development. DuckDB remains the validated
 reference implementation. ClickHouse is the target analytical database, initially
@@ -12,10 +12,12 @@ its files, containers, networks, volumes and credentials are not used or modifie
 Use Docker Desktop with Compose v2.20+ (validated with Compose v5.6.0), Linux
 containers, and sufficient free disk for images and persistent volumes. All base
 images have explicit versions and support native Apple Silicon arm64; no forced
-amd64 emulation is configured. First builds require Internet access. Allow about
-8 GB Docker memory for the core BI stack; 12 GB is a practical starting budget
-when enabling Airflow and concurrent tools. These are development budgets, not
-benchmarks. Service memory limits are 2 GB ClickHouse, 512 MB PostgreSQL, 1.5 GB
+amd64 emulation is configured. First builds require Internet access. Allow
+sufficient Docker/host memory for the **16 GiB ClickHouse container** plus other
+active services and operating-system headroom. Its ClickHouse server cap is
+**12 GiB** (`12884901888` bytes), configured in `infra/clickhouse/development.xml`;
+`compose.yaml` sets `mem_limit: 16g`. These user-increased V2 limits supersede
+Phase 3.1 and V1 budgets. Other service limits remain 512 MB PostgreSQL, 1.5 GB
 Metabase, 3 GB Airflow, 1 GB dbt and 2 GB ML. Optional tools run only when requested.
 
 | Component | Pinned base/version |

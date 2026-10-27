@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: int_synerise_customer_first_cart
+    description: First observed add-to-cart event per customer.
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+          - unique_in_order
+
+      - name: first_cart_time
+        data_tests:
+          - not_null
+
+  - name: int_synerise_customer_first_purchase_after_cart
+    description: First qualifying purchase at or after the first cart.
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+          - unique_in_order
+
+      - name: first_purchase_time
+        data_tests:
+          - not_null
+
+  - name: int_synerise_customer_conversion_times
+    description: One row per cart customer, including non-converters.
+    columns:
+      - name: client_id
+        data_tests:
+          - not_null
+
+      - name: first_cart_time
+        data_tests:
+          - not_null
+
+      - name: converted
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+  - name: fct_synerise_time_to_conversion
+    description: Customer-level time-to-conversion summary.
+    columns:
+      - name: metric_scope
+        data_tests:
+          - unique
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['customer']
+
+      - name: cart_customers
+        data_tests:
+          - not_null
+
+      - name: eligible_customers_7d
+        data_tests:
+          - not_null

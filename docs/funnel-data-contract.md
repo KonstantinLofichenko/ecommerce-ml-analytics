@@ -1,4 +1,4 @@
-# Funnel Analytics V1.0 — data contract
+# Funnel Analytics V1.0 / V2.0 — data contract
 
 This is the current semantic contract for the Synerise dashboard. It describes
 existing SQL; it does not introduce new calculations. Implementation lives in
@@ -153,7 +153,75 @@ full source/destination value checksums or duplicate reconciliation. Stronger ch
 from earlier private attempts must not be represented as final permanent-load
 validation. See the [completed bulk-load report](reports/phase-3.5-synerise-bulk-load.md).
 
-The canonical product fact built under the unchanged 8 GiB container / 6 GiB server
-limits. The existing global memory-tracker discrepancy remains unresolved. Default
+The V1 canonical product fact built under the then-current 8 GiB container / 6 GiB
+server limits. V2 finalization uses user-increased 16 GiB container / 12 GiB server
+limits; per-query bounds remain unchanged. The existing global memory-tracker discrepancy remains unresolved. Default
 full-history metric rebuild performance was not established by the display-only
 refactor. These limitations do not change the validated V1.0 definitions or counts.
+
+## Customer Time to Conversion — V2.0
+
+V2 starts at each observed customer's **earliest cart**, with no page-visit
+requirement. The first qualifying purchase is the earliest purchase timestamp
+**at or after** that cart, regardless of SKU/category. Earlier purchases do not
+qualify; a later purchase can. This shares V1's non-strict (`>=`) chronology but
+not V1's overall cohort or cart anchor: V1 requires a visit first and can select
+a later cart. Category/SKU V1 metrics retain their original grains and definitions.
+
+`int_synerise_customer_conversion_times` has one row per cart customer. A converter
+has `converted=1` and `seconds_to_conversion=dateDiff('second', first_cart_time,
+first_purchase_time)`. An observed non-converter has `converted=0` and NULL purchase
+time and duration; NULL is never replaced with zero. Zero seconds is a valid tied
+conversion. No session boundary or conversion deadline is imposed. Elapsed time
+to a subsequent purchase is **not necessarily checkout-session duration**.
+
+### Percentiles versus cumulative rates
+
+- **P50/P75/P90:** exact ClickHouse quantiles among **all observed converters**,
+  including those with less than seven days of follow-up and conversions after
+  seven days. Non-converters are excluded. The reporting table stores rounded
+  minutes; presentation uses minutes for P50, hours for P75 and days for P90.
+- **Cumulative rates:** all three windows use the **same denominator**,
+  `eligible_customers_7d`: customers whose first cart is at or before
+  `dataset_end - INTERVAL 7 DAY`. Numerators count those eligible customers whose
+  first qualifying purchase occurs within **<=3,600**, **<=86,400**, or
+  **<=604,800** source-clock seconds. Eligible non-converters remain in the
+  denominator. Counts/rates must increase monotonically from 1 hour to 7 days.
+- Despite their `_pct` suffix, `conversion_1h_pct`, `conversion_24h_pct` and
+  `conversion_7d_pct` contain **fractions**, rounded to five decimal places.
+  Apply percentage formatting in Metabase, without multiplying the stored metric.
+  A zero denominator yields NULL.
+
+The hard-coded dataset-end bound is `2022-12-08 00:09:59`, matching the pinned
+source's global endpoint; it must be reviewed for any future dataset refresh.
+Follow-up eligibility assumes continuous source coverage, not continuous customer
+observation. Dataset-end censoring means an observed non-converter may purchase
+later. Converter-only percentiles are descriptive of observed conversions, not
+survival-adjusted estimates for all customers, and can underrepresent slow returns.
+
+V2 parses strings to ClickHouse `DateTime` using the server context (observed UTC),
+with no explicit timezone argument. This is a **computational representation**, not
+verification that source strings are UTC. Cutoffs and parsing must use the same
+context. Timestamp clustering/ties and unresolved source timezone/DST semantics
+mean numeric durations must not be claimed as verified physical elapsed time.
+No raw timestamp or V1 model was changed to create this representation.
+
+### Existing Metabase dashboard
+
+The completed **Synerise Funnel Analytics** dashboard contains the original
+**Funnel Analytics** tab and the **Time to Conversion** tab:
+
+| Visualization | Population / units |
+| --- | --- |
+| Median Time to Purchase (P50) | All observed converters; minutes |
+| P75 Time to Purchase | All observed converters; hours |
+| P90 Time to Purchase | All observed converters; days |
+| Cumulative Conversion by Time Window | Common seven-day-follow-up cohort; 1 hour, 24 hours, 7 days |
+| Conversion Time Distribution | Observed converters; <=1 hour, >1–24 hours, >24 hours–7 days, >7 days |
+
+Distribution bins use the converter population, not the mature cumulative-rate
+cohort. Summary cards use `fct_synerise_time_to_conversion`; customer-level
+histories for distribution analysis are in `int_synerise_customer_conversion_times`.
+Metabase may reorder cumulative-chart categories after refresh. This is an accepted
+presentation-only limitation for this milestone; no sorting fix or dashboard edit
+is part of repository finalization.

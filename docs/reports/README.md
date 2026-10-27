@@ -1,9 +1,9 @@
 # Validation reports and source evidence
 
-The single current Dashboard V1.0 acceptance report is
+The existing Dashboard acceptance report, including its dated V2.0 checkpoint, is
 [metabase-v1-synerise-refactor.md](metabase-v1-synerise-refactor.md).
 Its aggregate baseline is [validation.json](../../analysis/catalog/metabase-v1/validation.json).
-Use the [funnel contract](../funnel-data-contract.md) for definitions and
+The V1 baseline is historical and remains intact. Use the [funnel contract](../funnel-data-contract.md) for definitions and
 [operations guide](../dashboard-v1-operations.md) for rebuilds and memory guidance.
 
 Retained reports with distinct scope:

@@ -76,3 +76,49 @@ were checked for configured credentials, private keys, binary content and files
 at least 10 MB; none were found. The 2 MB timestamp/provenance JSON is intentional
 research evidence. Existing Amazon source filenames/schema are documented with
 an explicit limitation: no original immutable upstream checksum manifest is available.
+
+## V2.0 validation checkpoint — 27 October 2026
+
+Customer Time-to-Conversion is complete in the existing dashboard's second tab.
+The four new models are `int_synerise_customer_first_cart`,
+`int_synerise_customer_first_purchase_after_cart`,
+`int_synerise_customer_conversion_times` and `fct_synerise_time_to_conversion`.
+Definitions and populations are in the [V2 contract](../funnel-data-contract.md#customer-time-to-conversion--v20);
+commands and memory history are in [operations](../dashboard-v1-operations.md#v20-build-and-test).
+
+The reporting table was read and verified on 27 October 2026:
+
+| Metric | Measured |
+| --- | ---: |
+| First-cart customers | 2,333,463 |
+| Observed converters | 565,203 |
+| Observed non-converters | 1,768,260 |
+| P50 | 7.08 minutes |
+| P75 | 102.42 stored minutes → 1.71 displayed hours |
+| P90 | 18,234.93 stored minutes → 12.66 displayed days |
+| Common seven-day-follow-up denominator | 2,208,140 |
+| Converted within 1 hour / 24 hours / 7 days in that cohort | 391,873 / 436,456 / 470,986 |
+| Stored cumulative fractions | 0.17747 / 0.19766 / 0.21330 |
+
+Percentiles concern all observed converters; cumulative rates use the common mature
+cohort. These are different populations. V2 has no page-visit requirement, unlike
+V1's overall funnel. A prior independent read found zero V1 purchasing customers
+absent from V2 converters; that subset check does not imply identical cohorts.
+
+Parse passed. The final existing single-thread result artifact records **20 passing
+tests**, no errors/skips/warnings, completed **06:24:09 Moscow time** (03:24:09 UTC),
+with **0.61 seconds** suite elapsed. Inventory: 15 model/column checks plus five
+singular tests, rather than the initially reported 15. Exact in-order uniqueness
+checks avoid redundant generic uniqueness on conversion times. See operations for
+the earlier global-memory startup failure and why it was not a duplicate-ID finding.
+
+Current memory was verified at **17,179,869,184 bytes container (16 GiB)** and
+**12,884,901,888 bytes server (12 GiB)** after the user's allocation change. Compose
+validation passed. All original-column fingerprints for the two V1 dimensions and
+three V1 facts still match the stored baseline. Protected REES46, Synerise and Amazon
+raw-table UUIDs and metadata counts match that baseline, including REES46's
+20,692,840 rows. No validated model SQL was refactored or raw tables rebuilt during
+finalization. The allocation files are included as the user's reviewed configuration
+changes. Metabase was not modified. Its cumulative-category refresh ordering remains
+an accepted presentation limitation; timezone/censoring and historical full-refresh
+resource limitations remain documented.
