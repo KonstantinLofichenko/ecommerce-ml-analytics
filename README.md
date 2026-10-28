@@ -335,3 +335,5 @@ read-only metadata verification on 28 October 2026 confirmed the saved configura
 Repository finalization does not edit Metabase. Existing business definitions are preserved.
 See the [contract](docs/funnel-data-contract.md#cart-non-conversion--v22) for denominator,
 cohort and source-data limitations.
+
+Metabase question reproduction: [V1.0/V2.0 recovered SQL and validation](docs/metabase/README.md).
