@@ -334,8 +334,8 @@ instructions are retained for reproduction; no outstanding UI action is implied.
 
 Reference native SQL:
 
-- [Time to Conversion by Category](metabase/time-to-conversion-by-category.sql)
-- [Time to Conversion by Product](metabase/time-to-conversion-by-product.sql)
+- [Time to Conversion by Category](metabase/v21/time-to-conversion-by-category.sql)
+- [Time to Conversion by Product](metabase/v21/time-to-conversion-by-product.sql)
 
 These files contain Metabase optional-variable syntax, not dbt Jinja. Each queries
 only its final reporting fact, with no dimension joins. Add both saved questions
@@ -388,3 +388,24 @@ After these changes, final parse and **60/60 tests passed in 7.59 seconds**, wit
 one thread and no errors/skips/warnings. V1 reporting/catalog fingerprints, the V2
 customer summary, and protected raw-table UUIDs/counts still match their baselines.
 No tables or dashboard objects were rebuilt or changed during final validation.
+
+## V2.2 cart non-conversion questions
+
+The [V2.2 deployed-dashboard reference](metabase/v22/README.md) records the actual
+Cart Abandonment tab of **Synerise funnel analytics**, verified read-only on
+28 October 2026: six overall Number cards, one four-outcome pie and two top-100
+category/product tables with a shared rate/volume Rank by control. The four native
+SQL files match saved query bodies. Overall cards and the pie have no parameter
+mappings; only segmented tables receive hierarchy, eligible-cohort and rank controls.
+Rates/shares use Percentage formatting with one decimal. No standalone category-ID,
+SKU or date filter is deployed. Repository tooling has no authenticated UI/API
+publisher; the user deployed the dashboard manually. Finalization did not modify it.
+
+Only two singular tests are new; no persistent models or matching logic were added.
+Run `dbt parse` as usual, then reuse the complete V2.1 test command above with
+`path:tests/cart_nonconversion` added to its selectors. This runs **62 tests** with
+`--threads 1`. Existing tests validate the per-grain mature cohorts and uniqueness;
+new tests validate partition arithmetic and boundary/zero-denominator behavior.
+No `dbt run` or raw-event rebuild is needed for V2.2. SQL queries and generated
+temporary validation outputs are kept separate; only reviewed question templates
+and tests belong in Git.

@@ -277,3 +277,21 @@ labels after aggregation; the original dimensions and V1/V2 models are not rebui
 Models use one thread, 1 GiB query caps, bounded grace-hash joins and external
 aggregation/sort settings under the existing 16/12 GiB container/server limits.
 No source dataset, synthetic mapping, ML pipeline, or Metabase object is changed.
+
+## V2.2 cart non-conversion reporting
+
+The existing customer/category/SKU time-to-conversion facts already contain mature
+cohort sizes and cumulative conversion counts. V2.2 subtracts those counts in four
+native SQL question templates under `docs/metabase/v22/`; it adds no persistent dbt
+model, raw scan, matching pipeline or dependency. Two new singular tests validate
+partition arithmetic, cumulative bounds, zero denominators and time boundaries,
+while the existing tests retain grain uniqueness and maturity reconciliation.
+
+V2.2 is manually deployed on **Cart Abandonment**, the third tab of the existing
+**Synerise funnel analytics** dashboard. Six overall Number cards, a four-outcome
+pie and two rank-switchable top-100 tables reuse these facts. Repository finalization
+verified saved configuration through read-only metadata access, without UI/API
+credentials or dashboard writes. See the [deployed reference](metabase/v22/README.md).
+Existing V1/V2 models remain unchanged; rates are fractions, formatted as percentages
+with one decimal. The original standalone-dashboard/stacked-bar/top-20 design was
+a proposal and is not the deployed layout.

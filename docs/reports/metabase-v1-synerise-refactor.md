@@ -194,3 +194,84 @@ The category conversion-history experiment exceeded the 1 GiB query limit, so it
 original settings were restored and its existing table verified intact. Remaining
 models retain their controls. See [operations](../dashboard-v1-operations.md#final-v21-settings-experiment-and-publication-checkpoint)
 for the exact scope. No validated business definitions or memory limits changed.
+
+## V2.2 cart non-conversion checkpoint — 27 October 2026
+
+V2.2 reuses existing V2/V2.1 facts with no persistent model or matching change.
+Parse and **62/62 tests passed in 8.28 seconds**, with one dbt thread: the existing
+60 regressions plus two non-conversion partition/boundary tests. Four new native
+question templates were executed, including rate and volume ranking modes at both
+category and SKU grains. Both ranking modes returned 20 correctly ordered rows
+with the default minimum eligible cohort of 100. Zero-denominator fixtures return
+NULL shares; exact-window endpoints and seven-day eligibility boundaries passed.
+
+| Overall first-cart cohort metric | Measured |
+| --- | ---: |
+| Seven-day eligible customers | 2,208,140 |
+| Not converted within 1 hour | 1,816,267 / 82.25% |
+| Not converted within 24 hours | 1,771,684 / 80.23% |
+| Not converted within 7 days | 1,737,154 / 78.67% |
+| Early share among seven-day converters | 83.20% |
+
+The overall timing partition is **391,873 / 44,583 / 34,530 / 1,737,154**;
+counts sum exactly to 2,208,140 and fractional shares sum to one within floating-point
+tolerance. Category 258 independently matched **16,271 / 1,974 / 1,259 / 76,240**,
+79.63% seven-day non-conversion and 83.42% early share. Category 4299 matched
+1,036 eligible customers, 18 conversions and 98.26% seven-day non-conversion.
+These are dated examples, not permanently pinned production benchmarks or claims
+that either category is globally top-ranked.
+
+Rates are stored in the delivered SQL as 0–1 fractions, per user choice; displayed
+percentages above are presentation values. No extra factors of 100 are applied
+by the queries. An initial distribution-query tuple/output alias collision was
+corrected during query validation; the final four queries passed. No source or
+established model logic changed.
+
+At the initial 27 October handoff, dashboard deployment was **manual, not performed**:
+no Metabase UI/API credentials
+or deployment client are configured. The [setup package](../metabase/v22/README.md)
+contains all questions, six KPI mappings, 100% timing distribution, two category
+rankings, two SKU rankings and applicable hierarchy/SKU/cohort filters. No date
+filter is offered on lifetime aggregates. Original source events are anonymized;
+only the catalog associations/labels are synthetic. Existing data-quality,
+censoring and statistical-selection limitations remain applicable.
+
+Final preservation checks matched existing V1 category/SKU and V2 customer-summary
+fingerprints, plus protected raw-table UUIDs/counts. Ruff lint/format, documentation
+paths and whitespace checks passed. No prior dbt model or definition changed.
+The V2.1 question files were concurrently relocated to `docs/metabase/v21/` without
+content changes; their documentation links were updated, and the relocation was
+preserved. At that initial handoff, no files were staged, committed or pushed for V2.2.
+
+## V2.2 final dashboard validation — 28 October 2026
+
+Read-only Metabase PostgreSQL metadata inspection confirmed deployment in the
+existing **Synerise funnel analytics** dashboard (ID 2), on **Cart Abandonment**
+(tab 6), alongside Funnel Analytics and Time to Conversion. This supersedes the
+initial standalone-dashboard/manual-handoff proposal. No Metabase write, session
+extraction, credential change or browser-rendered visual inspection was performed.
+
+The deployed tab has a definition banner, six overall Number cards (51–56), a
+four-outcome **pie** (57), and category/product **top-100 tables** (58–59).
+Tables switch between rate and volume through **Rank by**, default `rate`; minimum
+eligible cohort defaults to 100. Only the tables receive hierarchy, cohort-minimum
+and rank mappings. Overall KPIs and the pie have no filter mappings. There are no
+standalone category-ID/SKU/date controls. Rates/shares use Percentage formatting
+with **one decimal**, not stored 0–100 values. Saved metadata uses equality for
+level 1 and case-insensitive contains widgets for levels 2–4. The
+[dashboard reference](../metabase/v22/README.md) records exact cards and mappings.
+
+Reference SQL bodies match the four saved question bodies, ignoring comments and
+whitespace. Both category and product ranking modes were executed with minimum
+cohort 100 and returned 100 correctly ordered rows. Category 258/4299 examples and
+the overall count/share partition passed again. Earlier top-20 and stacked-bar
+references above describe the initial proposal, not the final deployed layout.
+
+Final `dbt parse` passed and **62/62 tests passed in 8.02 seconds**, one dbt thread,
+with zero skips/errors/warnings. Existing V1 category/SKU and V2 customer reporting
+fingerprints, plus protected raw-table UUIDs/counts, match their pre-extension
+baselines. Existing dbt model/ML/infrastructure code is unchanged; only two new
+singular validation tests were added. No raw or analytical table rebuild was needed.
+Ruff, whitespace and internal-link checks passed. The V2.1 query relocation is
+preserved byte-for-byte and its references resolve. Runtime logs, generated dbt
+artifacts and detailed dashboard metadata remain outside the commit.

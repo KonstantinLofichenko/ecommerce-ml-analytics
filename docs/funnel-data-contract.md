@@ -266,3 +266,52 @@ small-sample grains; minimum-volume filters are presentation guidance only.
 
 See [build/filter instructions](dashboard-v1-operations.md#v21-category-and-product-segments)
 and the [existing validation report](reports/metabase-v1-synerise-refactor.md#v21-segment-validation--27-october-2026).
+
+## Cart non-conversion — V2.2
+
+V2.2 reuses the three V2/V2.1 time-to-conversion facts; no matching pipeline or
+persistent reporting model is added. “Cart abandonment” is a dashboard shorthand
+for **first-cart non-conversion within an elapsed window**, not session abandonment,
+verified basket abandonment, cancelled orders or a causal explanation of customer behavior.
+
+Let E be a grain's `eligible_customers_7d` and C1/C24/C7 its cumulative conversion
+counts. All counts share that grain's seven-day-follow-up cohort and existing
+purchase matching. Customer, category and SKU populations must remain separate.
+
+| Measure | Formula |
+| --- | --- |
+| Not converted within 1 hour | E − C1 |
+| Not converted within 24 hours | E − C24 |
+| Not converted within 7 days | E − C7 |
+| Non-conversion rate at each horizon | Corresponding count / NULLIF(E, 0) |
+| Early conversion share | C1 / NULLIF(C7, 0) |
+
+The four mutually exclusive timing outcomes are C1, C24−C1, C7−C24, E−C7.
+They sum to E; their shares each divide by E. Thresholds are inclusive, so exactly
+1 hour belongs in the first bucket and exactly 7 days is a conversion within 7 days.
+The final bucket includes late purchases and no observed purchase; it does not
+establish that a customer will never purchase. Non-conversion counts decrease as
+the horizon expands. For zero E, outcome/non-conversion shares are NULL; for zero
+C7, early share is NULL. Signed subtraction avoids silently wrapping invalid counts.
+
+Per the chosen Metabase convention, returned rates/shares are **fractions in [0,1]**,
+not the task's initially proposed 0–100 percentage-point values. Use Percentage
+formatting, without multiplication by 100. Round only for presentation. Existing
+converter-only percentiles remain separate and cannot be interpreted as maturity-
+adjusted percentiles for the seven-day cohort or all visitors.
+
+The dashboard separates **rate** (relative frequency) from **volume** (absolute
+non-conversions). Default segmented minimum is 100 eligible customers; rankings
+are calculated after filtering. This cutoff is not a statistical reliability proof.
+All category/SKU counts are memberships, so totals across rows are not unique
+customer KPIs. Overall cards use the genuine customer fact and stay unconnected
+to segment filters. No date filter is supported by these lifetime facts.
+
+Source-clock uncertainty and dataset-end censoring remain unchanged. Original
+Synerise events are anonymized source records; synthetic enrichment refers to
+Amazon-derived display labels/titles, not invented event histories or proven entity
+matches. The actual UI is the **Cart Abandonment** tab of **Synerise funnel analytics**:
+six overall KPIs, one four-outcome pie and two switchable top-100 segmented tables.
+Only the segmented tables receive hierarchy/minimum-eligible/rank parameters; overall
+KPIs and the pie remain global. Fractions display as percentages with one decimal.
+See the [deployed dashboard and SQL reference](metabase/v22/README.md).

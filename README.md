@@ -1,10 +1,10 @@
 # E-Commerce ML Analytics
 
-Synerise Funnel Analytics V2.1 extends the completed V1.0 customer/category/SKU
+Synerise Funnel Analytics V2.2 adds cart non-conversion reporting to the V1.0 customer/category/SKU
 funnels and synthetic display catalog with customer, category and product
 Time to Conversion.
-The existing Metabase dashboard has two tabs: **Funnel Analytics** and
-**Time to Conversion**; no separate dashboard is required.
+The existing **Synerise funnel analytics** Metabase dashboard has three tabs:
+**Funnel Analytics**, **Time to Conversion** and **Cart Abandonment**.
 ClickHouse and dbt serve canonical, denormalized tables to Metabase. Source-clock
 timestamps remain timezone-unverified; synthetic labels are not ML predictors.
 
@@ -318,3 +318,20 @@ logs. Review `git status`, run the checks above and the Dashboard V1.0 dbt check
 and inspect the staged diff before committing. Use the configured remote without
 force-pushing or rewriting history. Example configuration `.env.example` is intentional;
 actual `.env` values are private.
+
+## Cart non-conversion reporting — V2.2
+
+V2.2 derives first-cart non-conversion rates/volumes and four timing outcomes from
+existing customer/category/SKU facts, without a new model or matching pipeline.
+Overall KPIs use unique customers; segmented rankings use per-category/SKU memberships.
+Rates remain 0–1 fractions for Metabase Percentage formatting. This is not
+session-based cart abandonment, and synthetic labels are not original Synerise names.
+
+[Deployed SQL and dashboard reference](docs/metabase/v22/README.md) document the
+existing dashboard’s **Cart Abandonment** tab: six overall KPIs, a four-outcome pie
+and two top-100 category/product tables controlled by Rank by and cohort/hierarchy
+filters. Percentages display with one decimal. Deployment was completed manually;
+read-only metadata verification on 28 October 2026 confirmed the saved configuration.
+Repository finalization does not edit Metabase. Existing business definitions are preserved.
+See the [contract](docs/funnel-data-contract.md#cart-non-conversion--v22) for denominator,
+cohort and source-data limitations.
