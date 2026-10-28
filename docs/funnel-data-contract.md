@@ -315,3 +315,13 @@ six overall KPIs, one four-outcome pie and two switchable top-100 segmented tabl
 Only the segmented tables receive hierarchy/minimum-eligible/rank parameters; overall
 KPIs and the pie remain global. Fractions display as percentages with one decimal.
 See the [deployed dashboard and SQL reference](metabase/v22/README.md).
+
+## Monthly purchase retention — V3.0
+
+See [customer retention](customer-retention.md) for the new customer-cohort,
+monthly activity and repeat-date models. Cohorts use first observed purchase,
+not the V1 page-led or V2 first-cart population. Retention is non-cumulative,
+rates are fractions, and repeat purchasing requires two distinct source dates,
+not two event rows or inferred orders. Boundary cohort/outcome months are excluded
+from retention; interior coverage remains explicitly assumed, not verified.
+Existing V1.0–V2.2 definitions above are unchanged.

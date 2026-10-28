@@ -337,3 +337,5 @@ See the [contract](docs/funnel-data-contract.md#cart-non-conversion--v22) for de
 cohort and source-data limitations.
 
 Metabase question reproduction: [V1.0/V2.0 recovered SQL and validation](docs/metabase/README.md).
+
+V3.0 customer retention: [customer purchase retention models, coverage policy and validation](docs/customer-retention.md).

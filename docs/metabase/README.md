@@ -160,3 +160,8 @@ values safely). Metabase template syntax is not standalone ClickHouse SQL. Run
 these SELECTs through the project's authenticated ClickHouse connection; keep
 credentials in local environment configuration, never in SQL or URLs. Compare
 counts by their corresponding cohort, not by matching similarly named columns.
+
+## Customer Retention — V3.0
+
+The [V3 card index and SQL](v3/README.md) covers the Customer Retention tab,
+including the reconstructed monthly pivot and recovered repeat-purchase queries.

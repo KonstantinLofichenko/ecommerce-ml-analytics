@@ -1,0 +1,146 @@
+version: 2
+models:
+- name: int_synerise_purchase_dates
+  description: One row per client_id and observed source-clock purchase date; earliest
+    original timestamp string retained. SKU/event multiplicity collapsed only for
+    activity analysis, never orders. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: purchase_date
+    data_tests:
+    - not_null
+  - name: first_purchase_at
+    data_tests:
+    - not_null
+- name: int_synerise_purchase_observation_window
+  description: One shared source-clock min/max envelope across five original event
+    sources. Continuous interior-month coverage is assumed, not verified; boundary
+    months excluded downstream. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: observed_start_source
+    data_tests:
+    - not_null
+  - name: observed_end_source
+    data_tests:
+    - not_null
+  - name: observed_start_date
+    data_tests:
+    - not_null
+  - name: observed_end_date
+    data_tests:
+    - not_null
+  - name: coverage_policy
+    data_tests:
+    - not_null
+  - name: coverage_verified
+    data_tests:
+    - not_null
+- name: int_synerise_customer_first_purchase
+  description: One row per purchasing client_id; earliest parseable observed timestamp
+    (String), source date and cohort month. Not first-ever acquisition. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: client_id
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: first_purchase_at
+    data_tests:
+    - not_null
+  - name: first_purchase_date
+    data_tests:
+    - not_null
+  - name: cohort_month
+    data_tests:
+    - not_null
+- name: int_synerise_customer_purchase_months
+  description: One row per client_id/purchase_month with a single observed cohort
+    and calendar month offset; non-cumulative activity. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: client_id
+    data_tests:
+    - not_null
+  - name: purchase_month
+    data_tests:
+    - not_null
+  - name: cohort_month
+    data_tests:
+    - not_null
+  - name: month_number
+    data_tests:
+    - not_null
+- name: fct_synerise_customer_monthly_retention
+  description: One row per eligible interior cohort/month offset, including explicit
+    zero retention. Horizon defaults to 0 through 12. All rows flag assumed coverage;
+    fractions for Metabase Percentage. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: cohort_month
+    data_tests:
+    - not_null
+  - name: purchase_month
+    data_tests:
+    - not_null
+  - name: month_number
+    data_tests:
+    - not_null
+  - name: cohort_size
+    data_tests:
+    - not_null
+  - name: retained_customers
+    data_tests:
+    - not_null
+  - name: retention_rate
+    data_tests:
+    - not_null
+  - name: coverage_policy
+    data_tests:
+    - not_null
+  - name: coverage_verified
+    data_tests:
+    - not_null
+- name: fct_synerise_customer_repeat_purchase
+  description: One row per purchasing client_id, over all observed history including
+    partial months. Repeat means two distinct source dates, not events or orders.
+    Nullable second-date gap. See docs/customer-retention.md.
+  config:
+    tags:
+    - synerise_retention
+  columns:
+  - name: client_id
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: cohort_month
+    data_tests:
+    - not_null
+  - name: first_purchase_date
+    data_tests:
+    - not_null
+  - name: last_purchase_date
+    data_tests:
+    - not_null
+  - name: distinct_purchase_dates
+    data_tests:
+    - not_null
+  - name: active_purchase_months
+    data_tests:
+    - not_null
+  - name: is_repeat_purchaser
+    data_tests:
+    - not_null
