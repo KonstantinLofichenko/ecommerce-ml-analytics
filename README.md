@@ -339,3 +339,7 @@ cohort and source-data limitations.
 Metabase question reproduction: [V1.0/V2.0 recovered SQL and validation](docs/metabase/README.md).
 
 V3.0 customer retention: [customer purchase retention models, coverage policy and validation](docs/customer-retention.md).
+
+Interactive V4.1 notebook: [setup and preservation notes](notebooks/README.md) and
+[saved notebook baseline results](docs/ml_baseline_v4_1.md). These results are distinct
+from the earlier scripted V4.1 experiment.
