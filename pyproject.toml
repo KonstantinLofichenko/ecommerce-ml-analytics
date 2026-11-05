@@ -8,10 +8,22 @@ version = "0.1.0"
 description = "E-commerce funnel analytics and purchase propensity research"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = ["duckdb>=1.1,<2", "pandas>=2.2,<4", "scikit-learn>=1.5,<2"]
+dependencies = [
+    "clickhouse-connect>=0.8,<1",
+    "duckdb>=1.1,<2",
+    "pandas>=2.2,<4",
+    "scikit-learn>=1.5,<2",
+]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "ruff>=0.9,<1"]
+ml = ["lightgbm==4.6.0"]
+dev = [
+    "pytest>=8,<10",
+    "ruff>=0.9,<1",
+    "jupyterlab>=4,<5",
+    "ipykernel>=6,<8",
+    "matplotlib>=3.8,<4",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ecommerce_analytics"]
@@ -23,6 +35,11 @@ pythonpath = ["src"]
 [tool.ruff]
 target-version = "py311"
 line-length = 100
+# Preserve original notebook outputs and verbatim historical configuration excerpts.
+extend-exclude = [
+    "notebooks/01_repeat_purchase_exploration.ipynb",
+    "docs/ml_baseline_v4_1.md",
+]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
