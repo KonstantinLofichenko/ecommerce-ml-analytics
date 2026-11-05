@@ -1,248 +1,182 @@
 # Independent local infrastructure
 
-This stack is for local infrastructure development. DuckDB remains the validated
-reference implementation. ClickHouse is the target analytical database, initially
-empty at Phase 3.1. Phase 3.2 adds validated raw history; see the
-[migration guide](clickhouse-migration.md). Infrastructure startup itself creates
-no events, features, models, dashboards or production DAGs. The independent AIS repository was inspected only as a reference;
-its files, containers, networks, volumes and credentials are not used or modified.
+The **`ecommerce-ml`** Docker Compose project provides ClickHouse analytics storage,
+PostgreSQL-backed Metabase, and optional dbt/Python execution tools. Airflow was
+removed on **5 November 2026**; it is not an available profile or runtime dependency.
+JupyterLab and the offline ML pipeline remain host-side workflows managed by uv.
+The independent AIS and airflow-intro projects are not used or modified.
 
-## Prerequisites and versions
+[Current architecture](architecture.md) describes implemented analytics/ML.
+[Historical infrastructure evidence](archive/infrastructure/phase-3.1-infrastructure.md)
+retains the earlier Airflow design and measurements; its commands are historical,
+not current setup instructions.
 
-Use Docker Desktop with Compose v2.20+ (validated with Compose v5.6.0), Linux
-containers, and sufficient free disk for images and persistent volumes. All base
-images have explicit versions and support native Apple Silicon arm64; no forced
-amd64 emulation is configured. First builds require Internet access. Allow
-sufficient Docker/host memory for the **16 GiB ClickHouse container** plus other
-active services and operating-system headroom. Its ClickHouse server cap is
-**12 GiB** (`12884901888` bytes), configured in `infra/clickhouse/development.xml`;
-`compose.yaml` sets `mem_limit: 16g`. These user-increased V2 limits supersede
-Phase 3.1 and V1 budgets. Other service limits remain 512 MB PostgreSQL, 1.5 GB
-Metabase, 3 GB Airflow, 1 GB dbt and 2 GB ML. Optional tools run only when requested.
+## Prerequisites and pinned versions
 
-| Component | Pinned base/version |
+Use Docker Desktop with Compose v2.20+ and Linux containers. Images support native
+Apple Silicon; no forced amd64 emulation or `latest` tag is configured. First builds
+need access to their image registries. Allow host/Docker memory for the existing
+**16 GiB ClickHouse container / 12 GiB server** plus other services and headroom.
+The server limit remains in `infra/clickhouse/development.xml`; Compose sets
+`mem_limit: 16g`. No memory settings changed during Airflow removal.
+
+| Component | Image / configuration |
 | --- | --- |
 | ClickHouse | `clickhouse/clickhouse-server:25.8.33.6` |
-| PostgreSQL | custom `ecommerce-ml-postgres:16.13`, from `postgres:16.13-bookworm` |
+| PostgreSQL | `ecommerce-ml-postgres:16.13`, built from `postgres:16.13-bookworm` |
 | Metabase | `metabase/metabase:v0.58.33.1` |
-| dbt | custom `ecommerce-ml-dbt:1.0.0`, Python `3.11.14-slim-bookworm` |
-| dbt packages | `dbt-core==1.10.13`, `dbt-clickhouse==1.10.3` |
-| Airflow | custom `ecommerce-ml-airflow:3.1.7`, from `apache/airflow:3.1.7-python3.11` |
-| ML Python | custom `ecommerce-ml-python:1.0.0`, Python `3.11.14-slim-bookworm` |
+| dbt | `ecommerce-ml-dbt:1.0.0`; direct versions in `infra/dbt/requirements.txt` |
+| Optional Python tool | `ecommerce-ml-python:1.0.0`, existing project package/dev environment |
 
-Top-level dbt requirements are pinned separately in `infra/dbt/requirements.txt`.
-ML reuses `pyproject.toml`, including its dependency ranges; it does not claim a
-fully locked transitive dependency graph. Airflow uses the official image's
-Python/provider environment without installing dbt or ML into it. Never use
-`latest`. Image tags are version-pinned, not immutable digests; review future
-upgrades deliberately. The AIS reference uses different images/ports and a much
-larger stack; only the service separation pattern is reused.
+Other service limits remain 512 MiB PostgreSQL, 1536 MiB Metabase, 1 GiB dbt and
+2 GiB Python tool. Image tags are explicit versions, not immutable digests.
+The [ML reproduction guide](project-reproduction.md) distinguishes locked host
+setup from historical ML pins; the optional Docker ML image is not claimed to
+reproduce either notebook results or the full historical ML environment exactly.
 
 ## Configuration and credentials
 
-From the repository root, either copy `.env.example` to `.env` and supply strong,
-independent developer credentials, or generate unique local development values:
+For a new installation, copy `.env.example` and privately fill its required values,
+or generate independent local credentials:
 
 ```bash
 python3 scripts/init_infra_env.py
 docker compose --profile '*' config -q
 ```
 
-The generator creates `.env` with mode 0600 and refuses to overwrite an existing
-file. Actual values are never printed. `.env` and Docker build contexts exclude
-secrets. Do not commit `.env`, copy AIS credentials, or paste rendered Compose
-configuration/logs containing secrets into tickets. Use `config -q` for validation.
-All credential variables are mandatory, even when optional profiles are disabled,
-so an incomplete environment fails before a container starts.
+The generator creates a private mode-0600 `.env` and refuses to overwrite it.
+It no longer generates any Airflow variables. Actual credentials must never enter
+Git, rendered-config screenshots or command-line URLs. Use `config -q` instead of
+printing resolved configuration. Do not regenerate `.env` for an existing volume.
 
-| Variables | Meaning |
+| Variables | Purpose |
 | --- | --- |
-| `CLICKHOUSE_USER`, `POSTGRES_USER` | ClickHouse application and PostgreSQL administrator usernames |
-| `AIRFLOW_DB_USER`, `METABASE_DB_USER` | Separate metadata database usernames |
-| `AIRFLOW_ADMIN_USER` | Airflow UI login username |
-| `CLICKHOUSE_PASSWORD` | `ecommerce_app` user on database `ecommerce` |
-| `POSTGRES_PASSWORD` | dedicated local metadata-superuser password |
-| `AIRFLOW_DB_PASSWORD` | `ecommerce_airflow` metadata login |
-| `METABASE_DB_PASSWORD` | `ecommerce_metabase` metadata login |
-| `METABASE_ENCRYPTION_KEY` | stable Metabase stored-credential encryption key |
-| `AIRFLOW_FERNET_KEY` | valid URL-safe base64 32-byte Fernet key |
-| `AIRFLOW_JWT_SECRET` | independent Airflow API authentication secret |
-| `AIRFLOW_ADMIN_PASSWORD` | `ecommerce_admin` local Simple Auth Manager UI password |
+| `CLICKHOUSE_USER`, `CLICKHOUSE_PASSWORD` | Existing ClickHouse application account |
+| `CLICKHOUSE_INGEST_USER`, `CLICKHOUSE_INGEST_PASSWORD` | Restricted ingestion/publication account |
+| `CLICKHOUSE_DBT_USER`, `CLICKHOUSE_DBT_PASSWORD` | Existing restricted REES46 dbt account |
+| `CLICKHOUSE_BI_USER`, `CLICKHOUSE_BI_PASSWORD` | Read-only role described in migration operations |
+| `POSTGRES_USER`, `POSTGRES_PASSWORD` | Metadata server administrator, not application login |
+| `METABASE_DB_USER`, `METABASE_DB_PASSWORD` | Metabase PostgreSQL application account |
+| `METABASE_ENCRYPTION_KEY` | Stable stored-connection encryption key; preserve across restarts |
+| `CLICKHOUSE_HTTP_PORT`, `CLICKHOUSE_NATIVE_PORT`, `METABASE_PORT` | Loopback host ports |
 
-Metabase UI administrators use an email chosen during first-run setup; that login
-is separate from `METABASE_DB_USER` and is not provisioned by an environment variable.
-Usernames default to the existing project accounts. Changing a database username
-on an initialized volume is not an account migration; coordinate any such change
-with explicit database administration.
+The Metabase UI login is separate and remains the existing email/account.
+Changing environment variables does not rotate initialized database credentials;
+never solve a mismatch by deleting a volume. Existing non-Airflow credentials and
+ports were preserved during removal. Airflow entries were removed from `.env` and
+`.env.example`; dormant historical PostgreSQL metadata was not deleted.
 
-Generated passwords/keys are 32 random bytes encoded as hex, except the Fernet
-key. For manual configuration, prefer URL-safe random values and follow Compose
-.env quoting rules. Keep encryption keys stable across restarts and back them up
-securely. Changing the PostgreSQL password variables does **not** rotate existing
-roles; initialization is create-if-missing and deliberately does not reset users
-or drop databases. Rotate existing passwords with an explicit database admin
-procedure and update the corresponding environment together. Never solve a
-credential mismatch by deleting a persistent volume.
+## Services, networks and persistence
 
-## Architecture and isolation
+Do not override the Compose project name. Both bridge networks remain:
 
-Compose project name is `ecommerce-ml`; no explicit container names or external
-networks/volumes are used. Do not override the project name when following these
-instructions. Actual network names are project-scoped:
+- `ecommerce-ml_ecommerce-analytics`: ClickHouse, Metabase, dbt and Python tools.
+- `ecommerce-ml_ecommerce-metadata`: internal PostgreSQL/Metabase metadata network.
 
-- `ecommerce-ml_ecommerce-analytics`: ClickHouse, dbt, Metabase, Airflow and ML.
-- `ecommerce-ml_ecommerce-metadata`: internal bridge for PostgreSQL, Metabase and
-  Airflow. PostgreSQL publishes no host ports. Its only role is application metadata.
+There was **no Airflow-only network**. PostgreSQL publishes no host port. Metabase
+uses `postgres:5432` for application storage and `clickhouse:8123` for analytical
+connections. Shared networks and Docker volumes are not external project resources.
+No Docker socket is mounted.
 
-All inter-container connections use `clickhouse`, `postgres` or `airflow` DNS.
-`localhost` in readiness probes refers only to the probed container itself.
-Metabase/Airflow have analytics-network access for outbound connections. Named
-volumes (`clickhouse-data`, `clickhouse-logs`, `postgres-data`, `airflow-logs`,
-`airflow-state`) are prefixed `ecommerce-ml_`. No Docker socket is mounted.
+Retained volumes: `ecommerce-ml_clickhouse-data`, `ecommerce-ml_clickhouse-logs`,
+`ecommerce-ml_postgres-data`. These contain persistent ClickHouse/Metabase data.
+The PostgreSQL volume still includes historical `airflow_metadata` and its role;
+no database DROP, role deletion or shared-volume cleanup was performed.
 
-| Host URL/port | Variable | Container target |
-| --- | --- | --- |
-| `http://127.0.0.1:18123` | `CLICKHOUSE_HTTP_PORT` | `clickhouse:8123` |
-| `127.0.0.1:19000` native | `CLICKHOUSE_NATIVE_PORT` | `clickhouse:9000` |
-| `http://127.0.0.1:13000` | `METABASE_PORT` | `metabase:3000` |
-| `http://127.0.0.1:18080` | `AIRFLOW_PORT` | `airflow:8080` |
+| Host endpoint | Compose service |
+| --- | --- |
+| `http://127.0.0.1:18123` | ClickHouse HTTP (`CLICKHOUSE_HTTP_PORT`) |
+| `127.0.0.1:19000` | ClickHouse native (`CLICKHOUSE_NATIVE_PORT`) |
+| `http://127.0.0.1:13000` | Metabase (`METABASE_PORT`) |
 
-These avoid the AIS defaults 8123, 9000, 3000 and 8080. All published ports bind
-only to 127.0.0.1. Edit the port variables if another local application uses them.
-Container clients continue to use the original container ports, not host ports.
+All host ports bind to loopback. Container clients use service DNS and container
+ports, not host loopback addresses. The former Airflow port 18080 is no longer
+published by this project.
 
-## ClickHouse and dbt
+## Startup and checks
 
 ```bash
-docker compose up -d --wait clickhouse
+docker compose --profile '*' config -q
+# Build/update only the PostgreSQL image when its fresh-volume bootstrap changes.
+docker compose --profile bi build postgres
+docker compose --profile bi up -d --wait
+python3 scripts/verify_infrastructure.py
+```
+
+The verifier checks authenticated ClickHouse SQL, Metabase metadata access and
+PostgreSQL-admin-database isolation, Metabase health, authenticated SQL from the
+Metabase container to ClickHouse, its bundled driver, and dbt debug. It has no
+Airflow option. No UI session extraction or dashboard writes are needed.
+
+`infra/postgres/init-apps.sh` now provisions only Metabase on **fresh PGDATA**.
+Existing data directories skip initialization. The image refresh during removal
+updated that hook and cleared obsolete Airflow environment variables from the
+PostgreSQL container; it reused the exact same persistent volume. ClickHouse and
+Metabase containers were not rebuilt or recreated.
+
+For a new Metabase connection, use the existing authorized ClickHouse account and
+`clickhouse:8123`. Existing saved connections/dashboards require no edits. Bootstrap
+role/grant changes are separate operations described in
+[migration operations](clickhouse-migration.md); do not overwrite saved credentials
+or assume restricted REES46 dbt grants cover all Synerise schemas.
+
+## dbt, Python and JupyterLab
+
+```bash
 docker compose --profile tools build dbt
 docker compose --profile tools run --rm dbt debug
-docker compose --profile tools run --rm dbt run
-docker compose --profile tools run --rm dbt test
-```
-
-The ClickHouse health check authenticates and executes SELECT 1 against
-`ecommerce`; data/log volumes survive restarts. Resource settings retain a valid
-MergeTree worker-pool configuration. After Phase 3.2 bootstrap, dbt uses CLICKHOUSE_DBT_USER / PASSWORD and writes
-only ecommerce_analytics while reading the declared ecommerce.raw_events source.
-The dbt runtime includes git required by
-`dbt debug`. It sets `DBT_PROFILES_DIR=/workspace/dbt` and uses environment-based
-credentials. `dbt run` intentionally has no models yet; `dbt test` executes the connectivity test and, after Phase 3.2, the raw source
-and historical row-count tests. Bootstrap/migrate before testing that source. No funnel
-transformations or production tables exist.
-
-Optional host-only dbt environment (separate from the project's ML environment):
-
-```bash
-python3.11 -m venv .venv-dbt
-.venv-dbt/bin/pip install -r infra/dbt/requirements.txt
-```
-
-Supply `CLICKHOUSE_PASSWORD` set to your restricted dbt password,
-`CLICKHOUSE_USER=ecommerce_dbt`, `CLICKHOUSE_DATABASE=ecommerce_analytics`, `CLICKHOUSE_HOST=127.0.0.1`,
-`CLICKHOUSE_PORT=18123` (or the configured host port), and
-`DBT_PROFILES_DIR=$PWD/dbt` in your shell. Run `.venv-dbt/bin/dbt --project-dir dbt
-debug`. Do not commit credentials or install this environment inside a container.
-
-## PostgreSQL and Metabase
-
-```bash
-docker compose --profile bi up -d --build --wait
-```
-
-PostgreSQL creates `airflow_metadata` owned by `ecommerce_airflow` and
-`metabase_metadata` owned by `ecommerce_metabase`. PUBLIC database access is
-revoked; neither application role can connect to the other's database. The
-superuser is only for initialization/administration, never application login.
-The image copies its idempotent initialization hook with non-executable mode;
-this avoids macOS executable-bind-mount failures. Hooks run on a fresh volume
-only. To repair an interrupted first-time initialization without deleting data:
-
-```bash
-docker compose exec postgres bash /docker-entrypoint-initdb.d/10-apps.sh
-```
-
-Open Metabase at its host URL and complete its first-run administrator setup.
-Then Admin settings → Databases → Add database → ClickHouse:
-
-- Host `clickhouse`, port `8123`, database `ecommerce`.
-- Username `ecommerce_app`, password from your local `CLICKHOUSE_PASSWORD`.
-- SSL off for this isolated local development connection.
-
-The selected Metabase includes the supported ClickHouse driver; do not download
-legacy driver JARs or invent plugin environment settings. PostgreSQL stores
-Metabase configuration/dashboards, so no H2 database or separate Metabase data
-volume is used. Keep `METABASE_ENCRYPTION_KEY` stable. No dashboards are created.
-A read-only ClickHouse BI role can be added when real analytical schemas arrive;
-the initial shared development user is not a production permissions design.
-
-## Optional Airflow
-
-```bash
-docker compose --profile airflow up -d --build --wait airflow
-```
-
-Uses the supported `airflow standalone` local-development command, which runs
-metadata migrations and the scheduler/API/DAG processor components. Metadata is
-PostgreSQL, not SQLite. `infra/airflow/start.py` supplies the PostgreSQL URI with
-URL-encoded credentials and a private Simple Auth Manager password file before
-starting standalone. UI login: `ecommerce_admin`, password from
-`AIRFLOW_ADMIN_PASSWORD`. Examples are disabled; `dags/` is mounted read-only
-and intentionally empty. Logs and local auth state use named volumes. API and
-metadata health are checked. This is a single-container development arrangement,
-not production HA or a distributed executor deployment. No ingestion/ML DAGs and
-no Docker socket are included. Stop it when not needed:
-
-```bash
-docker compose --profile airflow stop airflow
-```
-
-## Optional Python execution
-
-```bash
+# Optional existing Python import smoke check:
 docker compose --profile ml build ml
 docker compose --profile ml run --rm ml
-docker compose --profile ml run --rm ml python -c 'import duckdb, ecommerce_analytics'
-docker compose --profile ml run --rm ml pytest
 ```
 
-The image installs the existing package and dev dependencies, with no nested
-virtual environment. `data/` is mounted read-only to protect DuckDB/raw files;
-write-producing feature commands are intentionally not run during this phase.
-Default command only imports the project. Tests create synthetic data in /tmp;
-the production dataset is not migrated or modeled. Docker-CLI-dependent static
-tests skip inside this image because it intentionally has no Docker client/socket.
+The tools-profile dbt environment retains its restricted REES46 target. For the
+implemented Synerise models and catalog profile, follow
+[dashboard operations](dashboard-v1-operations.md) and
+[feature/reproduction commands](project-reproduction.md). Do not run broad model
+rebuilds merely to validate infrastructure.
 
-## Operations, persistence and reset
+The optional Python container keeps its data bind mount read-only and default
+import smoke command. JupyterLab is not a Compose service; use
+[the existing notebook/kernel setup](../notebooks/README.md). The ClickHouse → dbt
+→ host Python ML → evaluation workflow and saved experiments are unchanged.
+
+## Safe operations and retired resources
 
 ```bash
 docker compose --profile '*' ps -a
 docker compose logs --tail 100 clickhouse postgres metabase
-docker compose --profile airflow logs --tail 100 airflow
-docker compose restart clickhouse
-docker compose --profile '*' stop
-docker compose --profile '*' down
+docker compose --profile bi stop
 ```
 
-`stop` and `down` preserve named volumes. `down` removes this project's containers
-and networks only. Avoid global prune commands, AIS paths and other project
-names. For a deliberate **destructive reset of e-commerce only**, first back up
-needed ClickHouse/metadata volumes, verify the project is `ecommerce-ml`, then run:
+Use explicit project-scoped operations. Avoid global prunes and destructive volume
+resets. Airflow cleanup removed only the verified `ecommerce-ml-airflow-1` container,
+its custom `ecommerce-ml-airflow:3.1.7` image and two Airflow-only named volumes
+(`ecommerce-ml_airflow-logs`, `ecommerce-ml_airflow-state`). Shared networks, PostgreSQL
+and all ClickHouse/Metabase persistent data remain. No AIS or airflow-intro resource
+was removed. Shared/public base images and build caches were not globally pruned.
 
-```bash
-docker compose --profile '*' down --volumes
-```
+Historical files under `docs/archive/` intentionally retain Airflow references;
+they are dated evidence, not runnable current setup instructions. No scheduler,
+worker, triggerer, API or initialization service remains in the active Compose file.
 
-That deletes this project's database/log/auth volumes, not the bind-mounted
-DuckDB/raw data, and was **not** run during verification. Recreate credentials
-only if intentionally rotating the entire local environment. See the
-[verification report](archive/infrastructure/phase-3.1-infrastructure.md) for actual checks and
-outstanding first-run steps.
+## Removal validation — 5 November 2026
 
-## Primary references
-
-- [Metabase ClickHouse connection](https://www.metabase.com/docs/latest/databases/connections/clickhouse)
-- [Bundled driver history](https://github.com/ClickHouse/metabase-clickhouse-driver)
-- [Airflow 3.1.7 standalone](https://airflow.apache.org/docs/apache-airflow/3.1.7/start.html)
-- [PostgreSQL image initialization](https://hub.docker.com/_/postgres)
-- [dbt-clickhouse](https://pypi.org/project/dbt-clickhouse/1.10.3/)
+- Compose validation passed; services are `clickhouse`, `postgres`, `metabase`,
+  `dbt` and `ml`. There are no Airflow profiles or runtime environment variables.
+- ClickHouse, Metabase and the refreshed PostgreSQL container are healthy. The
+  verifier passed PostgreSQL role isolation, Metabase health/driver checks,
+  authenticated Metabase → ClickHouse SQL via service DNS, and `dbt debug`.
+- Existing ClickHouse table UUIDs/counts and PostgreSQL database OIDs matched the
+  pre-removal snapshot. REES46 retains **20,692,840 rows**; the ML feature table
+  retains **547,914 customers / 74,781 positives**. Metabase retains **66 cards,
+  2 dashboards and 68 dashboard-card entries**. No dashboard or connection was edited.
+- All non-target containers, including other projects, retained their IDs,
+  images, states and network membership. ClickHouse and Metabase container IDs
+  stayed unchanged. PostgreSQL alone was recreated on its unchanged data volume.
+  Both shared network IDs and all non-Airflow volume creation identities survived.
+- Python checks: **83 passed, 3 opt-in skips**; 7 infrastructure tests passed.
+  Four obsolete Airflow-secret parameter tests were removed with the feature.
+  Existing pandas deprecation warnings remain unrelated. Ruff lint/format and
+  PostgreSQL bootstrap shell-syntax checks passed.
+- No global cleanup, volume reset, raw rebuild, training, commit or push occurred.

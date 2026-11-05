@@ -44,7 +44,7 @@ superseded or merged. [Notebook evidence](ml_baseline_v4_1.md),
 
 Python output is local and Git-ignored: models, training-only preprocessing,
 selection decisions and aggregate metrics under `data/processed/phase-4.1/`.
-There is no prediction writeback, model serving, MLflow, automated DAG or dashboard
+There is no prediction writeback, model serving, MLflow, orchestration service or dashboard
 mutation in training. Metabase remains an analytical consumer. Existing REES46
 DuckDB features/baselines and reconciled ClickHouse raw history are independent.
 
@@ -55,6 +55,11 @@ limits or rebuilds source aggregations. Source-clock timezone and continuous
 collection remain unverified; the final Synerise load's count-only acceptance must
 not be described as full row-value reconciliation. The [ingestion report](reports/phase-3.5-synerise-bulk-load.md)
 retains that limitation. Synthetic catalog labels never become ML features.
+
+The Docker stack was simplified on 5 November 2026: the Airflow standalone
+service, its two exclusive volumes and custom image were retired. Both shared
+networks and PostgreSQL-backed Metabase remain; JupyterLab/ML run independently
+of Airflow. See [current infrastructure](infrastructure.md).
 
 The sections below preserve implementation detail and historical milestones.
 Their phase-specific then-future statements do not override this current overview.
@@ -254,16 +259,17 @@ feature reconciliation against ClickHouse are outside this modeling phase.
 ## Implemented: Phase 3.1 infrastructure foundation
 
 `compose.yaml` defines an independent `ecommerce-ml` project. The analytics bridge
-connects ClickHouse, dbt, Metabase, Airflow and ML. An internal metadata bridge
-connects PostgreSQL, Metabase and Airflow; PostgreSQL has no host-published port.
-Separate application roles/databases isolate Airflow and Metabase metadata.
+now connects ClickHouse, dbt, Metabase and ML. The internal metadata bridge
+connects PostgreSQL and Metabase; PostgreSQL has no host-published port.
+The Airflow extension described by the historical Phase 3.1 report has been removed;
+shared PostgreSQL data, including dormant historical metadata, is preserved.
 Persistent volumes are Compose-scoped. All published ports bind to 127.0.0.1,
 with host defaults distinct from AIS. No AIS resources are reused or changed.
 
 At the end of Phase 3.1, ClickHouse was empty apart from its dedicated database,
 and dbt contained only an infrastructure SQL test; Metabase's built-in ClickHouse driver is used.
-Airflow standalone is optional local development infrastructure, with no DAGs;
-its metadata is PostgreSQL. ML is an optional execution image that reuses the
+Airflow standalone was removed on 5 November 2026. It is not a current service,
+profile or dependency. ML is an optional execution image that reuses the
 package; its host data mount is read-only. These Python environments are separate.
 See [infrastructure documentation](infrastructure.md) for versions, credentials,
 resource limits, profiles, readiness checks, persistence and operations.
@@ -292,7 +298,7 @@ provisioned without changing legacy credentials. That restricted dbt role reads 
 `ecommerce_analytics`; a source declaration and quality tests are present, but
 REES46 session/customer/feature transformations remain in DuckDB. Synerise dbt
 funnel models and Dashboard V1.0 were implemented subsequently, as described above.
-Airflow ingestion/ML DAGs remain future work. AIS is untouched.
+No orchestration service or DAG is implemented. AIS is untouched.
 
 ## Historical target: REES46 transformation roadmap
 
@@ -302,7 +308,7 @@ Public REES46 CSVs → validated ClickHouse ingestion
         → Metabase analytical dashboards
         → Python ML chronological validation and scoring research
     ↔ DuckDB reference counts and feature reconciliation
-Airflow → orchestrate validated ingestion/transformations/ML steps
+Unimplemented orchestration concept → ingestion/transformations/ML steps
 Docker Compose → independent local service/runtime boundary
 ```
 

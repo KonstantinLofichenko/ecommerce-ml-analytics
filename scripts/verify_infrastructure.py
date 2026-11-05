@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def verify(include_airflow: bool = False) -> dict[str, str]:
+def verify() -> dict[str, str]:
     values = dict(
         line.split("=", 1)
         for line in (ROOT / ".env").read_text().splitlines()
@@ -48,8 +48,7 @@ def verify(include_airflow: bool = False) -> dict[str, str]:
     )
     checks = {"compose": "valid", "clickhouse_sql": "SELECT 1 passed"}
     for user_key, database, password, forbidden in (
-        ("AIRFLOW_DB_USER", "airflow_metadata", "AIRFLOW_DB_PASSWORD", "metabase_metadata"),
-        ("METABASE_DB_USER", "metabase_metadata", "METABASE_DB_PASSWORD", "airflow_metadata"),
+        ("METABASE_DB_USER", "metabase_metadata", "METABASE_DB_PASSWORD", "postgres"),
     ):
         user = values[user_key].strip("\"'")
         run(
@@ -65,7 +64,7 @@ def verify(include_airflow: bool = False) -> dict[str, str]:
             f'if psql -h postgres -U "$APP_USER" -d {forbidden} -c "SELECT 1" '
             "> /dev/null 2>&1; then exit 1; fi",
         )
-        checks[user] = "own database allowed; other application database denied"
+        checks[user] = "Metabase database allowed; administrator database denied"
     health = run("exec", "-T", "metabase", "curl", "-fsS", "http://localhost:3000/api/health")
     if json.loads(health).get("status") != "ok":
         raise RuntimeError("Metabase is not ready")
@@ -96,15 +95,10 @@ def verify(include_airflow: bool = False) -> dict[str, str]:
     checks["metabase_driver"] = "ClickHouse engine advertised; UI connection setup is manual"
     run("--profile", "tools", "run", "--rm", "dbt", "debug", "--log-level", "warn")
     checks["dbt_debug"] = "all checks passed"
-    if include_airflow:
-        run("exec", "-T", "airflow", "airflow", "db", "check")
-        run("exec", "-T", "airflow", "python", "/opt/airflow/health.py")
-        checks["airflow"] = "metadata connection and API health passed"
     return checks
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--include-airflow", action="store_true")
-    args = parser.parse_args()
-    print(json.dumps(verify(args.include_airflow), indent=2))
+    parser.parse_args()
+    print(json.dumps(verify(), indent=2))

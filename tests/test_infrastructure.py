@@ -14,12 +14,8 @@ REQUIRED = (
     "CLICKHOUSE_PASSWORD",
     "CLICKHOUSE_DBT_PASSWORD",
     "POSTGRES_PASSWORD",
-    "AIRFLOW_DB_PASSWORD",
     "METABASE_DB_PASSWORD",
     "METABASE_ENCRYPTION_KEY",
-    "AIRFLOW_FERNET_KEY",
-    "AIRFLOW_JWT_SECRET",
-    "AIRFLOW_ADMIN_PASSWORD",
 )
 
 
@@ -54,8 +50,12 @@ def test_compose_isolation_and_topology() -> None:
     config = json.loads(result.stdout)
     assert config["name"] == "ecommerce-ml"
     services = config["services"]
-    assert set(services) == {"clickhouse", "postgres", "dbt", "metabase", "airflow", "ml"}
+    assert set(services) == {"clickhouse", "postgres", "dbt", "metabase", "ml"}
+    assert set(config["volumes"]) == {"clickhouse-data", "clickhouse-logs", "postgres-data"}
+    assert set(config["networks"]) == {"ecommerce-analytics", "ecommerce-metadata"}
+    assert not any("airflow" in p for v in services.values() for p in v.get("profiles", []))
     for service in services.values():
+        assert not any("AIRFLOW" in key for key in service.get("environment", {}))
         assert "container_name" not in service
         assert not service["image"].endswith(":latest")
         for port in service.get("ports", []):
@@ -64,9 +64,9 @@ def test_compose_isolation_and_topology() -> None:
         assert all("docker.sock" not in v.get("source", "") for v in service.get("volumes", []))
     assert services["postgres"].get("ports", []) == []
     assert config["networks"]["ecommerce-metadata"]["internal"]
-    for name in ("postgres", "metabase", "airflow"):
+    for name in ("postgres", "metabase"):
         assert "ecommerce-metadata" in services[name]["networks"]
-    for name in ("clickhouse", "dbt", "metabase", "airflow", "ml"):
+    for name in ("clickhouse", "dbt", "metabase", "ml"):
         assert "ecommerce-analytics" in services[name]["networks"]
     for obj in (*config["networks"].values(), *config["volumes"].values()):
         assert obj["name"].startswith("ecommerce-ml_")
@@ -92,6 +92,7 @@ def test_private_unique_credentials_and_no_overwrite(tmp_path: Path) -> None:
     values = dict(line.split("=", 1) for line in path.read_text().splitlines())
     assert len({values[k] for k in REQUIRED}) == len(REQUIRED)
     assert all(len(values[k]) >= 32 for k in REQUIRED)
+    assert not any(key.startswith("AIRFLOW") for key in values)
     before = path.read_bytes()
     with pytest.raises(FileExistsError):
         initialize(path)

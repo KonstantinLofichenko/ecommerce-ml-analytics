@@ -62,7 +62,7 @@ Canonical reporting facts and display dimensions live in `synerise_analytics`;
 timezone-unverified. Source datasets retain their own licensing/access restrictions;
 see the [dataset assessment](docs/reports/phase-3.3-synerise-assessment.md).
 Unique historical findings remain indexed in [reports](docs/reports/README.md) and
-the [historical archive](docs/archive/README.md). Airflow DAGs, automated deployment,
+the [historical archive](docs/archive/README.md). Automated orchestration, deployment,
 model serving and rolling evaluation are deliberately outside the completed scope.
 
 ## Customer Time to Conversion — V2.0
@@ -106,7 +106,7 @@ Python 3.11+, ClickHouse for Synerise storage, dbt for transformations, Pandas f
 compact customer features/aggregate results, scikit-learn and LightGBM for offline
 models, JupyterLab for preserved exploration, and Metabase for analytics. Pytest,
 Ruff, uv dependency management and Docker Compose support reproducibility. DuckDB
-remains the REES46 reference. Optional Airflow infrastructure has no implemented DAGs.
+remains the REES46 reference. Airflow has been removed from the Docker environment.
 
 ## Repository structure
 
@@ -319,14 +319,14 @@ phase; this task does not migrate storage or introduce MLflow/deployment.
 ```bash
 python3 scripts/init_infra_env.py  # Creates private .env; refuses to overwrite it
 docker compose --profile '*' config -q
-docker compose --profile tools --profile ml --profile airflow --profile bi build
+docker compose --profile tools --profile ml --profile bi build
 docker compose --profile bi up -d --wait
 docker compose --profile tools run --rm dbt debug
 docker compose --profile tools run --rm dbt test
 ```
 
 Metabase is at `http://127.0.0.1:13000`; ClickHouse HTTP is at port 18123.
-Airflow (`--profile airflow`) and Python execution (`--profile ml`) are optional.
+Python execution (`--profile ml`) is optional. Airflow is no longer a service or profile.
 The AIS project remains independent. No event data is migrated and no models
 are trained by infrastructure startup. See [infrastructure instructions](docs/infrastructure.md)
 and the [runtime verification report](docs/archive/infrastructure/phase-3.1-infrastructure.md).

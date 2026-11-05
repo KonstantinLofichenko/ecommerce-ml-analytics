@@ -50,7 +50,7 @@ labels, so that notebook is exploratory baseline evidence rather than a sealed
 prospective holdout. Its complete execution-time environment was not captured.
 
 Completed scope is offline analytics and baseline modeling. A longer dataset,
-fresh holdout, rolling chronological validation, serving and Airflow DAGs are
+fresh holdout, rolling chronological validation, serving and orchestration are
 potential future work, **not claims of implemented functionality**.
 
 [Architecture](architecture.md) · [Reproduction](project-reproduction.md) ·
