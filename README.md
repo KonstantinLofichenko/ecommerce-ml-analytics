@@ -1,28 +1,69 @@
 # E-Commerce ML Analytics
 
-Synerise Funnel Analytics V2.2 adds cart non-conversion reporting to the V1.0 customer/category/SKU
-funnels and synthetic display catalog with customer, category and product
-Time to Conversion.
-The existing **Synerise funnel analytics** Metabase dashboard has three tabs:
-**Funnel Analytics**, **Time to Conversion** and **Cart Abandonment**.
-ClickHouse and dbt serve canonical, denormalized tables to Metabase. Source-clock
-timestamps remain timezone-unverified; synthetic labels are not ML predictors.
+An end-to-end local analytics and machine-learning portfolio built with **ClickHouse,
+dbt, Python and Metabase**. It turns anonymized Synerise behavioral events into
+customer/category/product funnels, retention reporting and a first-observed-purchase
+repeat-purchase dataset, then evaluates chronological Python baselines.
 
-The original REES46 cosmetics project is preserved: October 2019–February 2020
-DuckDB history, leakage-safe customer snapshots, chronological baseline models,
-and reconciled ClickHouse raw events. Airflow orchestration remains future work.
+The project covers **225,224,262 behavioral events**, a 1,534,050-row product catalog
+and **547,914 eligible ML customers**. Original data stays local and out of Git.
+The independently developed REES46/DuckDB analytics and baseline work is preserved.
+This is completed offline portfolio work, not a deployed prediction service.
 
-Start with the [Dashboard V1.0 validation and rebuild guide](docs/reports/metabase-v1-synerise-refactor.md),
-[current architecture](docs/architecture.md), [synthetic mapping methodology](docs/synthetic-catalog.md),
-[Amazon import instructions](docs/amazon-catalog.md), and [infrastructure setup](docs/infrastructure.md).
-Historical research is indexed in [docs/reports/README.md](docs/reports/README.md).
+```text
+Synerise Parquet → ClickHouse synerise_raw → dbt staging/intermediates
+    ├─ canonical funnel/retention facts → existing Metabase analytics
+    └─ ml_customer_features → Python baselines → chronological evaluation reports
+Amazon metadata → deterministic synthetic display dimensions → analytics facts only
+```
 
-The [funnel data contract](docs/funnel-data-contract.md) defines customer, category
-and SKU cohorts, chronology, denominators, coverage and attribution limitations.
-Canonical reporting tables in `synerise_analytics` are `fct_synerise_funnel`,
-`fct_synerise_funnel_by_category`, and `fct_synerise_funnel_by_product`; synthetic
-display dimensions are `dim_synerise_categories` and `dim_synerise_products`.
-Superseded investigations are indexed in the [historical archive](docs/archive/README.md).
+The existing **Synerise funnel analytics** dashboard has four documented tabs:
+**Funnel Analytics**, **Time to Conversion**, **Cart Abandonment**, and
+**Customer Retention**. No prediction writeback or ML dashboard is implemented.
+Synthetic Amazon labels are display-only and never enter the ML predictors.
+
+## Final ML baseline results
+
+The target is a purchase on a **later source-calendar date within 30 calendar days**
+of first observed purchase, not an order or exact 720-hour outcome. Seven behavioral
+features use only the preceding 30 days. The population contains **74,781 positives**.
+
+| Preserved LightGBM experiment | Validation AP | Test AP | Test ROC-AUC | Test Lift@10% | Test Brier |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Interactive notebook | 0.2209 | 0.2134 | 0.6238 | 2.08× | 0.1130 |
+| Separate scripted run | 0.2212 | 0.2128 | 0.6269 | 2.06× | 0.1130 |
+
+These are different configurations, not interchangeable reproductions. The
+[notebook report](docs/ml_baseline_v4_1.md) verifies saved outputs without rerunning
+training. The [scripted report](docs/reports/phase-4.1-repeat-purchase.md) preserves
+the executed DummyClassifier, logistic regression and LightGBM comparison.
+Discrimination is modest; ranking lift is not demonstrated commercial uplift.
+The notebook includes exploratory exposure to test-period labels. A seven-day,
+one-fold test and unresolved tracking/timezone assumptions limit generalization.
+Future tuning needs a fresh holdout. No additional research is part of finalization.
+
+## Start here
+
+- [Portfolio summary](docs/project-summary.md) and [architecture](docs/architecture.md).
+- [Finalization audit and reproducibility checks](docs/reports/project-finalization.md).
+- [Notebook setup, kernel and evidence preservation](notebooks/README.md).
+- [Scripted reproduction and dependency environments](docs/project-reproduction.md).
+- [Feature definitions and validation](docs/customer-features-v4.md),
+  [retention](docs/customer-retention.md) and [investigation SQL](sql/analysis/repeat_purchase/README.md).
+- [Funnel data contract](docs/funnel-data-contract.md),
+  [dashboard operations](docs/dashboard-v1-operations.md), and
+  [saved Metabase queries](docs/metabase/README.md).
+- [Infrastructure](docs/infrastructure.md), [Amazon import](docs/amazon-catalog.md),
+  [synthetic mapping limitations](docs/synthetic-catalog.md), and
+  [source provenance/licensing](docs/reports/phase-3.3-synerise-provenance.md).
+
+Canonical reporting facts and display dimensions live in `synerise_analytics`;
+`ml_customer_features` is the Python training source. Source-clock timestamps remain
+timezone-unverified. Source datasets retain their own licensing/access restrictions;
+see the [dataset assessment](docs/reports/phase-3.3-synerise-assessment.md).
+Unique historical findings remain indexed in [reports](docs/reports/README.md) and
+the [historical archive](docs/archive/README.md). Airflow DAGs, automated deployment,
+model serving and rolling evaluation are deliberately outside the completed scope.
 
 ## Customer Time to Conversion — V2.0
 
@@ -61,11 +102,11 @@ unfiltered. Repository finalization does not modify Metabase.
 
 ## Technology stack
 
-Python 3.11+, DuckDB for full-file SQL aggregation, Pandas for small aggregate
-results, Pytest for tests, and Ruff for linting and formatting.
-Implemented modeling: scikit-learn baselines. The agreed infrastructure is
-Docker Compose + ClickHouse + dbt + Apache Airflow + Metabase + Python ML.
-DuckDB remains the validated reference; ClickHouse hosts reconciled raw history.
+Python 3.11+, ClickHouse for Synerise storage, dbt for transformations, Pandas for
+compact customer features/aggregate results, scikit-learn and LightGBM for offline
+models, JupyterLab for preserved exploration, and Metabase for analytics. Pytest,
+Ruff, uv dependency management and Docker Compose support reproducibility. DuckDB
+remains the REES46 reference. Optional Airflow infrastructure has no implemented DAGs.
 
 ## Repository structure
 
@@ -75,9 +116,13 @@ DuckDB remains the validated reference; ClickHouse hosts reconciled raw history.
 ├── data/
 │   ├── raw/                  # Local immutable source CSVs (ignored)
 │   └── processed/            # Derived datasets (ignored)
+├── dbt/                     # ClickHouse models, macros, schema and singular tests
+├── sql/analysis/             # Provenance-labeled investigation SELECTs
+├── uv.lock                  # Current project/notebook dependency resolution
+├── requirements/            # Historical scripted ML runtime versions
 ├── docs/architecture.md
 ├── notebooks/                # Exploratory notebooks
-├── scripts/                 # Profiling, behavior analysis, and dataset build CLIs
+├── scripts/                 # Ingestion, validation, feature builds and training CLIs
 ├── src/ecommerce_analytics/
 │   ├── ingestion/            # Reproducible monthly DuckDB dataset builder
 │   ├── analytics/            # Reusable exploratory SQL analysis
@@ -88,26 +133,29 @@ DuckDB remains the validated reference; ClickHouse hosts reconciled raw history.
 
 ## Local development
 
-Install Python 3.11 or newer, then run from the repository root:
+From the repository root, with uv and Python 3.11 available:
 
 ```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[dev]'
-pytest
-ruff check .
-ruff format --check .
+uv sync --locked --extra dev --extra ml
+uv run --locked --extra dev --extra ml pytest
+uv run --locked --extra dev --extra ml ruff check .
+uv run --locked --extra dev --extra ml ruff format --check .
 ```
 
-Alternatively, with uv: `uv venv --python 3.11` then
-`uv pip install -e '.[dev]'`. Activate `.venv` before running commands.
+The historical notebook and its verbatim configuration report are excluded from
+automatic lint/format rewriting so their evidence remains unchanged. Python modules
+and tests remain checked. No dataset is needed for default synthetic tests; live
+migration integration tests require explicit opt-in. Dataset reads, dbt tests and
+actual experiment reproduction need the separately configured local services/data.
+See [reproduction](docs/project-reproduction.md) for the historical scripted pins,
+read-only checks and notebook instructions. Do not rerun the final holdout for tuning.
 
-## Download the dataset
+## Historical REES46 dataset setup
 
-Open the Kaggle dataset linked above, sign in if required, and download its CSV
-archive using the dataset page's download control. Extract a monthly file such
+Supply the original REES46 cosmetics CSVs through their authorized dataset source.
+Extract a monthly file such
 as `2019-Oct.csv` into `data/raw/`. Dataset access and any terms are managed by
-Kaggle; downloading is intentionally manual. Keep the original CSV unchanged.
+the dataset provider; downloading is intentionally manual. Keep original CSVs unchanged.
 Do not commit datasets or credentials. Both data directories retain tracked
 `.gitkeep` files while their contents are ignored.
 
@@ -339,6 +387,10 @@ cohort and source-data limitations.
 Metabase question reproduction: [V1.0/V2.0 recovered SQL and validation](docs/metabase/README.md).
 
 V3.0 customer retention: [customer purchase retention models, coverage policy and validation](docs/customer-retention.md).
+
+V4.0 data preparation: [first-purchase behavioral features and validation](docs/customer-features-v4.md).
+
+V4.1 experiment: [chronological repeat-purchase model results and reproduction](docs/reports/phase-4.1-repeat-purchase.md).
 
 Interactive V4.1 notebook: [setup and preservation notes](notebooks/README.md) and
 [saved notebook baseline results](docs/ml_baseline_v4_1.md). These results are distinct

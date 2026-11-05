@@ -1,9 +1,66 @@
 # Architecture
 
-## Current extension: customer Time to Conversion V2.0
+## Current portfolio workflow — V1.0 through V4.1
 
-The existing dashboard now has Funnel Analytics (V1) and Time to Conversion (V2)
-tabs. V1 reporting logic and the independent REES46/ML project are unchanged.
+```text
+Pinned local Synerise Parquet → native ClickHouse file() ingestion → synerise_raw
+  → dbt staging + intermediates
+    ├─ funnel / conversion-time facts → Metabase Funnel Analytics / Time to Conversion
+    ├─ existing conversion facts + native SQL → Metabase Cart Abandonment
+    ├─ first-purchase / customer-date / month summaries → retention / repeat facts
+    │    → Metabase Customer Retention
+    └─ eligible first-purchasers + raw strict-lookback aggregation
+         → int_customer_behavior_30d → ml_customer_features
+              ├─ preserved Jupyter notebook → saved baseline evidence
+              └─ reproducible Python CLI → local models + aggregate evaluation
+Amazon metadata → synthetic category/product dimensions → reporting enrichment only
+```
+
+Raw rows and duplicates remain intact. dbt uses `source()`/`ref()`, ordinary
+MergeTree tables and explicit analytical grains. V3 reuse supplies first observed
+purchase and later-distinct-date summaries; V4 features retain seven original
+behavioral counts/flags with zero-filled non-active customers. The cart indicator
+means additions only. Page IDs are anonymized URLs, not inferred SKU attribution.
+See [feature contract](customer-features-v4.md) and [retention policy](customer-retention.md).
+
+The feature table contains 547,914 customers / 74,781 positives. Python reads this
+compact table, not raw event history. Only the seven allowlisted predictors enter
+models; customer identity, timestamps, cohort metadata and target are excluded.
+Training/validation/test dates are purged for calendar-date label maturity:
+July 23–August 15, September 15–30 and November 1–7. Negative outcomes become
+available on first-purchase date +31 midnight; 313,727 customers fall in excluded gaps.
+
+The two V4.1 experiment records remain independent. The notebook uses raw-count
+scaling and 100-tree/depth-4 LightGBM; the script uses log1p/scaling and
+200-tree/depth-5 LightGBM. The script has executable maturity guards and saves
+validation-selected settings before final holdout prediction. The notebook has
+saved-output provenance and a documented full-population EDA holdout-exposure
+limitation; it is not a strictly sealed prospective evaluation. Neither record is
+superseded or merged. [Notebook evidence](ml_baseline_v4_1.md),
+[scripted results](reports/phase-4.1-repeat-purchase.md), and
+[reproduction](project-reproduction.md) explain the distinction.
+
+Python output is local and Git-ignored: models, training-only preprocessing,
+selection decisions and aggregate metrics under `data/processed/phase-4.1/`.
+There is no prediction writeback, model serving, MLflow, automated DAG or dashboard
+mutation in training. Metabase remains an analytical consumer. Existing REES46
+DuckDB features/baselines and reconciled ClickHouse raw history are independent.
+
+ClickHouse uses the existing 16 GiB container / 12 GiB server limits. The catalog
+dbt target uses one thread, a 1 GiB query cap and spill thresholds; the behavioral
+feature query uses a bounded grace-hash join. No finalization check changes these
+limits or rebuilds source aggregations. Source-clock timezone and continuous
+collection remain unverified; the final Synerise load's count-only acceptance must
+not be described as full row-value reconciliation. The [ingestion report](reports/phase-3.5-synerise-bulk-load.md)
+retains that limitation. Synthetic catalog labels never become ML features.
+
+The sections below preserve implementation detail and historical milestones.
+Their phase-specific then-future statements do not override this current overview.
+
+## V2.0 customer Time to Conversion — retained component detail
+
+These V2 models support the Time to Conversion tab within the current four-tab
+dashboard. V1 reporting logic and the independent REES46/ML project are unchanged.
 
 ```text
 source('synerise', 'add_to_cart')
@@ -24,7 +81,7 @@ page visit and must not be equated with V1's overall customer funnel. The
 populations, denominators, units and clock representation. Builds/tests use the
 existing single-thread catalog target and unchanged server/container limits.
 
-## Current: Synerise Dashboard V1.0
+## V1.0 funnel foundation — retained component detail
 
 ```text
 Pinned Synerise Parquet → native ClickHouse file() bulk import → synerise_raw

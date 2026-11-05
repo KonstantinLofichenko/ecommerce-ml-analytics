@@ -25,3 +25,12 @@ load reports are indexed in the [historical archive](../archive/README.md).
 Those findings are retained, not discarded or promoted to current acceptance claims.
 SQL execution audits are evidence and must not be replayed blindly. No original
 research scripts, tests or unique validation data were deleted during organization.
+
+## Completed repeat-purchase portfolio
+
+- [V4.1 scripted experiment](phase-4.1-repeat-purchase.md) preserves the executed
+  three-model run, fixed settings, thresholds and aggregate metrics.
+- [V4.1 notebook evidence](../ml_baseline_v4_1.md) preserves a separate interactive
+  experiment; its saved outputs were inspected without re-execution.
+- [Portfolio finalization audit](project-finalization.md) records non-destructive
+  checks, preservation, remaining limitations and the proposed commit sequence.
