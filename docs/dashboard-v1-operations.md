@@ -409,3 +409,12 @@ new tests validate partition arithmetic and boundary/zero-denominator behavior.
 No `dbt run` or raw-event rebuild is needed for V2.2. SQL queries and generated
 temporary validation outputs are kept separate; only reviewed question templates
 and tests belong in Git.
+
+## ML reporting tab — 5 November 2026
+
+The existing dashboard now has **ML — Repeat Purchase Prediction** (tab 8),
+without changing the V1–V3 tabs. See [ML tab instructions](metabase/ml/README.md)
+for its ten saved questions, linked identity filters, unavailable notebook states,
+idempotent provisioning and 100-case live query validation. Nine questions use
+Query Builder; only score-decile ranking uses native SQL. Refreshing this tab
+reads published reporting views and does not train or rebuild anything.

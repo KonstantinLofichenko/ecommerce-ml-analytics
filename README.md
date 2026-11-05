@@ -392,6 +392,10 @@ V4.0 data preparation: [first-purchase behavioral features and validation](docs/
 
 V4.1 experiment: [chronological repeat-purchase model results and reproduction](docs/reports/phase-4.1-repeat-purchase.md).
 
+[ML reporting export](docs/ml-results-export.md): published frozen artifact inference and provenance-separated summaries in ClickHouse.
+
+Metabase [ML — Repeat Purchase Prediction](docs/metabase/ml/README.md): ten saved questions on the existing dashboard, with experiment/model/split filters.
+
 Interactive V4.1 notebook: [setup and preservation notes](notebooks/README.md) and
 [saved notebook baseline results](docs/ml_baseline_v4_1.md). These results are distinct
 from the earlier scripted V4.1 experiment.

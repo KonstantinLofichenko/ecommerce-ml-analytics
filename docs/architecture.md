@@ -13,6 +13,8 @@ Pinned local Synerise Parquet → native ClickHouse file() ingestion → syneris
          → int_customer_behavior_30d → ml_customer_features
               ├─ preserved Jupyter notebook → saved baseline evidence
               └─ reproducible Python CLI → local models + aggregate evaluation
+                   → frozen artifact inference + saved evidence → manifest-gated ML reporting views
+                        → Metabase ML — Repeat Purchase Prediction
 Amazon metadata → synthetic category/product dimensions → reporting enrichment only
 ```
 
@@ -352,3 +354,13 @@ credentials or dashboard writes. See the [deployed reference](metabase/v22/READM
 Existing V1/V2 models remain unchanged; rates are fractions, formatted as percentages
 with one decimal. The original standalone-dashboard/stacked-bar/top-20 design was
 a proposal and is not the deployed layout.
+
+## Published ML reporting and dashboard
+
+The existing Synerise dashboard (ID 2) now includes an ML tab (ID 8). Nine
+questions use Query Builder; deterministic score deciles require one native SQL
+query. Required identity filters separate scripted artifact inference from saved
+notebook summaries. All charts read manifest-gated reporting views; there are no
+model/dbt rebuilds or inference jobs triggered by dashboard refresh. See
+[ML dashboard operation and validation](metabase/ml/README.md) and
+[export publication](ml-results-export.md). Existing analytical tabs are preserved.
