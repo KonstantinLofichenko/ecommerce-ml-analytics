@@ -1,0 +1,132 @@
+version: 2
+models:
+- name: int_customer_behavior_30d
+  description: One row per eligible customer with activity in the strict pre-first-purchase
+    30-day UTC-parsed window. Raw duplicates retained. Audit min/max timestamps are
+    not predictors.
+  columns:
+  - name: client_id
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: page_views_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: unique_pages_30d
+    description: Exact distinct original page_visit.url Int64 identifiers in the strict
+      lookback; anonymized page keys, not SKUs.
+    data_tests:
+    - not_null
+  - name: cart_adds_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: cart_removals_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: searches_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: has_cart_activity_30d
+    description: 1 iff cart_adds_30d > 0; removal-only activity is other activity,
+      matching the validated population.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+  - name: has_behavioral_activity_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+  - name: first_behavior_ts
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: last_behavior_ts
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+- name: ml_customer_features
+  description: One row per eligible first observed purchaser, including zero-activity
+    customers. Calendar-date repeat target from validated V3 summary; not a 720-hour
+    target.
+  columns:
+  - name: client_id
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+    - unique_in_order
+  - name: first_purchase_ts
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: first_purchase_month
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: target_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+  - name: page_views_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: unique_pages_30d
+    description: Exact distinct original page_visit.url Int64 identifiers in the strict
+      lookback; anonymized page keys, not SKUs.
+    data_tests:
+    - not_null
+  - name: cart_adds_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: cart_removals_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: searches_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+  - name: has_cart_activity_30d
+    description: 1 iff cart_adds_30d > 0; removal-only activity is other activity,
+      matching the validated population.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
+  - name: has_behavioral_activity_30d
+    description: See docs/customer-features-v4.md for definitions and clock limitations.
+    data_tests:
+    - not_null
+    - accepted_values:
+        arguments:
+          values:
+          - 0
+          - 1
+          quote: false
