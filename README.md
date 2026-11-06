@@ -17,10 +17,71 @@ Synerise Parquet → ClickHouse synerise_raw → dbt staging/intermediates
 Amazon metadata → deterministic synthetic display dimensions → analytics facts only
 ```
 
+<details>
+<summary>Earlier dashboard scope, before ML reporting publication</summary>
+
 The existing **Synerise funnel analytics** dashboard has four documented tabs:
 **Funnel Analytics**, **Time to Conversion**, **Cart Abandonment**, and
 **Customer Retention**. No prediction writeback or ML dashboard is implemented.
 Synthetic Amazon labels are display-only and never enter the ML predictors.
+
+</details>
+
+## Dashboard Screenshots
+
+The published **Synerise funnel analytics** dashboard contains all five tabs below.
+These captures show aggregate analytics; product titles and category labels are
+synthetic Amazon-derived display enrichment, not recovered Synerise attributes.
+Click an image to inspect its full-resolution version.
+
+### Funnel Analytics
+
+Customer conversion from page visit to cart and purchase, with category and SKU
+breakdowns. Product/category IDs identify catalog entities, not customers.
+
+![Funnel Analytics: customer funnel and synthetic category conversion table](docs/images/dashboards/funnel-analytics-1.png)
+
+![Funnel Analytics: SKU conversion table with synthetic Amazon product titles](docs/images/dashboards/funnel-analytics-2.png)
+
+### Time to Conversion
+
+First-cart-to-purchase timing, cumulative conversion windows and the observed
+conversion-time distribution.
+
+![Time to Conversion: median and tail timing KPIs, cumulative conversion and distribution](docs/images/dashboards/time-to-conversion.png)
+
+### Cart Abandonment
+
+First-cart customer non-conversion using one seven-day-eligible cohort—not
+session-level basket abandonment.
+
+![Cart Abandonment: eligible cohort, non-conversion rates and seven-day outcomes](docs/images/dashboards/cart-abandonment.png)
+
+### Customer Retention
+
+Monthly purchase cohorts, repeat-purchase KPIs, cohort comparisons and purchase-date
+frequency. Missing future periods are unavailable, not zero retention.
+
+![Customer Retention: monthly cohort heatmap and repeat-purchase KPIs](docs/images/dashboards/customer-retention-1.png)
+
+![Customer Retention: 30-day repeat purchase by cohort and purchase-date frequency](docs/images/dashboards/customer-retention-2.png)
+
+### ML — Repeat Purchase Prediction
+
+Scripted LightGBM on the test split: 33,020 customers, AP 0.2128, ROC-AUC 0.6269,
+Lift@10% 2.06× and Brier 0.1130. Customer scores use artifact inference; the saved scripted metrics remain separate
+from the historical notebook experiment.
+
+![ML overview: experiment filters, six KPIs, score deciles and probability distribution](docs/images/dashboards/ml-repeat-purchase-1.png)
+
+LightGBM gain importance and probability calibration on one shared 0–1 scale.
+The highest populated calibration bins are sparse; one contains **only one
+customer**, so its observed rate of 1.0 is a single outcome, not reliable tail evidence.
+
+![ML diagnostics: LightGBM gain feature importance and observed versus perfect calibration](docs/images/dashboards/ml-repeat-purchase-2.png)
+
+See [ML dashboard definitions and validation](docs/metabase/ml/README.md) and the
+[screenshot inventory](docs/images/dashboards/README.md).
 
 ## Final ML baseline results
 
